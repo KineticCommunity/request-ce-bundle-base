@@ -1,0 +1,49 @@
+.all-services {
+    font-size: .5em;
+    font-weight: normal;
+    color: #ccc;
+    margin-left: 1em;
+}
+.panel {
+    width: 23%;
+    float: left;
+    text-align: center;
+    margin-right: .5em;
+    border: 1px solid #e8e8e8;
+}
+.panel .fa {
+    width: 100%;    // for clickability
+    height: 100%;   // for clickability
+    color: #428BCA;
+    font-size: 3em;
+}
+.panel-body {
+    padding: 7px;
+}
+.panel-footer {
+    font-size:.7em;
+    color: #428BCA;
+    text-transform: uppercase;
+}
+.feed-content {
+    border: 1px solid black;
+    padding: 15px;
+}
+.errors {
+    background-color: #faf0ef;
+    border: 1px solid #d5d5d5;
+    color: #000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60%;
+}
+.errors p {
+    font-style: bold;
+    font-size: larger;
+    background-color: #cc0000;
+    border-bottom: 1px solid #d5d5d5;
+    padding-left: .5em;
+    padding-right: .5em;
+    color: white;
+    padding: 3px;
+}
