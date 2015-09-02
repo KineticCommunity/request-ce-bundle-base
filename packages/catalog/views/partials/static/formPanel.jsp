@@ -4,7 +4,7 @@
 <div class="panel">
     <div class="panel-body">
         <a href="${bundle.kappLocation}/${thisForm.slug}">
-          <span class="fa fa-${['adjust','bank','cloud','diamond', 'eye', 'file-image-o','globe'][random.nextInt(6)]}"/>
+          <span class="fa fa-${['adjust','bank','cloud','desktop','eye','file-image-o','globe'][random.nextInt(6)]}"/>
 
         </a>
     </div>
