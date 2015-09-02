@@ -9,7 +9,7 @@
             <c:import url="${bundle.path}/packages/catalog/views/partials/shared/navbar/navbarToggleNav.jsp" charEncoding="UTF-8"/>
             <%-- Remove the request attribute so it isn't used somewhere by accident --%>
             <c:remove scope="request" var="target"/>
-            <a class="navbar-brand" href="${bundle.kappLocation}"><i class="fa ${app:escape(kapp.getAttribute('Image Class').value)}"></i> ${app:escape(kapp.name)}</a>
+            <a class="navbar-brand" href="${bundle.kappLocation}"><i class="fa fa-home"></i> ${app:escape(kapp.name)}</a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar-collapse-1">

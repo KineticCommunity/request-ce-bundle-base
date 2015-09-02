@@ -47,3 +47,15 @@
     color: white;
     padding: 3px;
 }
+
+h3.uncategorized{
+  color: #CCCCCC;
+}
+
+section.configbar{
+  margin-top:1em;
+}
+
+section.configbar li.active{
+  font-weight:bold;
+}

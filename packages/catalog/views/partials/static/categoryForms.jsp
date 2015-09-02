@@ -5,9 +5,7 @@
     <%-- If the category is not hidden, and it contains at least 1 form --%>
     <c:if test="${fn:toLowerCase(category.getAttribute('Hidden').value) ne 'true' && not empty category.forms}">
         <div class="category">
-            <h3>${app:escape(category.name)}
-                <a class="all-services" href="${bundle.kappLocation}/category-forms?category=${app:escapeUrlParameter(category.name)}">View All Category Services</a>
-            </h3>
+            <h3>${app:escape(category.name)}</h3>
             <div class="col-xs-12">
                 <%-- Show the first x number of forms of the category --%>
                 <c:forEach items="${category.forms}" var="categoryForm" begin="0" end="8">
@@ -22,7 +20,7 @@
         </div>
     </c:if>
     <div class="category">
-        <h3>
+        <h3 class='uncategorized'>
           Uncategorized Forms
         </h3>
         <div class="col-xs-12">
