@@ -5,11 +5,11 @@
     <bundle:variable name="head">
 
         <bundle:stylepack>
-            <bundle:style>${bundle.packagePath}/css/catalog.css</bundle:style>
+            <bundle:style src="${bundle.packagePath}/css/catalog.css "/>
         </bundle:stylepack>
         <bundle:scriptpack>
-            <bundle:script>${bundle.packagePath}/libraries/jquery-datatables/jquery.dataTables.js</bundle:script>
-            <bundle:script>${bundle.packagePath}/js/catalog.js</bundle:script>
+            <bundle:script src="${bundle.packagePath}/libraries/jquery-datatables/jquery.dataTables.js" />
+            <bundle:script src="${bundle.packagePath}/js/catalog.js" />
         </bundle:scriptpack>
 
         <bundle:yield name="head"/>
