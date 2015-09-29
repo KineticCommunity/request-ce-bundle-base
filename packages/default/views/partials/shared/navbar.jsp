@@ -6,7 +6,7 @@
         <div class="navbar-header">
             <%-- Set a request attribute to pass to the JSP partial --%>
             <c:set  scope="request" var="target" value="#navbar-collapse-1"/>
-            <c:import url="${bundle.path}/packages/catalog/views/partials/shared/navbar/navbarToggleNav.jsp" charEncoding="UTF-8"/>
+            <c:import url="${bundle.path}/packages/default/views/partials/shared/navbar/navbarToggleNav.jsp" charEncoding="UTF-8"/>
             <%-- Remove the request attribute so it isn't used somewhere by accident --%>
             <c:remove scope="request" var="target"/>
             <a class="navbar-brand" href="${bundle.kappLocation}"><i class="fa fa-home"></i> ${app:escape(kapp.name)}</a>
@@ -24,7 +24,7 @@
                             <li class="divider"></li>
                             <li><a href="${bundle.spaceLocation}/app/manage/"><i class="fa fa-dashboard fa-fw"></i> Management Console</a></li>
                             <li class="divider"></li>
-                            <li><a href="${pageContext.request.contextPath}/logout.do"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
+                            <li><a href="${bundle.spaceLocation}/app/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         </ul>
                     </div>
                 </li>

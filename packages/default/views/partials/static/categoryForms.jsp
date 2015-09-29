@@ -19,19 +19,20 @@
             </div>
         </div>
     </c:if>
-    <div class="category">
-        <h3 class='uncategorized'>
-          Uncategorized Forms
-        </h3>
-        <div class="col-xs-12">
-            <c:forEach items="${kapp.forms}" var="form">
-                <%-- Only show New or Active forms --%>
-                <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
-                    <%-- Render the form panel --%>
-                    <c:set scope="request" var="thisForm" value="${form}"/>
-                    <c:import url="views/partials/static/formPanel.jsp" charEncoding="UTF-8" />
-                </c:if>
-            </c:forEach>
-        </div>
-    </div>
+
 </c:forEach>
+<div class="category">
+    <h3 class='uncategorized'>
+        Uncategorized Forms
+    </h3>
+    <div class="col-xs-12">
+        <c:forEach items="${kapp.forms}" var="form">
+            <%-- Only show New or Active forms --%>
+            <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
+                <%-- Render the form panel --%>
+                <c:set scope="request" var="thisForm" value="${form}"/>
+                <c:import url="views/partials/static/formPanel.jsp" charEncoding="UTF-8" />
+            </c:if>
+        </c:forEach>
+    </div>
+</div>

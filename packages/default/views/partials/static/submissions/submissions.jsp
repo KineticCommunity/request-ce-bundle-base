@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
 <%@include file="../../../../package/initialization.jspf" %>
-<table id="datatable">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th class="date">Created At</th>
@@ -17,6 +17,7 @@
                 <td>${app:escape(submission.createdBy)}</td>
                 <td>${app:escape(submission.form.name)}</td>
                 <td>${submission.coreState}</td>
+                <!-- Convert this to submission.label after KCORE-335 is resolved. -->
                 <td><a href="${bundle.spaceLocation}/submissions/${submission.id}">${submission.id}</a></td>
             </tr>
         </c:forEach>
