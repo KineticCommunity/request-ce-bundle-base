@@ -1,4 +1,4 @@
-<%@include file="common/bundle/initialization.jspf" %>
+<%@include file="packages/default/package/initialization.jspf" %>
 <bundle:layout>
     <bundle:variable name="head">
         <title>${app:escape(space.name)} Login</title>
