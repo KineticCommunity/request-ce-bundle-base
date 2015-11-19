@@ -1,9 +1,8 @@
 <%@include file="package/initialization.jspf" %>
-<bundle:layout>
+<bundle:layout page="views/layouts/layout.jsp">
     <bundle:variable name="head">
         <title>${app:escape(kapp.name)} Login</title>
     </bundle:variable>
-
     <form action="<c:url value="/${space.slug}/app/login.do"/>" method="POST">
         <!-- CSRF Token field -->
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
