@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="common/bundle/initialization.jspf" %>
+<%@include file="packages/default/package/initialization.jspf" %>
 <bundle:layout>
     <bundle:variable name="head">
         <title>${app:escape(space.name)} Kapps</title>
