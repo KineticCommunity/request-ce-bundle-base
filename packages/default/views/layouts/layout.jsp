@@ -15,7 +15,7 @@
         <link rel="shortcut icon" href="${bundle.location}/common/images/favicon.ico" type="image/x-icon"/>
         <bundle:stylepack>
             <bundle:style src="${bundle.path}/packages/default/libraries/bootstrap/bootstrap.min.css" />
-            <bundle:style src="${bundle.path}/packages/default/css/bundle.css" />
+            <bundle:style src="${bundle.path}/packages/default/css/default.css" />
         </bundle:stylepack>
 
         <link href="${bundle.location}/packages/default/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>

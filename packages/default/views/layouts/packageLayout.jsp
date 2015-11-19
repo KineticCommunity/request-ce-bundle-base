@@ -5,7 +5,7 @@
     <bundle:variable name="head">
 
         <bundle:stylepack>
-            <bundle:style src="${bundle.packagePath}/css/catalog.css "/>
+            <bundle:style src="${bundle.packagePath}/css/default.css "/>
         </bundle:stylepack>
         <bundle:scriptpack>
             <bundle:script src="${bundle.packagePath}/libraries/jquery-datatables/jquery.dataTables.js" />
