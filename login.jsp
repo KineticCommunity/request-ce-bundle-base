@@ -4,7 +4,7 @@
         <title>${app:escape(space.name)} Login</title>
     </bundle:variable>
 
-    <form action="<c:url value="/login.do"/>" method="POST">
+    <form action="<c:url value="/${space.slug}/app/login.do"/>" method="POST">
         <!-- CSRF Token field -->
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
