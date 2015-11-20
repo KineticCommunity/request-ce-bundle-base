@@ -1,4 +1,4 @@
-<%@include file="package/initialization.jspf" %>
+<%@include file="bundle/initialization.jspf" %>
 <bundle:layout page="views/layouts/layout.jsp">
     <bundle:variable name="head">
         <title>${app:escape(kapp.name)} Login</title>

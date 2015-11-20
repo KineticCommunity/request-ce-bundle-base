@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../package/initialization.jspf" %>
+<%@include file="../bundle/initialization.jspf" %>
 <bundle:layout page="views/layouts/packageLayout.jsp">
     <bundle:variable name="head">
         <title>${app:escape(form.name)}</title>

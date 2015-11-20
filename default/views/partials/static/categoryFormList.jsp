@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../package/initialization.jspf" %>
+<%@include file="../../bundle/initialization.jspf" %>
 <c:forEach items="${kapp.getCategory(param.category).forms}" var="categoryForm">
     <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
         <li>

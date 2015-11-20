@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../../package/initialization.jspf" %>
+<%@include file="../../../bundle/initialization.jspf" %>
 <jsp:useBean id="random" class="java.util.Random" scope="application" />
 <div class="panel">
     <div class="panel-body">

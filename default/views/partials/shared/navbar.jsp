@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../../package/initialization.jspf" %>
+<%@include file="../../../bundle/initialization.jspf" %>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
 

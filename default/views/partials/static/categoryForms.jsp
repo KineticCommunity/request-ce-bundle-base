@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../../package/initialization.jspf" %>
+<%@include file="../../../bundle/initialization.jspf" %>
 <%-- For each of the categories --%>
 <c:forEach items="${kapp.categories}" var="category">
     <%-- If the category is not hidden, and it contains at least 1 form --%>

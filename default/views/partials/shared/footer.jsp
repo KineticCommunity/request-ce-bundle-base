@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../../package/initialization.jspf" %>
+<%@include file="../../../bundle/initialization.jspf" %>
 <footer>
     <div class="container">
       <div class="col-xs-8">
