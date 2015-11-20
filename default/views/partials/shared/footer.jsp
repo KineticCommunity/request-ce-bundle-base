@@ -3,7 +3,7 @@
 <footer>
     <div class="container">
       <div class="col-xs-8">
-        <img src='${bundle.location}/packages/default/images/ProductName-Request.png' class='desaturate' height="40"/>
+        <img src='${bundle.location}/default/images/ProductName-Request.png' class='desaturate' height="40"/>
       </div>
       <div class="build col-xs-4 text-right">
         <div>Build Date: ${buildDate}</div>

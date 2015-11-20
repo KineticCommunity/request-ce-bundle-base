@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../package/initialization.jspf" %>
+<%@include file="bundle/initialization.jspf" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,19 +7,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" sizes="76x76" href="${bundle.location}/common/images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="${bundle.location}/common/images/android-chrome-96x96.png" sizes="96x96">
-        <link rel="icon" type="image/png" href="${bundle.location}/common/images/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="${bundle.location}/common/images/favicon-96x96.png" sizes="96x96">
-        <link rel="icon" type="image/png" href="${bundle.location}/common/images/favicon-16x16.png" sizes="16x16">
-        <link rel="shortcut icon" href="${bundle.location}/common/images/favicon.ico" type="image/x-icon"/>
+        <link rel="apple-touch-icon" sizes="76x76" href="${bundle.location}/packages/default/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="${bundle.location}/packages/default/images/android-chrome-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="${bundle.location}/packages/default/images/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="${bundle.location}/packages/defaultimages/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="${bundle.location}/packages/default/images/favicon-16x16.png" sizes="16x16">
+        <link rel="shortcut icon" href="${bundle.location}/packages/default/images/favicon.ico" type="image/x-icon"/>
         <bundle:stylepack>
             <bundle:style src="${bundle.path}/packages/default/libraries/bootstrap/bootstrap.min.css" />
             <bundle:style src="${bundle.path}/packages/default/css/default.css" />
         </bundle:stylepack>
-
-        <link href="${bundle.location}/packages/default/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-
+        <link rel="stylesheet" type="text/css" media="all" href="${bundle.location}/packages/default/libraries/font-awesome/css/font-awesome.min.css">
         <bundle:scriptpack>
             <bundle:script src="${bundle.path}/packages/default/libraries/jquery/jquery.min.js" />
             <bundle:script src="${bundle.path}/packages/default/libraries/bootstrap/bootstrap.min.js" />

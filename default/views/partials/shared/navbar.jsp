@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../package/initialization.jspf" %>
+<%@include file="../../../package/initialization.jspf" %>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
 
@@ -26,7 +26,7 @@
                             <li class="divider"></li>
                             <li><a href="${bundle.spaceLocation}/app/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
                         </ul>
-                     </div>
+                    </div>
                 </li>
             </ul>
         </div>
