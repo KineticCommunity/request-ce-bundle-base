@@ -1,7 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
 <%@include file="bundle/initialization.jspf" %>
 
-<bundle:layout page="views/layouts/packageLayout.jsp">
+<bundle:layout page="layouts/layout.jsp">
     <bundle:variable name="head">
         <title>Kinetic Data ${app:escape(kapp.name)}</title>
     </bundle:variable>
@@ -23,7 +23,7 @@
                 <div class="col-xs-12">
                     <div class="row">
                         <div class="col-md-8">
-                            <c:import url="views/partials/static/categoryForms.jsp" charEncoding="UTF-8"/>
+                            <c:import url="partials/categoryForms.jsp" charEncoding="UTF-8"/>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-requests">
             <h1>Identity: ${identity.username}</h1>
-            <c:import url="views/partials/static/submissionsByKapp.jsp" charEncoding="UTF-8" />
+            <c:import url="partials/submissionsByKapp.jsp" charEncoding="UTF-8" />
         </div>
     </div>
 

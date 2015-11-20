@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../../bundle/initialization.jspf" %>
+<%@include file="../bundle/initialization.jspf" %>
 <%-- For each of the categories --%>
 <c:forEach items="${kapp.categories}" var="category">
     <%-- If the category is not hidden, and it contains at least 1 form --%>
@@ -13,7 +13,7 @@
                     <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
                         <%-- Render the form panel --%>
                         <c:set scope="request" var="thisForm" value="${categoryForm}"/>
-                        <c:import url="views/partials/static/formPanel.jsp" charEncoding="UTF-8" />
+                        <c:import url="partials/formPanel.jsp" charEncoding="UTF-8" />
                     </c:if>
                 </c:forEach>
             </div>
@@ -31,7 +31,7 @@
             <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
                 <%-- Render the form panel --%>
                 <c:set scope="request" var="thisForm" value="${form}"/>
-                <c:import url="views/partials/static/formPanel.jsp" charEncoding="UTF-8" />
+                <c:import url="partials/formPanel.jsp" charEncoding="UTF-8" />
             </c:if>
         </c:forEach>
     </div>

@@ -1,17 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../../../bundle/initialization.jspf" %>
+<%@include file="../bundle/initialization.jspf" %>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
-
-        <div class="navbar-header">
-            <%-- Set a request attribute to pass to the JSP partial --%>
-            <c:set  scope="request" var="target" value="#navbar-collapse-1"/>
-            <c:import url="${bundle.packagePath}/views/partials/shared/navbar/navbarToggleNav.jsp" charEncoding="UTF-8"/>
-            <%-- Remove the request attribute so it isn't used somewhere by accident --%>
-            <c:remove scope="request" var="target"/>
-            <a class="navbar-brand" href="${bundle.kappLocation}"><i class="fa fa-home"></i> ${app:escape(kapp.name)}</a>
-        </div>
-
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -30,6 +20,5 @@
                 </li>
             </ul>
         </div>
-
     </div>
 </nav>
