@@ -6,7 +6,7 @@
         <title>Kinetic Data ${app:escape(kapp.name)}</title>
     </bundle:variable>
     <section class="menu">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-pills">
             <c:set var="pageHome" value="${kapp.getForm('home')}" scope="page"/>
 
             <li role="presentation" class="active">
