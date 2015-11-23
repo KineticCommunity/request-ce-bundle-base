@@ -34,9 +34,11 @@ header {
 }
 section > .page-header {
   background: #ede4a8;
-  padding: 1em 1em 0.6em;
-  font-size: 1.6em;
+  padding: 1.714285714em 1.714285714em 0.714285714em;  /* 24/14px = 1.714285714 */  /* 10/14px = 0.714285714 */
   margin: 0;
+}
+section > .content {
+  padding: 1.714285714em; /* 24/14px = 1.714285714 */
 }
 footer {
   bottom: 0;

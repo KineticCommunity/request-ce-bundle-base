@@ -23,14 +23,18 @@
                 <div class="col-xs-12">
                     <div class="row">
                         <div class="col-md-8">
+                            <h3>Service Items</h3>
                             <c:import url="partials/categoryForms.jsp" charEncoding="UTF-8"/>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Sidebar?</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-requests">
-            <h1>Identity: ${identity.username}</h1>
+            <h3>Identity: ${identity.username}</h3>
             <c:import url="partials/submissionsByKapp.jsp" charEncoding="UTF-8" />
         </div>
     </div>

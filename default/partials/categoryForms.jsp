@@ -21,8 +21,8 @@
     </c:if>
 
 </c:forEach>
-<div class="category">
-    <h3 class='uncategorized'>
+<div class="category uncategorized">
+    <h3>
         Uncategorized Forms
     </h3>
     <div class="col-xs-12">
