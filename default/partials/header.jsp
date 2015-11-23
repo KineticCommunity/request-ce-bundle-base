@@ -10,7 +10,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${bundle.kappLocation}"><i class="fa fa-home"></i> ${app:escape(kapp.name)}</a>
+            <a class="navbar-brand" href="${bundle.kappLocation}" style="height:60px;">
+                <img src="http://www.kineticdata.com/assets/img/logos/task.png" alt="logo" >
+                <i class="fa fa-home"></i> ${app:escape(kapp.name)}
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
