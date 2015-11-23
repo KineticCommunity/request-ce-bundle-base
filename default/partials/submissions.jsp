@@ -18,7 +18,7 @@
                 <td>${app:escape(submission.form.name)}</td>
                 <td>${submission.coreState}</td>
                 <!-- Convert this to submission.label after KCORE-335 is resolved. -->
-                <td><a href="${bundle.spaceLocation}/submissions/${submission.id}">${submission.id}</a></td>
+                <td><a href="${bundle.spaceLocation}/submissions/${submission.id}">${submission.label}</a></td>
             </tr>
         </c:forEach>
     </tbody>
