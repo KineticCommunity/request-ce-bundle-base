@@ -48,10 +48,10 @@ footer {
   border-top: 1px solid #e7e7e7;
   background-color: #f8f8f8;
   color: #777777;
-  font-size: .8em;
+  font-size: 0.8em;
 }
-footer dl{
-  margin:0;
+footer dl {
+  margin: 0;
 }
 
 
@@ -59,7 +59,7 @@ footer dl{
  *   Images
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-/*Add this class to an image to make it fit within it's fluid parent wrapper while maintaining aspect ratio. */
+/* Add this class to an image to make it fit within it's fluid parent wrapper while maintaining aspect ratio. */
 .img-responsive {
   max-width: 100%;
   height: auto;
@@ -102,7 +102,7 @@ img.desaturate {
   margin: 0 auto;
   width: 90%;
 }
-.errors{
+.errors {
   font-size: 11px;
 }
 .errors {
@@ -225,37 +225,129 @@ form textarea:focus {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Miscellaneous Elements
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.all-services {
-  font-size: 0.5em;
-  font-weight: normal;
-  color: #cccccc;
-  margin-left: 1em;
-}
-.feed-content {
-  border: 1px solid black;
-  padding: 15px;
-}
-
-.category h3{
+.category h3 {
   font-weight: 200;
 }
-.uncategorized h3{
+.uncategorized h3 {
   color: #cccccc;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Timeline
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+}
+
+.item-meta {
+  padding: 1.5rem 3rem;
+  margin-right: -5rem;
+  background-color: #ffffff;
+  word-wrap: break-word;
+  -webkit-box-shadow: 1px 4px 10px #eaeaea;
+          box-shadow: 1px 4px 10px #eaeaea;
+}
+
+.timeline > p {
+  padding: 2rem 0 2rem 0;
+}
+
+.timeline {
+  padding-left: 0.9rem;
+}
+
+.timeline > ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 1rem;
+  border-left: 2px solid #eaeaea;
+}
+
+.timeline > ul > li {
+  margin-left: 2.25rem !important;
+}
+
+/* The dot */
+.timeline > ul > li:before {
+  color: #ede4a8;
+  content: '\f111';
+  font-family: 'FontAwesome';
+  position: absolute;
+  left: -5rem;
+  top: 4rem;
+}
+
+.timeline > ul > li > h4:nth-child(2) {
+  color: #818181;
+}
+
+.timeline > ul > li > div > p {
+  color: #818181;
+  margin-top: 1.25rem;
+}
+
+.arrow-box {
+  position: relative;
+  margin-right: 0.5em;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+}
+/* The triangle */
+.arrow-box:after,
+.arrow-box:before {
+  right: 100%;
+  top: 5rem;
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.arrow-box:after {
+  border-color: transparent;
+  border-right-color: #ffffff;
+  border-width: 1.4rem;
+  margin-top: -4rem;
+}
+.arrow-box:before {
+  border-color: transparent;
+  border-width: 2rem;
+  margin-top: -4.6rem;
+}
+.arrow-box .arrow-box-content {
+  padding: 1em;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Navbar
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.navbar{
-  margin-bottom: 0;
+.navbar {
+  /*margin-bottom: 0;*/
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Menu Elements
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .menu.wrap {
- background-color: #fff;
- position: relative;
+  background-color: #ffffff;
+  position: relative;
 }
 
 .menu nav li.active {
