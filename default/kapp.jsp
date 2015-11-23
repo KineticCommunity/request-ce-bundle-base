@@ -35,7 +35,7 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-requests">
             <h3>Identity: ${identity.username}</h3>
-            <c:import url="partials/submissionsByKapp.jsp" charEncoding="UTF-8" />
+            <c:import url="partials/mySubmissions.jsp" charEncoding="UTF-8" />
         </div>
     </div>
 
