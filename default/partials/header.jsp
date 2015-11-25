@@ -10,8 +10,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${bundle.kappLocation}" style="height:60px;">
+            <a class="navbar-brand" href="${bundle.kappLocation}" style="margin-top:-5px;">
                 <img src="http://www.kineticdata.com/assets/img/logos/task.png" alt="logo" >
+            </a>
+            <a href="${bundle.kappLocation}" class="navbar-brand">
                 <i class="fa fa-home"></i> ${app:escape(kapp.name)}
             </a>
         </div>
