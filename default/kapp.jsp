@@ -23,11 +23,11 @@
                 <div class="col-xs-12">
                     <div class="row">
                         <div class="col-md-8">
-                            <h3>Service Items</h3>
+                            <h2>Service Items</h2>
                             <c:import url="partials/categoryForms.jsp" charEncoding="UTF-8"/>
                         </div>
                         <div class="col-md-4">
-                            <h3>Sidebar?</h3>
+                            <h2>Sidebar?</h2>
                         </div>
                     </div>
                 </div>

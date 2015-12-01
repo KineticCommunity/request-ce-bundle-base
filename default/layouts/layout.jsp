@@ -20,6 +20,7 @@
         <bundle:stylepack>
             <bundle:style src="/app/bundles/${space.slug}/default/libraries/bootstrap/bootstrap.min.css" />
             <bundle:style src="/app/bundles/${space.slug}/default/css/default.css "/>
+            <bundle:style src="/app/bundles/${space.slug}/default/css/custom.css "/>
         </bundle:stylepack>
         <link href="${bundle.location}/default/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
