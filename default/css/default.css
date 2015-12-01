@@ -102,6 +102,9 @@ img.desaturate {
 }
 
 /* Keeps Logo contained in header */
+.navbar-brand {
+  padding:10px;
+}
 .navbar-brand > img {
   max-height: 100%;
   height: 100%;
@@ -630,4 +633,3 @@ form button[data-button-type='previous-page']:before {
 .card .card-action a:hover {
   /*color: #118932;*/
 }
-
