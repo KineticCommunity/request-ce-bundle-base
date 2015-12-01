@@ -4,14 +4,14 @@
 <div class="col-sm-4">
     <div class="card small ${['blue','yellow','gray-blue','green','black','cyan'][random.nextInt(6)]}">
         <div class="card-content">
-            <span class="fa fa-${['adjust','bank','cloud','desktop','eye','file-image-o','globe'][random.nextInt(6)]}"></span>
+            <span class="fa ${empty thisForm.getAttribute('form-icon-class') ? ['fa-adjust','fa-bank','fa-cloud','fa-desktop','fa-eye','fa-file-image-o','fa-globe'][random.nextInt(6)] : thisForm.getAttribute('form-icon-class').value}"></span>
             <span class="card-title">
                 <a href="${bundle.kappLocation}/${thisForm.slug}">
                     ${app:escape(thisForm.name)}
                 </a>
             </span>
             <p>${app:escape(thisForm.description)}</p>
-            
+
         </div>
         <div class="card-action clearfix">
             <a href="${bundle.kappLocation}/${thisForm.slug}">

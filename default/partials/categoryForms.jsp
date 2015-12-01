@@ -13,7 +13,7 @@
                     <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
                         <%-- Render the form panel --%>
                         <c:set scope="request" var="thisForm" value="${categoryForm}"/>
-                        <c:import url="partials/formPanel.jsp" charEncoding="UTF-8" />
+                        <c:import url="partials/formCard.jsp" charEncoding="UTF-8" />
                     </c:if>
                 </c:forEach>
             </div>
