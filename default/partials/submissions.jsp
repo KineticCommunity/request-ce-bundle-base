@@ -4,20 +4,21 @@
     <thead>
         <tr>
             <th class="date">Created At</th>
-            <th>Created By</th>
             <th>Form</th>
-            <th>State</th>
             <th class="nosort">Submission</th>
+            <th>Created By</th>
+            <th>State</th>
+
         </tr>
     </thead>
     <tbody>
         <c:forEach items="${submissionsList}" var="submission">
             <tr>
                 <td>${submission.createdAt}</td>
-                <td>${app:escape(submission.createdBy)}</td>
                 <td>${app:escape(submission.form.name)}</td>
-                <td>${submission.coreState}</td>
                 <td><a href="${bundle.spaceLocation}/submissions/${submission.id}">${submission.label}</a></td>
+                <td>${app:escape(submission.createdBy)}</td>
+                <td>${submission.coreState}</td>
             </tr>
         </c:forEach>
     </tbody>

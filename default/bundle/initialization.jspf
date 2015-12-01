@@ -4,3 +4,44 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="app" uri="http://kineticdata.com/kinetic/core/web/taglibs/app" %>
 <%@taglib prefix="bundle" uri="http://kineticdata.com/kinetic/core/web/taglibs/bundle" %>
+
+<%@page import="java.util.*" %>
+
+<%
+request.setAttribute("myHelper", new MyHelper(request));
+%>
+<%!
+  public static class MyHelper {
+		private HttpServletRequest request;
+
+		public MyHelper(HttpServletRequest request) {
+			this.request = request;
+		}
+
+		public Map<String,String[]> requestsQueryOptions() {
+      return submissionsQueryOptions("Service");
+		}
+
+    public Map<String,String[]> approvalsQueryOptions() {
+      return submissionsQueryOptions("Approval");
+    }
+
+    public Map<String,String[]> submissionsQueryOptions(String formType) {
+      com.kineticdata.core.authentication.Identity identity =
+          (com.kineticdata.core.authentication.Identity) request.getAttribute("identity");
+      Map<String,String[]> searchOptions = new HashMap<>();
+      searchOptions.put("createdBy", new String[] {identity.getUsername()});
+      request.setAttribute("searchOptions", searchOptions);
+      Calendar cal = Calendar.getInstance();
+      cal.add(Calendar.YEAR, -1);
+      Date start = cal.getTime();
+      cal.add(Calendar.YEAR, +2);
+      Date end = cal.getTime();
+      java.text.Format formatter = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.000Z'");
+      searchOptions.put("start", new String[] {formatter.format(start)} );
+      searchOptions.put("end", new String[] {formatter.format(end)} );
+      searchOptions.put("type", new String[] {formType});
+      return searchOptions;
+    }
+  }
+%>
