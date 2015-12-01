@@ -10,11 +10,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${bundle.kappLocation}" style="margin-top:-5px;">
-                <img src="http://www.kineticdata.com/assets/img/logos/task.png" alt="logo" >
-            </a>
-            <a href="${bundle.kappLocation}" class="navbar-brand">
+            <a class="navbar-brand" href="${bundle.kappLocation}">
+              <c:if test="${not empty kapp.getAttribute('logo-url')}">
+                <img src="${kapp.getAttribute('logo-url').value}" alt="KAPP logo" >
+              </c:if>
+              <c:if test="${empty kapp.getAttribute('logo-url')}">
                 <i class="fa fa-home"></i> ${app:escape(kapp.name)}
+              </c:if>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
