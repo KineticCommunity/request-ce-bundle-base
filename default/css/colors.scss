@@ -1,0 +1,68 @@
+$primary: #428BCA;
+$secondary: #EDE4A8;
+$tertiary: #B3C1C4;
+$button: #24B166;
+$text: #312F38;
+
+.primary{
+  color: rgba(#B3C1C4, 0%);
+  .darken{
+    color: darken($primary, 20%);
+  }
+  .lighten{
+    color: lighten($primary, 40%);
+  }
+  .complement{
+    color: complement($primary);
+  }
+}
+
+.secondary{
+  color: $secondary;
+  .darken{
+    color: darken($secondary, 20%);
+  }
+  .lighten{
+    color: lighten($secondary, 40%);
+  }
+  .complement{
+    color: complement($secondary);
+  }
+}
+
+.tertiary{
+  color: $tertiary;
+  .darken{
+    color: darken($tertiary, 20%);
+  }
+  .lighten{
+    color: lighten($tertiary, 40%);
+  }
+  .complement{
+    color: complement($tertiary);
+  }
+}
+.button{
+  color: $button;
+  .darken{
+    color: darken($button, 20%);
+  }
+  .lighten{
+    color: lighten($button, 40%);
+  }
+  .complement{
+    color: complement($button);
+  }
+}
+.text{
+  color: $text;
+  .darken{
+    color: darken($text, 20%);
+  }
+  .lighten{
+    color: lighten($text, 40%);
+  }
+  .complement{
+    color: complement($text);
+  }
+}

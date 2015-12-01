@@ -12,12 +12,12 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Default Colors
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* $primary: #428BCA;
-/* $secondary: #EDE4A8;
-/* $tertiary: #B3C1C4;
-/* $button: #24B166;
-/* $text: #312F38;
-/* $highlight: #7FCEE0;/*
+/* $primary: #428BCA; rgb(66, 139, 202)
+/* $secondary: #EDE4A8; rgb(237, 228, 168)
+/* $tertiary: #24B166; rgb(36, 177, 102)
+
+/* $gray: #B3C1C4; rgb(179, 193, 196)
+/* $black: #312F38; rgb(49, 47, 56)
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Global Elements
@@ -34,7 +34,7 @@
 
 body {
   background-color: #f1f1f1;
-  color: #312F38;
+  color: #312f38; /* $black */
 }
 
 header {
@@ -43,7 +43,7 @@ header {
   line-height: 1.5;
 }
 section > .page-header {
-  background: #ede4a8;
+  background: #ede4a8; /* $secondary */
   padding: 1.714285714em 1.714285714em 0.714285714em;  /* 24/14px = 1.714285714 */  /* 10/14px = 0.714285714 */
   margin: 0;
 }
@@ -73,25 +73,25 @@ h1,
 }
 h2,
 .h2 {
-  color: #b3c1c4;
+  color: rgba(49, 47, 56, 0.5); /* $black */
 }
 h3,
 .h3 {
-  color: #62787d;
+  color: rgba(49, 47, 56, 0.75); /* $black */
   text-transform: uppercase;
 }
 h4,
 .h4 {
-  color: #312f38;
+  color: #312f38; /* $black */
   text-transform: uppercase;
 }
 h5,
 .h5 {
-  color: #312f38;
+  color: #312f38; /* $black */
 }
 h6,
 .h6 {
-  color: #312f38;
+  color: #312f38; /* $black */
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Images
@@ -113,8 +113,11 @@ img.desaturate {
 }
 
 /* Logo height is always set at 50px in header */
-.navbar-brand{
-  padding:5px;
+.navbar-brand {
+  padding: 0;
+}
+.navbar-brand > i {
+  padding: 15px 0;
 }
 /* Keeps Logo contained in header */
 .navbar-brand > img {
@@ -122,6 +125,7 @@ img.desaturate {
   height: 100%;
   width: auto;
   margin: 0 auto;
+  padding: 5px;
 
   /* probably not needed anymore, but doesn't hurt */
   -o-object-fit: contain;
@@ -177,7 +181,7 @@ section.page {
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .nav-pills > li > a {
   border-radius: 0;
-  color: #808080;
+  color: #312f38; /* $black */
   padding: 10px 1em;
 }
 
@@ -185,16 +189,16 @@ section.page {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #333333;
+  color: #312f38; /* $black */
   background-color: transparent;
   border-color: transparent;
-  border-bottom: 4px solid #aaaaaa;
+  border-bottom: 4px solid #b3c1c4;
 }
 .nav-pills > li > a:hover {
-  color: #333333;
+  color: #312f38;
   background-color: transparent;
   border-color: transparent;
-  border-bottom: 4px solid #cccccc;
+  border-bottom: 4px solid #312f38; /* $black */
 }
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
@@ -217,7 +221,7 @@ form {
 
 /* Make the label a block*/
 form label {
-  color: #62787d;
+  color: rgba(49, 47, 56, 0.75); /* $black */
   display: block;
   font-size: 1em;
   font-weight: 600;
@@ -233,18 +237,18 @@ form .checkbox label + input {
 }
 form input[type='text'],
 form textarea {
-  border: 2px solid #b3c1c4;
+  border: 2px solid rgba(49, 47, 56, 0.5); /* $black */
   outline: none;
 }
 form input[type='text']:focus,
 form textarea:focus {
-  border-color: #7fcee0;
+  border-color: #428bca; /* $primary */
 }
 form select {
   padding: 6px 12px;
   font-size: 1em;
   line-height: 1.42857143;
-  color: #555555;
+  color: #312f38; /* $black */
   background-color: #ffffff;
   background-image: none;
   border: 1px solid #cccccc;
@@ -257,7 +261,7 @@ form select {
 
 form button,
 form .btn {
-  background-color: #24b166;
+  background-color: rgba(36, 177, 102, 1); /* $tertiary */
   color: #ffffff;
   display: inline-block;
   padding: 6px 12px;
@@ -284,7 +288,7 @@ form .btn {
 }
 form button:hover,
 form .btn:hover {
-  background-color: #118932;
+  background-color: rgba(36, 177, 102, 0.8); /* $tertiary */
 }
 
 /* Button Types */
@@ -292,17 +296,18 @@ form .btn:hover {
 form button[data-button-type='previous-page'] {
   position: relative;
   padding-left: 2em;
-  background-color: gray;
+  background-color: rgba(49, 47, 56, .5); /* $black */
 }
 
 form button[data-button-type='custom'] {
   background-color: #ffffff;
-  border-color: #24b166;
-  color: #24b166;
+  border-color: #24b166; /* $tertiary */
+  color: #24b166; /* $tertiary */
 }
 form button[data-button-type='previous-page']:hover,
 form button[data-button-type='custom']:hover {
-  background-color: #118932;
+  background-color: rgba(36, 177, 102, 0.8); /* $tertiary */
+  color: #ffffff;
 }
 form button[data-button-type='previous-page']:before {
   font-family: 'FontAwesome';
@@ -327,9 +332,6 @@ form button[data-button-type='previous-page']:before {
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .category h3 {
   font-weight: 200;
-}
-.uncategorized h3 {
-  color: #cccccc;
 }
 
 /* Truncates long text with ellipsis */
@@ -381,7 +383,7 @@ form button[data-button-type='previous-page']:before {
 
 /* The dot */
 .timeline > ul > li:before {
-  color: #ede4a8;
+  color: #ede4a8; /* $secondary */
   content: '\f111';
   font-family: 'FontAwesome';
   position: absolute;
@@ -457,31 +459,6 @@ form button[data-button-type='previous-page']:before {
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *   Panel Elements
- *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-.panel {
-  width: 23%;
-  float: left;
-  text-align: center;
-  margin-right: 0.5em;
-  border: 1px solid #e8e8e8;
-}
-.panel .fa {
-  width: 100%;    /* for clickability */
-  height: 100%;   /* for clickability */
-  color: #428bca;
-  font-size: 3em;
-}
-.panel-body {
-  padding: 7px;
-}
-.panel-footer {
-  font-size: 0.7em;
-  color: #428bca;
-  text-transform: uppercase;
-}
-
-/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Card Elements
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .card-panel {
@@ -502,26 +479,11 @@ form button[data-button-type='previous-page']:before {
 .card .fa {
   width: 100%;    /* for clickability */
   height: 100%;   /* for clickability */
-  color: #428bca;
+  color: #428bca; /* $primary */
   font-size: 1.4em;
 }
-.card.blue .fa{
-  color: #428BCA;
-}
-.card.yellow .fa{
-  color: #EDE4A8;
-}
-.card.gray-blue .fa{
-  color: #B3C1C4;
-}
-.card.green .fa{
-  color: #24B166;
-}
-.card.black .fa{
-  color: #312F38;
-}
-.card.cyan .fa{
-  color: #7FCEE0;
+.card.priamary .fa {
+  color: #428bca; /* $primary */
 }
 
 .card .card-title {
@@ -596,26 +558,7 @@ form button[data-button-type='previous-page']:before {
 .card .card-content {
   padding: 20px;
   border-radius: 0 0 2px 2px;
-  border-top:2px solid #aaaaaa;
-}
-
-.card.blue .card-content{
-  border-color: #428BCA;
-}
-.card.yellow .card-content{
-  border-color: #EDE4A8;
-}
-.card.gray-blue .card-content{
-  border-color: #B3C1C4;
-}
-.card.green .card-content{
-  border-color: #24B166;
-}
-.card.black .card-content{
-  border-color: #312F38;
-}
-.card.cyan .card-content{
-  border-color: #7FCEE0;
+  border-top: 2px solid #428bca; /* $primary */
 }
 
 .card .card-content p {
@@ -625,24 +568,18 @@ form button[data-button-type='previous-page']:before {
 
 .card .card-content .card-title {
   line-height: 1.2;
-  margin-bottom: .4em;
+  margin-bottom: 0.4em;
 }
-.card .card-content .card-title a{
-    color: #312F38;
+.card .card-content .card-title a {
+  color: #312f38;
 }
 
 .card .card-action {
-  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  border-top: 1px solid rgba(66, 139, 202, 0.2); /* $primary */
   padding: 20px;
 }
 
 .card .card-action a {
-  /*color: #24B166;*/
   margin-right: 20px;
   text-transform: uppercase;
 }
-
-.card .card-action a:hover {
-  /*color: #118932;*/
-}
-
