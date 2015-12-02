@@ -13,16 +13,22 @@ Wherever possible we use defaults to make sure the pages will render correctly r
 
 The one exception to this is "My Requests" and "My Approvals".  In order to grab only the appropriate submissions we are looking for form types of _"Service"_ for My Requests and _"Approval"_ for My Approvals.
 
-## Customizing
-This bundle easily allows for minor personalization by including optional attributes in your KAPP or Form.
+## Personalization
+This bundle easily allows for minor personalization by including optional attributes in your KAPP, Form and/or Categories.
 
 KAPP Attributes:
 * _logo-url_ : By including this attribute we will use this logo instead of the home icon on the top-left of the page
 * _logo-height-px_ : By including this attribute we will set the height of the logo in the header. Default is 40px with 5px of padding.
+* _sidebar-html_ : We show the Kinetic Data Twitter feed by default, but you can add any HTML/widget by including the HTML/JS in this attribute.
 
 Form Attributes
 * _form-icon-class_ : We include font-awesome icons by default and just apply a random icon to your forms on the catalog page.  However, you can specify a class for your form by including this attribute and a value. (Example fa-bank)
 
+Category Attributes
+* _hidden_ : Including this attribute on a category means the category and forms in that category will not be shown on the portal page.
+
+
+## Customization
 When you customize this bundle it is a good idea to fork it on your own git server to track your customizations and merge in any code changes we make to the default.
 
 We also suggest you update this README with your own change summary for future bundle developers.
