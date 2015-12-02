@@ -16,7 +16,7 @@
             <tr>
                 <td>${submission.createdAt}</td>
                 <td>${app:escape(submission.form.name)}</td>
-                <td><a href="${bundle.spaceLocation}/submissions/${submission.id}">${submission.label}</a></td>
+                <td><a href="${bundle.kappLocation}?submission_id=${submission.id}">${submission.label}</a></td>
                 <td>${app:escape(submission.createdBy)}</td>
                 <td>${submission.coreState}</td>
             </tr>
