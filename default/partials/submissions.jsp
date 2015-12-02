@@ -16,7 +16,16 @@
             <tr>
                 <td>${submission.createdAt}</td>
                 <td>${app:escape(submission.form.name)}</td>
-                <td><a href="${bundle.kappLocation}?submission_id=${submission.id}">${submission.label}</a></td>
+                <td>
+                  <c:choose>
+                    <c:when test="${submission.coreState eq 'Draft'}">
+                      <a href="${bundle.spaceLocation}/submissions/${submission.id}">${app:escape(submission.label)}</a>
+                    </c:when>
+                    <c:otherwise>
+                      <a href="${bundle.kappLocation}?submission_id=${submission.id}">${app:escape(submission.label)}</a>
+                    </c:otherwise>
+                  </c:choose>
+                </td>
                 <td>${app:escape(submission.createdBy)}</td>
                 <td>${submission.coreState}</td>
             </tr>
