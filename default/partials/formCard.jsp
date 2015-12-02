@@ -2,7 +2,7 @@
 <%@include file="../bundle/initialization.jspf" %>
 <jsp:useBean id="random" class="java.util.Random" scope="application" />
 <div class="col-sm-4">
-    <div class="card small ${['blue','yellow','gray-blue','green','black','cyan'][random.nextInt(6)]}">
+    <div class="card small gray-blue">
         <div class="card-content">
             <span class="fa ${empty thisForm.getAttribute('form-icon-class') ? ['fa-adjust','fa-bank','fa-cloud','fa-desktop','fa-eye','fa-file-image-o','fa-globe'][random.nextInt(6)] : thisForm.getAttribute('form-icon-class').value}"></span>
             <span class="card-title">

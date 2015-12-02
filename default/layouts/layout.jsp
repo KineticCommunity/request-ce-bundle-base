@@ -26,6 +26,7 @@
         <bundle:scriptpack>
             <bundle:script src="/app/bundles/${space.slug}/default/libraries/bootstrap/bootstrap.min.js" />
             <bundle:script src="/app/bundles/${space.slug}/default/libraries/jquery-datatables/jquery.dataTables.js" />
+            <bundle:script src="/app/bundles/${space.slug}/default/libraries/color-thief/color-thief.min.js" />
             <bundle:script src="/app/bundles/${space.slug}/default/js/catalog.js" />
         </bundle:scriptpack>
 
