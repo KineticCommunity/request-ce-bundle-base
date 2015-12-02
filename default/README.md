@@ -8,6 +8,10 @@ It includes the default:
 * Login page (login.jsp)
 * Reset Password (resetPassword.jsp)
 
+## Assumptions
+Wherever possible we use defaults to make sure the pages will render correctly regardless of any attributes, categories or other configurations you perform on your forms.
+
+The one exception to this is "My Requests" and "My Approvals".  In order to grab only the appropriate submissions we are looking for form types of _"Service"_ for My Requests and _"Approval"_ for My Approvals.
 
 ## Customizing
 This bundle easily allows for minor personalization by including optional attributes in your KAPP or Form.
@@ -24,3 +28,21 @@ When you customize this bundle it is a good idea to fork it on your own git serv
 We also suggest you update this README with your own change summary for future bundle developers.
 
 ## Structure
+This default bundle uses our standard directory structure.  Bundles are completely self contained so should include all libraries and markup needed.
+
+<code><pre>
+/*bundle-name*
+  /*bundle*: Initialization scripts and helpers
+  /*css*: Cascading style sheets. If you use Sass, output compiled css here.
+  /*images*: Duh.
+  /*js*: All javascript goes here.
+  /*layouts*: One or more layouts wraps your views and generally includes your HTML head elements and any content that should show up on all pages.
+  /*libraries*: Include CSS, JS or other libraries here including things like JQuery or bootstrap.
+  /*partials*: These are view snippets that get used in the top-layer JSP views. Feel free to include sub-directories here if your set of partials gets unwieldy.
+  /*confirmation.jsp*: The default confirmation page on form submits.
+  /*form.jsp*: The default form JSP wrapper.
+  /*kapp.jsp*: This is the catalog console page or self service portal page.  This typically lists the forms by category, my requests, my approvals and more.
+  /*login.jsp*: The default login page. Can be overridden in your Space Admin Console.
+  /*resetPassword.jsp*: The default reset password page. This will trigger the system to send an email to the user to reset their password. Note that the SMTP server needs to be configured to work.
+  /*space.jsp*: A page that displays a list of KAPPs (often request catalogs) that you have access to within your space.
+</pre></code>
