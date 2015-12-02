@@ -15,6 +15,9 @@
             <li role="presentation">
                 <a href="#tab-requests" aria-controls="tab-requests" role="tab" data-toggle="tab">My Requests</a>
             </li>
+            <li role="presentation">
+                <a href="#tab-approvals" aria-controls="tab-approvals" role="tab" data-toggle="tab">My Approvals</a>
+            </li>
         </ul>
     </section>
     <div class="tab-content">
@@ -35,8 +38,15 @@
             </div>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-requests">
-            <h3>Identity: ${identity.username}</h3>
-            <c:import url="partials/mySubmissions.jsp" charEncoding="UTF-8" />
+            <h3>My Requests</h3>
+            <c:set scope="request" var="submissionsList" value="${submissions.searchByKapp(kapp, myHelper.requestsQueryOptions())}"/>
+            <c:import url="partials/submissions.jsp" charEncoding="UTF-8"/>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="tab-approvals">
+            <h3>My Approvals</h3>
+            <c:set scope="request" var="submissionsList" value="${submissions.searchByKapp(kapp, myHelper.approvalsQueryOptions())}"/>
+            <c:import url="partials/submissions.jsp" charEncoding="UTF-8"/>
         </div>
     </div>
 
