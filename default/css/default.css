@@ -20,6 +20,57 @@
 /* $black: #312F38; rgb(49, 47, 56)
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Colored Elements
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Form page header color*/
+section > .page-header {
+  /* background-color: $secondary; */
+}
+/* Menu Nav border color */
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  /* border-bottom: 4px solid rgba($primary,.5);  */
+}
+.nav-pills > li > a:hover {
+  /* color: $primary;
+  /* border-bottom: 4px solid $primary; */
+}
+/* Default Button */
+form button,
+form .btn{
+  /* background-color: $tertiary; */
+}
+/* Default Button:hover; */
+form button:hover,
+form .btn:hover {
+  /*  background-color: rgba($tertiary, 0.8);  */
+}
+/* Custom Button styles */
+form button[data-button-type='custom'] {
+  /* border-color: $tertiary; */
+  /* color: $tertiary; */
+}
+/* Previous Page Custom :hover*/
+form button[data-button-type='previous-page']:hover,
+form button[data-button-type='custom']:hover {
+  /*  background-color: rgba($tertiary, 0.8);  */
+}
+/* Timeline Dot*/
+.timeline > ul > li:before {
+  /* color: $secondary; */
+}
+/* Card Icon Color */
+.card .fa {
+  /* color: $primary; */
+}
+/* Card top border */
+.card .card-content {
+  /* border-top-color: $primary; */
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Global Elements
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .code {
@@ -69,7 +120,7 @@ footer dl {
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 h1,
 .h1 {
-  color: #312f38;
+  color: #312f38; /* $black */
 }
 h2,
 .h2 {
@@ -189,16 +240,16 @@ section.page {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #312f38; /* $black */
+  color: #428BCA; /* $primary */
   background-color: transparent;
   border-color: transparent;
-  border-bottom: 4px solid #b3c1c4;
+  border-bottom: 4px solid rgba(66, 139, 202, .5); /* $primary */
 }
 .nav-pills > li > a:hover {
-  color: #312f38;
+  color: #428BCA; /* $primary */
   background-color: transparent;
   border-color: transparent;
-  border-bottom: 4px solid #312f38; /* $black */
+  border-bottom: 4px solid #428BCA; /* $primary */
 }
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
@@ -482,9 +533,6 @@ form button[data-button-type='previous-page']:before {
   color: #428bca; /* $primary */
   font-size: 1.4em;
 }
-.card.priamary .fa {
-  color: #428bca; /* $primary */
-}
 
 .card .card-title {
   font-size: 24px;
@@ -532,29 +580,6 @@ form button[data-button-type='previous-page']:before {
   height: 400px;
 }
 
-.card .card-image {
-  position: relative;
-}
-
-.card .card-image img {
-  display: block;
-  border-radius: 2px 2px 0 0;
-  position: relative;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-.card .card-image .card-title {
-  color: #ffffff;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
-}
-
 .card .card-content {
   padding: 20px;
   border-radius: 0 0 2px 2px;
@@ -575,7 +600,7 @@ form button[data-button-type='previous-page']:before {
 }
 
 .card .card-action {
-  border-top: 1px solid rgba(66, 139, 202, 0.2); /* $primary */
+  border-top: 1px solid rgba(179, 193, 196, 0.2); /* $gray */
   padding: 20px;
 }
 
