@@ -11,12 +11,12 @@
             <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${bundle.kappLocation}">
-              <c:if test="${not empty kapp.getAttribute('logo-url')}">
+                <c:if test="${not empty kapp.getAttribute('logo-url')}">
                 <img src="${kapp.getAttribute('logo-url').value}" alt="logo">
-              </c:if>
-              <c:if test="${empty kapp.getAttribute('logo-url')}">
+                </c:if>
+                <c:if test="${empty kapp.getAttribute('logo-url')}">
                 <i class="fa fa-home"></i> ${app:escape(kapp.name)}
-              </c:if>
+                </c:if>
             </a>
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
@@ -35,6 +35,15 @@
                     </div>
                 </li>
             </ul>
+            <form class="navbar-form navbar-right" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </form>
+
         </div>
     </div>
 </nav>
