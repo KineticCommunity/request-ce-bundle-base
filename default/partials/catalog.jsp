@@ -40,7 +40,7 @@ escape(category.name)}</h3>
                                             <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
                                                 <%-- Render the form panel --%>
                                                 <c:set scope="request" var="thisForm" value="${categoryForm}"/>
-                                                <c:import url="partials/formCard.jsp" charEncoding="UTF-8" />
+                                                <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
                                             </c:if>
                                         </c:forEach>
                                     </div>
@@ -58,7 +58,7 @@ escape(category.name)}</h3>
                                     <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
                                         <%-- Render the form panel --%>
                                         <c:set scope="request" var="thisForm" value="${form}"/>
-                                        <c:import url="partials/formCard.jsp" charEncoding="UTF-8" />
+                                        <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
                                     </c:if>
                                 </c:forEach>
                             </div>
@@ -73,11 +73,11 @@ escape(category.name)}</h3>
     <div role="tabpanel" class="tab-pane" id="tab-requests">
         <h3>My Requests</h3>
         <c:set scope="request" var="submissionsList" value="${submissions.searchByKapp(kapp, myHelper.requestsQueryOptions())}"/>
-        <c:import url="partials/submissions.jsp" charEncoding="UTF-8"/>
+        <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-approvals">
         <h3>My Approvals</h3>
         <c:set scope="request" var="submissionsList" value="${submissions.searchByKapp(kapp, myHelper.approvalsQueryOptions())}"/>
-        <c:import url="partials/submissions.jsp" charEncoding="UTF-8"/>
+        <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
     </div>
 </div>
