@@ -11,6 +11,8 @@
       <c:import url="partials/catalog.jsp" charEncoding="UTF-8" />
     </c:otherwise>
   </c:choose>
-  <app:bodyContent/>
+  <app:
+
+bodyContent/>
 
 </bundle:layout>

@@ -2,11 +2,13 @@
 <%@include file="bundle/initialization.jspf" %>
 <bundle:layout page="layouts/layout.jsp">
 <bundle:variable name="head">
-<title>${app:escape(form.name)}</title>
+<title>${app.
+escape(form.name)}</title>
 </bundle:variable>
 <section class="page">
     <div class="page-header">
-        <h1>${app:escape(form.name)}</h1>
+        <h1>${app.
+escape(form.name)}</h1>
     </div>
     <div class='content'>
         <div class='row'>

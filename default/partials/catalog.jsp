@@ -1,7 +1,8 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
 <%@include file="../bundle/initialization.jspf" %>
 <bundle:variable name="head">
-    <title>Kinetic Data ${app:escape(kapp.name)}</title>
+    <title>Kinetic Data ${app.
+escape(kapp.name)}</title>
 </bundle:variable>
 <section class="menu">
     <ul class="nav nav-pills">
@@ -30,7 +31,8 @@
                             <%-- If the category is not hidden, and it contains at least 1 form --%>
                             <c:if test="${fn:toLowerCase(category.getAttribute('Hidden').value) ne 'true' && not empty category.forms}">
                                 <div class="category">
-                                    <h3>${app:escape(category.name)}</h3>
+                                    <h3>${app.
+escape(category.name)}</h3>
                                     <div class="row">
                                         <%-- Show the first x number of forms of the category --%>
                                         <c:forEach items="${category.forms}" var="categoryForm" begin="0" end="8">
