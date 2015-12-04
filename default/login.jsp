@@ -1,8 +1,7 @@
 <%@include file="bundle/initialization.jspf" %>
 <bundle:layout page="layouts/layout.jsp">
     <bundle:variable name="head">
-        <title>${app.
-escape(kapp.name)} Login</title>
+        <title>${app.escape(kapp.name)} Login</title>
     </bundle:variable>
     <h1>Login</h1>
     <section>

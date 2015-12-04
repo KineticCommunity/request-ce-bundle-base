@@ -12,9 +12,7 @@
         <link rel="icon" type="image/png" href="${bundle.location}/default/images/favicon-96x96.png" sizes="96x96">
         <link rel="icon" type="image/png" href="${bundle.location}/default/images/favicon-16x16.png" sizes="16x16">
         <link rel="shortcut icon" href="${bundle.location}/default/images/favicon.ico" type="image/x-icon"/>
-        <app:
-
-headContent/>
+        <app:headContent/>
             <bundle:stylepack>
             <bundle:style src="/app/bundles/${space.slug}/default/libraries/bootstrap/bootstrap.min.css" />
             <bundle:style src="/app/bundles/${space.slug}/default/css/default.css "/>

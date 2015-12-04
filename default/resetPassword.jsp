@@ -1,8 +1,7 @@
 <%@include file="bundle/initialization.jspf" %>
 <bundle:layout page="layouts/layout.jsp">
     <bundle:variable name="head">
-        <title>${app.
-escape(space.name)} Reset Password</title>
+        <title>${app.escape(space.name)} Reset Password</title>
     </bundle:variable>
 
     <c:choose>
