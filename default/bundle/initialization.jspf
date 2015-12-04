@@ -10,7 +10,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="app" uri="http://kineticdata.com/taglibs/core/app" %>
 <%@taglib prefix="bundle" uri="http://kineticdata.com/taglibs/bundle" %>
-<%@taglib prefix="bundle" uri="http://kineticdata.com/taglibs/json" %>
+<%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json" %>
 
 <%-- Load helper(s) --%>
 <%@include file="myHelper.jspf"%>
