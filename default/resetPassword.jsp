@@ -1,4 +1,4 @@
-<%@include file="packages/default/bundle/initialization.jspf" %>
+<%@include file="bundle/initialization.jspf" %>
 <bundle:layout page="layouts/layout.jsp">
     <bundle:variable name="head">
         <title>${app.
