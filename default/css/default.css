@@ -678,7 +678,7 @@ form button[data-button-type='previous-page']:before {
 
 .app-launcher {
   position: absolute;
-  left: 50%;
+  left: calc(50% - 160px);
   top: 40px;
   z-index: 999;
 }
