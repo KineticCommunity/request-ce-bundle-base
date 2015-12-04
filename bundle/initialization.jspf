@@ -12,6 +12,7 @@
 <%@taglib prefix="bundle" uri="http://kineticdata.com/taglibs/bundle" %>
 <%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json" %>
 
+<%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
 <%-- Load helper(s) --%>
 <%
   request.setAttribute("json", new com.kineticdata.bundles.JsonHelper());

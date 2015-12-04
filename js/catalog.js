@@ -1,17 +1,17 @@
 /**
- * On load grabs the dominant color from the logo and applies it to page
- * elements.
+ * Grabs the dominant color from the logo and applies it to page
+ * elements or falls back to whatever colors are passed in.
  * This only works for locally hosted images on the same domain due to security
  * constraints.
  */
-$(window).load(function() {
-   try {
-     var colorThief = new ColorThief();
-     var color = colorThief.getColor($('a.navbar-brand img')[0]);
-     var rgb = "rgb(" + color[0] + "," + color[1]+ "," + color[2] + ")";
-     $('.nav-pills > li.active > a').css("border-bottom", "4px solid " + rgb);
-     $('.card-content .fa').css("color", rgb);
-   } catch (e){
+   function setColors(primary, secondary, tertiary)
+     try {
+       var colorThief = new ColorThief();
+       var color = colorThief.getColor($('a.navbar-brand img')[0]);
+       var rgb = "rgb(" + color[0] + "," + color[1]+ "," + color[2] + ")";
+       $('.nav-pills > li.active > a').css("border-bottom", "4px solid " + rgb);
+       $('.card-content .fa').css("color", rgb);
+     } catch (e){
     /*
     Degrade gracefully. Likely not a local image or a browser that
     *supports canvas
@@ -47,7 +47,8 @@ $('.typeahead').typeahead({
 {
   name: 'states',
   source: substringMatcher(forms),
-  prefetch: '${bundle.kappLocation}',
+  prefetch: bundle.SpaceLocation  + "api/v1/kapps/catalog/forms",
+  prefetch: bundle.spaceApiLocation() + "app/api/v1/kapps" + bundle.kappSlug() + "/forms";
   templates: {
     notfound: '<p>No forms found matching search</p>'
   }
