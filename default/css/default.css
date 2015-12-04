@@ -193,6 +193,18 @@ img.desaturate {
   height: auto;
 }
 
+/*Navbar Typeahead*/
+.tt-menu {
+  background-color: #FFF;
+  padding:5px;
+  border:1px solid #CCC;
+
+}
+.tt-menu .tt-suggestion{
+  cursor: pointer;
+  border-top:1px solid #ccc;
+  padding:2px;
+}
 /* Navbar Brand */
 /* Logo height is always set at 50px in header */
 .navbar-brand {
