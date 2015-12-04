@@ -19,9 +19,9 @@
                 </c:if>
             </a>
         </div>
-        <div class="navbar-header launcher">
+        <div class="navbar-nav navbar-right launcher">
             <div class="button"> <i class="fa fa-th fa-2x"></i> </div>
-            <div class="app-launcher">
+            <div class="app-launcher" style="display:none;">
                 <div class="apps">
                     <ul class="first-set">
                         <li><a href="#"><i class="fa fa-google-plus-square fa-4x"> </i></a></li>
