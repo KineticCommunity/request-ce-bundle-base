@@ -63,8 +63,9 @@ escape(kapp.name)}</title>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a> <script async src="https://platform.twitter.com/widgets.js"></script>                    </div>
+                    <div class="col-md-3">
+                        <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a> <script async src="https://platform.twitter.com/widgets.js"></script>
+                    </div>
                 </div>
             </div>
         </div>

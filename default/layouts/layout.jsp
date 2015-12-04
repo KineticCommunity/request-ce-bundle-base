@@ -14,16 +14,16 @@
         <link rel="shortcut icon" href="${bundle.location}/images/favicon.ico" type="image/x-icon"/>
         <app:headContent/>
             <bundle:stylepack>
-            <bundle:style src="${bundle.path}/libraries/bootstrap/bootstrap.min.css" />
-            <bundle:style src="${bundle.path}/css/default.css "/>
+            <bundle:style src="${bundle.location}/libraries/bootstrap/bootstrap.min.css" />
+            <bundle:style src="${bundle.location}/css/default.css "/>
             </bundle:stylepack>
             <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
             <bundle:scriptpack>
-            <bundle:script src="${bundle.path}/libraries/bootstrap/bootstrap.min.js" />
-            <bundle:script src="${bundle.path}/libraries/jquery-datatables/jquery.dataTables.js" />
-            <bundle:script src="${bundle.path}/libraries/color-thief/color-thief.min.js" />
-            <bundle:script src="${bundle.path}/libraries/typeahead/typeahead.js" />
-            <bundle:script src="${bundle.path}/js/catalog.js" />
+            <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
+            <bundle:script src="${bundle.location}/libraries/jquery-datatables/jquery.dataTables.js" />
+            <bundle:script src="${bundle.location}/libraries/color-thief/color-thief.min.js" />
+            <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.js" />
+            <bundle:script src="${bundle.location}/js/catalog.js" />
             </bundle:scriptpack>
             <bundle:yield name="head"/>
             <style>
