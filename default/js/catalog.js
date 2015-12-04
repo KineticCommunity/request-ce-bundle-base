@@ -47,7 +47,7 @@ $('.typeahead').typeahead({
 {
   name: 'states',
   source: substringMatcher(forms),
-  prefetch: '${bundle.kappLocation}'
+  prefetch: '${bundle.kappLocation}',
   templates: {
     notfound: '<p>No forms found matching search</p>'
   }

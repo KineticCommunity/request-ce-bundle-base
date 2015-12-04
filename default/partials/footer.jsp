@@ -3,7 +3,7 @@
 <footer>
     <div class="container">
       <div class="col-xs-8">
-        <img src='${bundle.location}/default/images/ProductName-Request.png' class='desaturate' height="40"/>
+        <img src='${bundle.location}/images/ProductName-Request.png' class='desaturate' height="40"/>
       </div>
       <c:if test="${not empty identity}">
         <div class="build col-xs-4">

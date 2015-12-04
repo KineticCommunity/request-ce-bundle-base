@@ -15,8 +15,7 @@
                 <img src="${kapp.getAttribute('logo-url').value}" alt="logo">
                 </c:if>
                 <c:if test="${empty kapp.getAttribute('logo-url')}">
-                <i class="fa fa-home"></i> ${app.
-escape(kapp.name)}
+                <i class="fa fa-home"></i> ${text.escape(kapp.name)}
                 </c:if>
             </a>
         </div>
@@ -24,8 +23,7 @@ escape(kapp.name)}
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <div class="btn-group navbar-btn">
-                        <button class="btn btn-default"><i class="fa fa-user fa-fw"></i> ${app.
-escape(identity.username)}</button>
+                        <button class="btn btn-default"><i class="fa fa-user fa-fw"></i> ${text.escape(identity.username)}</button>
                         <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>

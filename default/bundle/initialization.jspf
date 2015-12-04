@@ -13,4 +13,9 @@
 <%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json" %>
 
 <%-- Load helper(s) --%>
+<%
+  request.setAttribute("json", new com.kineticdata.bundles.JsonHelper());
+  request.setAttribute("text", new com.kineticdata.bundles.TextHelper());
+  request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
+%>
 <%@include file="myHelper.jspf"%>
