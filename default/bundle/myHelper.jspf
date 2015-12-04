@@ -1,5 +1,4 @@
 <%-- Helpers are used to keep the views clean --%>
-<%@page import="java.util.*" %>
 <%
 request.setAttribute("myHelper", new MyHelper(request));
 %>
@@ -20,8 +19,7 @@ request.setAttribute("myHelper", new MyHelper(request));
     }
 
     public Map<String,String[]> submissionsQueryOptions(String formType) {
-      com.kineticdata.core.authentication.Identity identity =
-          (com.kineticdata.core.authentication.Identity) request.getAttribute("identity");
+      Identity identity = (Identity) request.getAttribute("identity");
       Map<String,String[]> searchOptions = new HashMap<>();
       searchOptions.put("createdBy", new String[] {identity.getUsername()});
       request.setAttribute("searchOptions", searchOptions);
