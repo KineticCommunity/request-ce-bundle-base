@@ -24,6 +24,14 @@
  *   Colored Elements
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
+/* Default <a> tag*/
+a{
+  /* color: rgb($primary); */
+}
+a:hover{
+  /* color: rgba($primary, .8); */
+}
+
 /* Navbar brand color */
 .navbar-default .navbar-brand {
   /*color: rgb(66, 139, 202); */
@@ -75,6 +83,12 @@ form button[data-button-type='custom']:hover {
   /* border-top-color: $primary; */
 }
 
+.card .action a{
+/* color: $primary; */
+}
+.card .action a:hover{
+  /* color: rgba($primary, .5); */
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Global Elements
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -91,6 +105,10 @@ form button[data-button-type='custom']:hover {
 body {
   background-color: #f1f1f1;
   color: #312f38; /* $black */
+}
+
+a {
+  color: rgba(66, 139, 202, 1); /* $primary */
 }
 
 body canvas {
@@ -668,6 +686,15 @@ form button[data-button-type='previous-page']:before {
   text-transform: uppercase;
 }
 
+.card .card-action a {
+  margin-right: 2rem;
+  text-transform: uppercase;
+  color: rgba(66, 139, 202, 1); /* $primary */
+}
+
+.card .card-action a:hover{
+  color: rgba(66, 139, 202, .8); /* $primary */
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   App Launcher
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
