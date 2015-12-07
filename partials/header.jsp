@@ -35,7 +35,7 @@
                         <li><a href="#"><i class="fa fa-android fa-4x"></i></a> </li>
                     </ul>
                     <a href="#" class="more">More</a>
-                    <ul class="second-set hide">
+                    <ul class="second-set" style="display:none;">
                         <li><a href="#"><i class="fa fa-dribbble fa-4x"></i></a> </li>
                         <li><a href="#"><i class="fa fa-html5 fa-4x"></i></a> </li>
                         <li><a href="#"><i class="fa fa-linux fa-4x"></i></a> </li>
@@ -73,65 +73,66 @@
         </div>
     </div>
 </nav>
+
 <script>
-    $(document).ready(function(){
+$(document).ready(function(){
 
-          var scroll = false;
-          var launcherMaxHeight = 396;
-          var launcherMinHeight = 296;
-          
-          // Mousewheel event handler to detect whether user has scrolled over the container
-          $('.apps').bind('mousewheel', function(e){
-                if(e.originalEvent.wheelDelta /120 > 0) {
-                  // Scrolling up
-                }
-                else{
-                    // Scrolling down
-                    if(!scroll){
-                        $(".second-set").show();
-                        $('.apps').css({height: launcherMinHeight}).addClass('overflow');
-                        scroll =true; 
-                        $(this).scrollTop(e.originalEvent.wheelDelta);
-                    }
-                }
-            });
-          
-          // Scroll event to detect that scrollbar reached top of the container
-          $('.apps').scroll(function(){
-            var pos=$(this).scrollTop();
-            if(pos == 0){
-                scroll =false;
-                $('.apps').css({height: launcherMaxHeight}).removeClass('overflow');
-                $(".second-set").hide();
+      var scroll = false;
+      var launcherMaxHeight = 400;
+      var launcherMinHeight = 396;
+
+      // Mousewheel event handler to detect whether user has scrolled over the container
+      $('.apps').bind('mousewheel', function(e){
+            if(e.originalEvent.wheelDelta /120 > 0) {
+              // Scrolling up
             }
-          });
-          
-          // Click event handler to show more apps
-          $('.apps .more').click(function(){
-            $(".second-set").show();
-            $(".apps").animate({ scrollTop: $('.apps')[0].scrollHeight}).css({height: 296}).addClass('overflow');
-          });
-          
-          // Click event handler to toggle dropdown
-          $(".button").click(function(event){
-            event.stopPropagation();
-            $(".app-launcher").toggle();
-          });
-          
-          $(document).click(function() {
-            //Hide the launcher if visible
-            $('.app-launcher').hide();
-            });
-            
-            // Prevent hiding on click inside app launcher
-            $('.app-launcher').click(function(event){
-                event.stopPropagation();
-            });
-      
-    });
+            else{
+                // Scrolling down
+                if(!scroll){
+                    $(".second-set").show();
+                    $('.apps').css({height: launcherMinHeight}).addClass('overflow');
+                    scroll =true;
+                    $(this).scrollTop(e.originalEvent.wheelDelta);
+                }
+            }
+        });
 
-    // Resize event handler to maintain the max-height of the app launcher
-    $(window).resize(function(){
-            $('.apps').css({maxHeight: $(window).height() - $('.apps').offset().top});
-    });
+      // Scroll event to detect that scrollbar reached top of the container
+      $('.apps').scroll(function(){
+        var pos=$(this).scrollTop();
+        if(pos == 0){
+            scroll =false;
+            $('.apps').css({height: launcherMaxHeight}).removeClass('overflow');
+            $(".second-set").hide();
+        }
+      });
+
+      // Click event handler to show more apps
+      $('.apps .more').click(function(){
+        $(".second-set").show();
+        $(".apps").animate({ scrollTop: $('.apps')[0].scrollHeight}).css({height: 396}).addClass('overflow');
+      });
+
+      // Click event handler to toggle dropdown
+      $(".button").click(function(event){
+        event.stopPropagation();
+        $(".app-launcher").toggle();
+      });
+
+      $(document).click(function() {
+        //Hide the launcher if visible
+        $('.app-launcher').hide();
+        });
+
+        // Prevent hiding on click inside app launcher
+        $('.app-launcher').click(function(event){
+            event.stopPropagation();
+        });
+
+});
+
+// Resize event handler to maintain the max-height of the app launcher
+$(window).resize(function(){
+        $('.apps').css({maxHeight: $(window).height() - $('.apps').offset().top});
+});
 </script>

@@ -701,11 +701,12 @@ form button[data-button-type='previous-page']:before {
 .launcher {
   position: relative;
   text-align: center;
+  margin-left: 1rem;
 }
 
 .app-launcher {
   position: absolute;
-  left: calc(50% - 160px);
+  left: calc(50% - 16rem);
   top: 40px;
   z-index: 999;
 }
@@ -733,7 +734,7 @@ form button[data-button-type='previous-page']:before {
   overflow-y: auto;
   overflow-x: hidden;
   width: 320px;
-  height: 396px;
+  height: 400px;
   margin-bottom: 30px;
 }
 
@@ -751,7 +752,7 @@ form button[data-button-type='previous-page']:before {
   background: #fff;
   margin: 0;
   padding: 28px;
-  width: 264px;
+  width: 320px;
   overflow: hidden;
   list-style: none;
 }
@@ -761,7 +762,7 @@ form button[data-button-type='previous-page']:before {
   height: 64px;
   width: 88px;
   color: black;
-  padding: 18px 0;
+  margin: 1.8rem 0;
   text-align: center;
 }
 
