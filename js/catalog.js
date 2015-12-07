@@ -49,7 +49,32 @@
     }
   }
 
-
+  /**
+   * Forms Search using Twitter Typeahead
+  **/
+  $('.navbar-form .typeahead').typeahead(null,{
+    name: 'forms',
+    source: function (query, process) {
+      forms = [];
+      map = {};
+      var data = [
+          {"name": "Form A", "slug": "form-a"},
+          {"name": "Form B", "slug": "form-b"},
+          {"name": "Form C", "slug": "form-c"},
+          {"name": "Form D", "slug": "form-d"}
+      ];
+      $.each(data, function (i, form) {
+          map[form.name] = form;
+          forms.push(form.name);
+      });
+      process(forms);
+    },
+    matcher: function (item) {
+      if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
+        return true;
+      }
+    }
+  });
 
 /**
  * Applies the Jquery DataTables plugin to a rendered HTML table to provide

@@ -22,7 +22,7 @@
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/jquery.dataTables.js" />
             <bundle:script src="${bundle.location}/libraries/color-thief/color-thief.min.js" />
-            <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.js" />
+            <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
             <bundle:script src="${bundle.location}/js/catalog.js" />
         </bundle:scriptpack>
         <bundle:yield name="head"/>

@@ -1,8 +1,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
 <%@include file="../bundle/initialization.jspf" %>
 <bundle:variable name="head">
-    <title>Kinetic Data ${text.
-escape(kapp.name)}</title>
+    <title>Kinetic Data ${text.escape(kapp.name)}</title>
 </bundle:variable>
 <section class="menu">
     <ul class="nav nav-pills">
