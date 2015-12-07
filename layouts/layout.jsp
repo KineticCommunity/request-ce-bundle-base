@@ -33,7 +33,11 @@
         </style>
         <script>
           $(window).load(function(){
-            alert(bundle.spaceLocation() + "/app/api/v1/kapps/" + bundle.kappSlug() + "/forms")
+            setColors(
+              [${not empty kapp.getAttribute('primary-rgb') ? kapp.getAttribute('primary-rgb').value.replace(' ','') : 'null'}],
+              [${not empty kapp.getAttribute('secondary-rgb') ? kapp.getAttribute('secondary-rgb').value.replace(' ','') : 'null'}],
+              [${not empty kapp.getAttribute('tertiary-rgb') ? kapp.getAttribute('tertiary-rgb').value.replace(' ','') : 'null'}]
+            );
           });
         </script>
     </head>
