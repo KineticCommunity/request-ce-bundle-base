@@ -16,18 +16,18 @@ The one exception to this is "My Requests" and "My Approvals".  In order to grab
 ## Personalization
 This bundle easily allows for minor personalization by including optional attributes in your KAPP, Form and/or Categories.
 
-KAPP Attributes:
+### KAPP Attributes:
 * _logo-url_ : By including this attribute we will use this logo instead of the home icon on the top-left of the page
 * _logo-height-px_ : By including this attribute we will set the height of the logo in the header. Default is 40px with 5px of padding.
 * _sidebar-html_ : We show the Kinetic Data Twitter feed by default, but you can add any HTML/widget by including the HTML/JS in this attribute.
-* _primary_rgb_ : Setting this RGB color (example: 232,130,67 for an orange) will set the primary color on the console and forms.  Including some navigation indicators, icon colors and others. If this is not set, but a logo has been added, we try to get the primary color from the logo.  If nothing is set our default blue is used.
-* _secondary_rgb_ : A secondary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
-* _tertiary_rgb_ : A tertiary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
+* _primary-rgb_ : Setting this RGB color (example: 232,130,67 for an orange) will set the primary color on the console and forms.  Including some navigation indicators, icon colors and others. If this is not set, but a logo has been added, we try to get the primary color from the logo.  If nothing is set our default blue is used.
+* _secondary-rgb_ : A secondary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
+* _tertiary-rgb_ : A tertiary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
 
-Form Attributes
+### Form Attributes
 * _form-icon-class_ : We include font-awesome icons by default and just apply a random icon to your forms on the catalog page.  However, you can specify a class for your form by including this attribute and a value. (Example fa-bank)
 
-Category Attributes
+### Category Attributes
 * _hidden_ : Including this attribute on a category means the category and forms in that category will not be shown on the portal page.
 
 
@@ -36,7 +36,7 @@ When you customize this bundle it is a good idea to fork it on your own git serv
 
 We also suggest you update this README with your own change summary for future bundle developers.
 
-## Structure
+### Structure
 This default bundle uses our standard directory structure.  Bundles are completely self contained so should include all libraries and markup needed.
 
 <code><pre>
