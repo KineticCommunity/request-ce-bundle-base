@@ -10,14 +10,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${bundle.kappLocation}">
-                <c:if test="${not empty kapp.getAttribute('logo-url')}">
-                <img src="${kapp.getAttribute('logo-url').value}" alt="logo">
-                </c:if>
-                <c:if test="${empty kapp.getAttribute('logo-url')}">
-                <i class="fa fa-home"></i> ${text.escape(kapp.name)}
-                </c:if>
-            </a>
+            <c:if test="${kapp != null}">
+                <a class="navbar-brand" href="${bundle.kappLocation}">
+                    <c:if test="${not empty kapp.getAttribute('logo-url')}">
+                    <img src="${kapp.getAttribute('logo-url').value}" alt="logo">
+                    </c:if>
+                    <c:if test="${empty kapp.getAttribute('logo-url')}">
+                    <i class="fa fa-home"></i> ${text.escape(kapp.name)}
+                    </c:if>
+                </a>
+            </c:if>
         </div>
         <div class="navbar-nav navbar-right launcher">
             <div class="button"> <i class="fa fa-th fa-2x"></i> </div>
