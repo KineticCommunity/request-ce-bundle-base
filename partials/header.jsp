@@ -21,36 +21,22 @@
                 </a>
             </c:if>
         </div>
-        <div class="navbar-nav navbar-right launcher">
+        <c:if test="${kapp != null}">
+          <div class="navbar-nav navbar-right launcher">
             <div class="button"> <i class="fa fa-th fa-2x"></i> </div>
             <div class="app-launcher" style="display:none;">
                 <div class="apps">
                     <ul class="first-set">
-                        <li><a href="#"><i class="fa fa-google-plus-square fa-4x"> </i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook-square fa-4x"> </i></a> </li>
-                        <li><a href="#"><i class="fa fa-twitter-square fa-4x"> </i></a> </li>
-                        <li><a href="#"><i class="fa fa-youtube-square fa-4x"> </i></a> </li>
-                        <li><a href="#"><i class="fa fa-skype fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-windows fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-linkedin fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-apple fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-android fa-4x"></i></a> </li>
-                    </ul>
-                    <a href="#" class="more">More</a>
-                    <ul class="second-set" style="display:none;">
-                        <li><a href="#"><i class="fa fa-dribbble fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-html5 fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-linux fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-css3 fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-github fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-pinterest fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-tumblr-square fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-dropbox fa-4x"></i></a> </li>
-                        <li><a href="#"><i class="fa fa-instagram fa-4x"></i></a> </li>
+                      <c:forEach items="${space.kapps}" var="kapp" begin="0" end="8">
+                        <li><a href="#"><i class="fa fa-google-plus-square fa-4x"> </i>${kapp.name}</a></li>
+                      </c:forEach>
                     </ul>
                 </div>
-            </div>
-        </div>
+              </div>
+          </div>
+        </c:if>
+
+
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
