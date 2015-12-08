@@ -13,7 +13,7 @@
        if (primary != null || primary.length > 0) {
          var rgb = "rgb(" + primary.join() + ")";
          /* Default link colors */
-         $('a, .card .action a').css("color", rgb);
+         $(':not(.card-title) > a, .card .action a').css("color", rgb);
          $('a:hover,.card .action a:hover').css("color", "rgba(" + primary.join() +", 0.8)");
          /* Card Icon Color */ /* Navbar brand color */
          $('.card .fa, .navbar-default .navbar-brand').css("color", rgb);
