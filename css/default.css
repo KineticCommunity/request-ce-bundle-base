@@ -360,6 +360,9 @@ form label {
   font-weight: 600;
 }
 
+.form-group.required label:after{
+  content: '*';
+}
 form .radio label:first-child,
 form .checkbox label:first-child {
   padding-left: 0;
