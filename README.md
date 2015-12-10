@@ -11,12 +11,12 @@ It includes the default:
 ## Assumptions
 Wherever possible we use defaults to make sure the pages will render correctly regardless of any attributes, categories or other configurations you perform on your forms.
 
-The one exception to this is "My Requests" and "My Approvals".  In order to grab only the appropriate submissions we are looking for form types of _"Service"_ for My Requests and _"Approval"_ for My Approvals.
+The one exception to this is "My Requests" and "My Approvals".  In order to grab only the appropriate submissions we are looking for form types of _"Service"_ for My Requests and _"Approval"_ for My Approvals.  While the form won't break if you don't include this, it also won't show your requests or your approvals.
 
 ## Personalization
 This bundle easily allows for minor personalization by including optional attributes in your KAPP, Form and/or Categories.
 
-### KAPP Attributes:
+#### KAPP Attributes
 * _logo-url_ : By including this attribute we will use this logo instead of the home icon on the top-left of the page
 * _logo-height-px_ : By including this attribute we will set the height of the logo in the header. Default is 40px with 5px of padding.
 * _sidebar-html_ : We show the Kinetic Data Twitter feed by default, but you can add any HTML/widget by including the HTML/JS in this attribute.
@@ -24,10 +24,10 @@ This bundle easily allows for minor personalization by including optional attrib
 * _secondary-rgb_ : A secondary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
 * _tertiary-rgb_ : A tertiary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
 
-### Form Attributes
+#### Form Attributes
 * _form-icon-class_ : We include font-awesome icons by default and just apply a random icon to your forms on the catalog page.  However, you can specify a class for your form by including this attribute and a value. (Example fa-bank)
 
-### Category Attributes
+#### Category Attributes
 * _hidden_ : Including this attribute on a category means the category and forms in that category will not be shown on the portal page.
 
 
