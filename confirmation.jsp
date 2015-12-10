@@ -11,9 +11,20 @@
     <div class='content'>
         <div class='row'>
             <div class="col-xs-12">
-                <h5>Thank you for your submission</h5>
-                <p><a href="${bundle.kappLocation}/${form.slug}">Submit again</a></p>
-                <p><a href="${bundle.kappLocation}">Return to the catalog</a></p>
+            <%--  If no confirmation page is defined for the form,
+                  use the default text below, otherwise use the page content.
+                  An empty 'current page' means there is no page defined.
+            --%>
+                <c:choose>
+                  <c:when test='${empty submission.currentPage}'>
+                    <h5>Thank you for your submission</h5>
+                    <p><a href="${bundle.kappLocation}/${form.slug}">Submit again</a></p>
+                    <p><a href="${bundle.kappLocation}">Return to the catalog</a></p>
+                  </c:when>
+                  <c:otherwise>
+                    <app:bodyContent/>
+                  </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
