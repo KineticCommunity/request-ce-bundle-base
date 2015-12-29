@@ -53,9 +53,13 @@
   }
 
   /**
-   * Forms Search using Twitter Typeahead
+   * Forms Search using Twitter Typeahead. Prefetch all accessible forms
+   * for the Kapp.
   **/
   $(function(){
+    if (!$('.navbar-form .typeahead').length){
+      return;
+    }
     var matcher = function(strs) {
       return function findMatches(query, callback) {
           var matches, substringRegex;
@@ -71,7 +75,6 @@
     };
     var formNames = [];
     var forms = {};
-    /* http://my.server.com/kinetic/default/app/api/v1/kapps/default/forms */
     $.get(window.bundle.apiLocation() + "/kapps/" + window.bundle.kappSlug() + "/forms", function( data ) {
       forms = data.forms;
       $.each(forms, function(i,val) {
