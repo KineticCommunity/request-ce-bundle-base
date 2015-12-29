@@ -55,28 +55,37 @@
   /**
    * Forms Search using Twitter Typeahead
   **/
-  $('.navbar-form .typeahead').typeahead(null,{
-    name: 'forms',
-    source: function (query, process) {
-      forms = [];
-      map = {};
-      var data = [
-          {"name": "Form A", "slug": "form-a"},
-          {"name": "Form B", "slug": "form-b"},
-          {"name": "Form C", "slug": "form-c"},
-          {"name": "Form D", "slug": "form-d"}
-      ];
-      $.each(data, function (i, form) {
-          map[form.name] = form;
-          forms.push(form.name);
+  $(function(){
+    var matcher = function(strs) {
+      return function findMatches(query, callback) {
+          var matches, substringRegex;
+          matches = [];
+          substrRegex = new RegExp(query, 'i');
+          $.each(strs, function(i, str) {
+            if (substrRegex.test(str)) {
+              matches.push(str);
+            }
+          });
+          callback(matches);
+      };
+    };
+    var formNames = [];
+    var forms = {};
+    /* http://my.server.com/kinetic/default/app/api/v1/kapps/default/forms */
+    $.get(window.bundle.apiLocation() + "/kapps/" + window.bundle.kappSlug() + "/forms", function( data ) {
+      forms = data.forms;
+      $.each(forms, function(i,val) {
+        formNames.push(val.name);
       });
-      process(forms);
-    },
-    matcher: function (item) {
-      if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
-        return true;
-      }
-    }
+    });
+
+    $('.navbar-form .typeahead').typeahead({
+        highlight:true
+      },{
+        name: 'forms',
+        source: matcher(formNames),
+      }).bind('typeahead:select', function(ev, suggestion) {
+    });
   });
 
 /**

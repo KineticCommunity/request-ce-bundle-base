@@ -31,7 +31,6 @@
             .navbar-brand {height:${kapp.getAttribute('logo-height-px').value}px;}
             </c:if>
             .launcher{display:none;}
-            .navbar-form{display:none;}
         </style>
         <script>
           $(window).load(function(){

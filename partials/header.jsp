@@ -53,9 +53,9 @@
                     </div>
                 </li>
             </ul>
-            <div class="navbar-form navbar-right" role="search">
+            <div class="navbar-form navbar-right" role="search" style='margin-right:1em;'>
                 <div class="form-group">
-                    <input type="text" class="form-control typeahead" placeholder="Search for...">
+                    <input type="text" class="form-control typeahead" placeholder="Search forms...">
                 </div>
             </div>
         </div>
