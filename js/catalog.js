@@ -76,15 +76,16 @@
       forms = data.forms;
       $.each(forms, function(i,val) {
         formNames.push(val.name);
+        forms[val.name] = val;
       });
     });
-
     $('.navbar-form .typeahead').typeahead({
         highlight:true
       },{
         name: 'forms',
         source: matcher(formNames),
       }).bind('typeahead:select', function(ev, suggestion) {
+        window.location.replace(window.bundle.kappLocation() + "/" + forms[suggestion].slug)
     });
   });
 
