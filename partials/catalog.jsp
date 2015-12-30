@@ -21,51 +21,48 @@
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="tab-home">
         <div class="row">
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h2>Service Items</h2>
-                        <%-- For each of the categories --%>
-                        <c:forEach items="${kapp.categories}" var="category">
-                            <%-- If the category is not hidden, and it contains at least 1 form --%>
-                            <c:if test="${fn:toLowerCase(category.getAttribute('Hidden').value) ne 'true' && not empty category.forms}">
-                                <div class="category">
-                                    <h3>${text.escape(category.name)}</h3>
-                                    <div class="row">
-                                        <%-- Show the first x number of forms of the category --%>
-                                        <c:forEach items="${category.forms}" var="categoryForm" begin="0" end="8">
-                                            <%-- Only show New or Active forms --%>
-                                            <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
-                                                <%-- Render the form panel --%>
-                                                <c:set scope="request" var="thisForm" value="${categoryForm}"/>
-                                                <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
-                                            </c:if>
-                                        </c:forEach>
-                                    </div>
-                                </div>
-                            </c:if>
-
-                        </c:forEach>
-                        <div class="category uncategorized">
-                            <h3>
-                                Uncategorized Forms
-                            </h3>
+            <div class="col-md-8">
+                <h2>Service Items</h2>
+                <%-- For each of the categories --%>
+                <c:forEach items="${kapp.categories}" var="category">
+                    <%-- If the category is not hidden, and it contains at least 1 form --%>
+                    <c:if test="${fn:toLowerCase(category.getAttribute('Hidden').value) ne 'true' && not empty category.forms}">
+                        <div class="category">
+                            <h3>${text.escape(category.name)}</h3>
                             <div class="row">
-                                <c:forEach items="${kapp.forms}" var="form">
+                                <%-- Show the first x number of forms of the category --%>
+                                <c:forEach items="${category.forms}" var="categoryForm" begin="0" end="8">
                                     <%-- Only show New or Active forms --%>
-                                    <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
+                                    <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
                                         <%-- Render the form panel --%>
-                                        <c:set scope="request" var="thisForm" value="${form}"/>
+                                        <c:set scope="request" var="thisForm" value="${categoryForm}"/>
                                         <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
                                     </c:if>
                                 </c:forEach>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a> <script async src="https://platform.twitter.com/widgets.js"></script>
+                    </c:if>
+
+                </c:forEach>
+                <div class="category uncategorized">
+                    <h3>
+                        Uncategorized Forms
+                    </h3>
+                    <div class="row">
+                        <c:forEach items="${kapp.forms}" var="form">
+                            <%-- Only show New or Active forms --%>
+                            <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
+                                <%-- Render the form panel --%>
+                                <c:set scope="request" var="thisForm" value="${form}"/>
+                                <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
+                            </c:if>
+                        </c:forEach>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3 col-md-offset-1" id="social-column" >
+                <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a> 
+                <script async src="https://platform.twitter.com/widgets.js"></script>
             </div>
         </div>
     </div>

@@ -698,6 +698,21 @@ form button[data-button-type='previous-page']:before {
 .card .card-action a:hover{
   color: rgba(66, 139, 202, .8); /* $primary */
 }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Twitter
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#social-column{
+  background-color:#fff;
+  padding:1em;
+}
+#twitter-widget-0{
+  opacity: .5;
+}
+#twitter-widget-0:hover{
+  opacity: 1;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   App Launcher
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
