@@ -705,6 +705,7 @@ form button[data-button-type='previous-page']:before {
 #social-column{
   background-color:#fff;
   padding:1em;
+  border-top: 0.2rem solid rgba(179, 193, 196, 0.5);
 }
 #twitter-widget-0{
   opacity: .5;
