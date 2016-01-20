@@ -24,6 +24,7 @@
             <bundle:script src="${bundle.location}/libraries/color-thief/color-thief.min.js" />
             <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
             <bundle:script src="${bundle.location}/js/catalog.js" />
+            <bundle:script src="${bundle.location}/js/review.js" />
         </bundle:scriptpack>
         <bundle:yield name="head"/>
         <style>
