@@ -25,13 +25,13 @@
             <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
             <bundle:script src="${bundle.location}/js/catalog.js" />
             <bundle:script src="${bundle.location}/js/review.js" />
+            <bundle:script src="${bundle.location}/js/launcher.js" />
         </bundle:scriptpack>
         <bundle:yield name="head"/>
         <style>
             <c:if test="${not empty kapp.getAttribute('logo-height-px')}">
-            .navbar-brand {height:${kapp.getAttribute('logo-height-px').value}px;}
+                .navbar-brand {height:${kapp.getAttribute('logo-height-px').value}px;}
             </c:if>
-            .launcher{display:none;}
         </style>
         <script>
           $(window).load(function(){
