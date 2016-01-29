@@ -737,7 +737,7 @@ form button[data-button-type='previous-page']:before {
   border-bottom: 10px solid white;
   position: absolute;
   top: -9px;
-  left: 50%;
+  left: 49%;
   margin-left: -5px;
   z-index: 1;
 }
@@ -783,6 +783,14 @@ form button[data-button-type='previous-page']:before {
   color: black;
   margin: 1.8rem 0;
   text-align: center;
+}
+.apps ul li span{
+  display: block;
+    line-height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 84px;
+    text-overflow: ellipsis;
 }
 
 .apps .more {
