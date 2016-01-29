@@ -13,10 +13,13 @@
 <%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json" %>
 
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
+
 <%-- Load helper(s) --%>
+<%@include file="SubmissionHelper.jspf"%>
 <%
   request.setAttribute("json", new com.kineticdata.bundles.JsonHelper());
   request.setAttribute("text", new com.kineticdata.bundles.TextHelper());
   request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
+  request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
 %>
-<%@include file="SubmissionHelper.jspf"%>
+
