@@ -19,4 +19,4 @@
   request.setAttribute("text", new com.kineticdata.bundles.TextHelper());
   request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
 %>
-<%@include file="myHelper.jspf"%>
+<%@include file="SubmissionHelper.jspf"%>

@@ -68,12 +68,12 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-requests">
         <h3>My Requests</h3>
-        <c:set scope="request" var="submissionsList" value="${Submissions.searchByKapp(kapp, myHelper.requestsQueryOptions())}"/>
+        <c:set scope="request" var="submissionsList" value="${Submissions.searchByKapp(kapp, SubmissionHelper.requestsQueryOptions())}"/>
         <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
     </div>
     <div role="tabpanel" class="tab-pane" id="tab-approvals">
         <h3>My Approvals</h3>
-        <c:set scope="request" var="submissionsList" value="${Submissions.searchByKapp(kapp, myHelper.approvalsQueryOptions())}"/>
+        <c:set scope="request" var="submissionsList" value="${Submissions.searchByKapp(kapp, SubmissionHelper.approvalsQueryOptions())}"/>
         <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
     </div>
 </div>

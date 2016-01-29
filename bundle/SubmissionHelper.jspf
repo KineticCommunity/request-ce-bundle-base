@@ -1,13 +1,13 @@
 <%-- Helpers for "My" items such as requests and approvals.
      Helpers are used to keep the views clean --%>
 <%
-request.setAttribute("myHelper", new MyHelper(request));
+request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
 %>
 <%!
-  public static class MyHelper {
+  public static class SubmissionHelper {
 		private HttpServletRequest request;
 
-		public MyHelper(HttpServletRequest request) {
+		public SubmissionHelper(HttpServletRequest request) {
 			this.request = request;
 		}
 
