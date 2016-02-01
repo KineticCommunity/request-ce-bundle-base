@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-md-offset-1" id="social-column" >
+            <div class="col-md-3 col-md-offset-1 hidden-xs" id="social-column" >
                 <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a> 
                 <script async src="https://platform.twitter.com/widgets.js"></script>
             </div>
