@@ -25,7 +25,6 @@
             <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
             <bundle:script src="${bundle.location}/js/catalog.js" />
             <bundle:script src="${bundle.location}/js/review.js" />
-            <bundle:script src="${bundle.location}/js/launcher.js" />
         </bundle:scriptpack>
         <bundle:yield name="head"/>
         <style>
