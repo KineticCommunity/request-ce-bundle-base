@@ -5,10 +5,10 @@
 
   <c:choose>
     <c:when test="${param.submission_id != null}">
-      <c:import url="${bundle.path}/submission.jsp" charEncoding="UTF-8" />
+      <c:import url="${bundle.path}/partials/submission.jsp" charEncoding="UTF-8" />
     </c:when>
     <c:otherwise>
-      <c:import url="${bundle.path}/catalog.jsp" charEncoding="UTF-8" />
+      <c:import url="${bundle.path}/partials/catalog.jsp" charEncoding="UTF-8" />
     </c:otherwise>
   </c:choose>
   <app:bodyContent/>
