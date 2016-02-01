@@ -28,14 +28,6 @@
         </div>
         <div class="col-xs-8">
             <div class="timeline-block">
-              <div class="no-data">
-                <h4>You are missing these attributes to display the submission timeline.</h4>
-                <ul>
-                  <li>Task Server Url</li>
-                  <li>Task Source Name</li>
-                </ul>
-              </div>
-
               <c:forEach var="run" items="${TaskRuns.find(submission)}">
                 <ul>
                     <c:forEach var="task" items="${run.tasks}">
