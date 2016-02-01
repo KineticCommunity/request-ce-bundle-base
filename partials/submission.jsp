@@ -35,7 +35,7 @@
                           <div class="timeline-status-content">
                               <h4>${text.escape(task.name)}</h4>
                               <h5>${text.escape(task.createdAt)}</h5>
-                              <p>${text.escape(task.results)}</p>
+                              <p>${text.escape(task.resultsMap)}</p>
                           </div>
                       </li>
                     </c:forEach>
