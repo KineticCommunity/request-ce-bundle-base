@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="../bundle/initialization.jspf" %>
+<%@include file="bundle/initialization.jspf" %>
 <c:set var="submission" value="${Submissions.retrieve(param.submission_id)}" scope="page"/>
 <section class="menu">
     <div class="row">
@@ -28,6 +28,14 @@
         </div>
         <div class="col-xs-8">
             <div class="timeline-block">
+              <div class="no-data">
+                <h4>You are missing these attributes to display the submission timeline.</h4>
+                <ul>
+                  <li>Task Server Url</li>
+                  <li>Task Source Name</li>
+                </ul>
+              </div>
+
               <c:forEach var="run" items="${TaskRuns.find(submission)}">
                 <ul>
                     <c:forEach var="task" items="${run.tasks}">
