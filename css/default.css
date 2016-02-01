@@ -714,6 +714,28 @@ form button[data-button-type='previous-page']:before {
   opacity: 1;
 }
 
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * Missing Attributes
+  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.no-data{    
+  color: #999;
+  text-align: center;
+  border: 1px solid #999;
+  border-radius: 3px;
+  line-height: 140%;
+  margin-bottom: 20px;
+  padding: 1em;
+  background-color: #eee;
+  position: relative;
+  border: 1px solid transparent;
+}
+.no-data h3{
+  text-transform: none;
+}
+.no-data ul{
+  text-align: left;
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   App Launcher
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
