@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
 <%@include file="../bundle/initialization.jspf" %>
-<footer>
+<footer class="footer">
     <div class="container">
       <div class="col-xs-6">
         <img src='${bundle.location}/images/ProductName-Request.png' class='desaturate' height="40"/>
