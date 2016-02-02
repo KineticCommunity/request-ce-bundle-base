@@ -22,7 +22,6 @@
             </c:if>
         </div>
 
-
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -48,11 +47,15 @@
                     </ul>
                 </li>
             </ul>
+        <c:if test="${kapp != null}">
             <div class="navbar-form navbar-right" role="search" style='margin-right:1em;'>
-                <div class="form-group">
-                    <input type="text" class="form-control typeahead" placeholder="Search forms...">
-                </div>
+                <form action="${bundle.kappLocation}/search" method="GET" role="form"> 
+                    <div class="form-group">
+                        <input type="text" class="states form-control predictiveText x" name="q" placeholder="Search Forms…" />
+                    </div>
+                </form>
             </div>
+        </c:if>
         </div>
     </div>
 </nav>
