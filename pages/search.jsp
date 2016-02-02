@@ -35,9 +35,9 @@
                             </c:if>
                         </c:if>
                     </c:forEach>
-            <c:if test="${found == "false"}">
-                <h5>No results found for ${param['q']}.</h5>
-            </c:if>
+                    <c:if test="${found == "false"}">
+                        <h5>No results found for ${param['q']}.</h5>
+                    </c:if>
                 </ul>
             </c:if>
         </div>
