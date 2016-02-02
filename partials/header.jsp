@@ -49,11 +49,9 @@
                 </li>
             </ul>
             <div class="navbar-form navbar-right" role="search" style='margin-right:1em;'>
-                <form action="${bundle.kappLocation}/search" method="GET" role="form"> 
-                    <div class="form-group">
-                        <input type="text" class="states form-control predictiveText x" name="q" placeholder="Search Forms…" />
-                    </div>
-                </form>
+                <div class="form-group">
+                    <input type="text" class="form-control typeahead" placeholder="Search forms...">
+                </div>
             </div>
         </div>
     </div>
