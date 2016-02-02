@@ -16,20 +16,24 @@
     }
 
     public Map<String,String[]> submissionsQueryOptions(String formType) {
-        Identity identity = (Identity) request.getAttribute("identity");
-        Map<String,String[]> searchOptions = new HashMap<>();
+      Identity identity = (Identity) request.getAttribute("identity");
+      Map<String,String[]> searchOptions = new HashMap<>();
+      if(formType == "Approval"){
+        searchOptions.put("values[Assigned Individual]", new String[] {identity.getUsername()});
+      } else {
         searchOptions.put("createdBy", new String[] {identity.getUsername()});
-        request.setAttribute("searchOptions", searchOptions);
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.YEAR, -1);
-        Date start = cal.getTime();
-        cal.add(Calendar.YEAR, +2);
-        Date end = cal.getTime();
-        java.text.Format formatter = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.000Z'");
-        searchOptions.put("start", new String[] {formatter.format(start)} );
-        searchOptions.put("end", new String[] {formatter.format(end)} );
-        searchOptions.put("type", new String[] {formType});
-        return searchOptions;
+      }
+      request.setAttribute("searchOptions", searchOptions);
+      Calendar cal = Calendar.getInstance();
+      cal.add(Calendar.YEAR, -1);
+      Date start = cal.getTime();
+      cal.add(Calendar.YEAR, +2);
+      Date end = cal.getTime();
+      java.text.Format formatter = new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.000Z'");
+      searchOptions.put("start", new String[] {formatter.format(start)} );
+      searchOptions.put("end", new String[] {formatter.format(end)} );
+      searchOptions.put("type", new String[] {formType});
+      return searchOptions;
     }
   }
 %>
