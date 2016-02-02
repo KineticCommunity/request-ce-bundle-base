@@ -1,6 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
-<%@include file="bundle/initialization.jspf" %>
-<bundle:layout page="layouts/layout.jsp">
+<%@include file="../bundle/initialization.jspf" %>
+<bundle:layout page="../layouts/layout.jsp">
 	<bundle:variable name="head">
 		<title>${text.escape(space.name)} Profile</title>
 	</bundle:variable>

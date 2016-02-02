@@ -31,7 +31,7 @@
                         <span class="fa fa-caret-down fa-fw"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="drop1">
-                        <li><a href="${bundle.spaceLocation}/${kapp.slug}/profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
+                        <li><a href="${bundle.spaceLocation}/${kapp.slug}?page=profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
                         <li class="divider"></li>
                         <li><a href="${bundle.spaceLocation}/app/"><i class="fa fa-dashboard fa-fw"></i> Management Console</a></li>
                         <li class="divider"></li>
@@ -49,8 +49,9 @@
             </ul>
         <c:if test="${kapp != null}">
             <div class="navbar-form navbar-right" role="search" style='margin-right:1em;'>
-                <form action="${bundle.kappLocation}/search" method="GET" role="form"> 
+                <form action="${bundle.kappLocation}" method="GET" role="form"> 
                     <div class="form-group">
+                        <input type="hidden" value="search" name="page">
                         <input type="text" class="states form-control predictiveText x" name="q" placeholder="Search Forms…" />
                     </div>
                 </form>

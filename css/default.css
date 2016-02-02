@@ -977,18 +977,21 @@ form button[data-button-type='previous-page']:before {
 }
 .search-results{
   background-color: #fff;
-  padding: 1em 0
+  padding: 1em 2em;
 }
 .search-results ul{
-  padding: 0 1em;
+  padding: 0;
 }
 .search-results li{
   list-style: none;
   display: block;
   position: relative;
-  padding: 1em 1.5em;
+  padding: .5em 1em;
   cursor: pointer;
   border-bottom: 1px solid #E6EAF0;
   text-align: left;
   text-decoration: none;
+}
+.search-results h3{
+  margin-top: .5em;
 }
