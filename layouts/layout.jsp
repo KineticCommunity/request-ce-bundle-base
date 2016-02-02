@@ -15,11 +15,14 @@
         <app:headContent/>
         <bundle:stylepack>
             <bundle:style src="${bundle.location}/libraries/bootstrap/bootstrap.min.css" />
+            <bundle:style src="${bundle.location}/libraries/notifie/jquery.notifie.css" />
             <bundle:style src="${bundle.location}/css/default.css "/>
         </bundle:stylepack>
         <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
+            <bundle:script src="${bundle.location}/libraries/kd-search/search.js" />
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
+            <bundle:script src="${bundle.location}/libraries/notifie/jquery.notifie.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/jquery.dataTables.js" />
             <bundle:script src="${bundle.location}/libraries/color-thief/color-thief.min.js" />
             <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
@@ -48,26 +51,7 @@
                 <c:import url="${bundle.path}/partials/header.jsp" charEncoding="UTF-8"/>
             </c:if>
             <div class="container">
-                <c:choose>
-                    <c:when test="${kapp!=null && kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
-                        <bundle:yield/>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="no-data">
-                            <h3>Kapp configuration is missing these attributes:</h3>
-                            <ul>
-                                <c:if test="${!kapp.hasAttribute('Task Server Url')}">
-                                    <li>Task Server Url</li>
-                                </c:if>
-                                <c:if test="${!kapp.hasAttribute('Task Source Name')}">
-                                    <li>Task Source Name</li>
-                                </c:if>
-                            </ul>
-                            <p>To update your configuration go to the <a href="${bundle.spaceLocation}/app/#/${kapp.slug}/setup/kapp/attributes">
-                            Kapp Attribute settings</a>.</p>
-                        </div>
-                    </c:otherwise>
-                </c:choose>
+                <bundle:yield/>
             </div>
             <c:import url="${bundle.path}/partials/footer.jsp" charEncoding="UTF-8"/>
         </div>

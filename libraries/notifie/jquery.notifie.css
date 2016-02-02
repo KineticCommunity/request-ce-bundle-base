@@ -1,0 +1,48 @@
+div.notifie {
+  display: none;
+}
+
+div.notifie div.notifie-message {
+  display: inline;
+}
+
+div.notifie button.close {
+  margin-left: 5px;
+}
+
+div.notifie div.notifie-buttons {
+  display: block;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+
+div.notifie div.notifie-buttons button {
+  margin-left: 3px;
+  opacity: 0.7;
+}
+
+div.notifie div.notifie-buttons button.confirm {
+  background-color: #EDEDED;
+  border-color: #A9A9A9;
+  color: #3F3F3F;
+}
+
+div.notifie div.notifie-buttons button.reject {
+  background-color: #EDEDED;
+  border-color: #A9A9A9;
+  color: #3F3F3F;
+}
+
+div.notifie div.notifie-buttons button:hover {
+  opacity: 1;
+}
+
+div.notifie div.notifie-buttons button.text {
+  font-weight: bold;
+}
+
+div.notifie.alert-warning {
+  color: #956C26;
+}

@@ -32,7 +32,7 @@
                         <span class="fa fa-caret-down fa-fw"></span>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="drop1">
-                        <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
+                        <li><a href="${bundle.spaceLocation}/${kapp.slug}/profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
                         <li class="divider"></li>
                         <li><a href="${bundle.spaceLocation}/app/"><i class="fa fa-dashboard fa-fw"></i> Management Console</a></li>
                         <li class="divider"></li>
@@ -46,13 +46,14 @@
                             <li><a href="/kinetic/${space.slug}/${kapp.slug}/">${kapp.name}</a></li>
                         </c:forEach>
                     </ul>
-
                 </li>
             </ul>
             <div class="navbar-form navbar-right" role="search" style='margin-right:1em;'>
-                <div class="form-group">
-                    <input type="text" class="form-control typeahead" placeholder="Search forms...">
-                </div>
+                <form action="${bundle.kappLocation}/search" method="GET" role="form"> 
+                    <div class="form-group">
+                        <input type="text" class="states form-control predictiveText x" name="q" placeholder="Search Forms…" />
+                    </div>
+                </form>
             </div>
         </div>
     </div>

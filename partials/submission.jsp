@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-xs-12">
             <h3>
-                <a href='${bundle.kappLocation}'>Return to catalog</a>
+            <a href='${bundle.kappLocation}'>Return to catalog</a>
             </h3>
-        <div>
+        </div>
     </div>
 </section>
 <section class="timeline">
@@ -28,21 +28,24 @@
         </div>
         <div class="col-xs-8">
             <div class="timeline-block">
-              <c:forEach var="run" items="${TaskRuns.find(submission)}">
+                <c:forEach var="run" items="${TaskRuns.find(submission)}">
                 <ul>
                     <c:forEach var="task" items="${run.tasks}">
-                      <li class="timeline-status">
-                          <div class="timeline-status-content">
-                              <h4>${text.escape(task.name)}</h4>
-                              <h5>${text.escape(task.createdAt)}</h5>
-                              <p>${text.escape(task.resultsMap)}</p>
-                          </div>
-                      </li>
+                        <li class="timeline-status">
+                            <div class="timeline-status-content">
+                                <h4>${text.escape(task.name)}</h4>
+                                <h5>${text.escape(task.createdAt)}</h5>
+                                <ul>
+                                    <c:forEach var="entry" items"${task.resultsMap}">
+                                        <li>${text.escape(entry.key)}: ${text.escape(entry.value)}</li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
+                        </li>
                     </c:forEach>
                 </ul>
-              </c:forEach>
+                </c:forEach>
             </div>
         </div>
     </div>
-
 </section>
