@@ -36,8 +36,8 @@
                                 <h4>${text.escape(task.name)}</h4>
                                 <h5>${text.escape(task.createdAt)}</h5>
                                 <ul>
-                                    <c:forEach var="entry" items="${task.resultsMap}">
-                                        <li>${text.escape(entry.key)}: ${text.escape(entry.value)}</li>
+                                    <c:forEach var="entry" items="${task.messages}">
+                                        <li>${text.escape(entry.message)}</li>
                                     </c:forEach>
                                 </ul>
                             </div>
