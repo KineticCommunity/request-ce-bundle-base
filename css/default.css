@@ -957,6 +957,5 @@ body {
 @media only screen and (max-width : 768px) {
   .submission-meta{
     margin-right: 0;
-    border:1px solid red;
   }
 }
