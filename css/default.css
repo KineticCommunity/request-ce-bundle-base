@@ -913,6 +913,9 @@ form button[data-button-type='previous-page']:before {
   text-align: left;
   text-decoration: none;
 }
+.search-results li h4{
+  text-transform: capitalize;
+}
 .search-results h3{
   margin-top: .5em;
 }

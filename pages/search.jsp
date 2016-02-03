@@ -1,20 +1,24 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
 <%@include file="../bundle/initialization.jspf" %>
-<bundle:layout page="../layouts/layout.jsp">
+<bundle:layout page="${bundle.path}/layouts/layout.jsp">
 
     <bundle:variable name="head">
         <title>${text.escape(space.name)} Search</title>
     </bundle:variable>
 
 
-    <div class="container search-container">
-<!--         <form action="${bundle.kappLocation}?page=search" method="POST" role="form"> 
-          <div class="form-group has-feedback">
-            <input type="text" class="states form-control x" name="q" value="${param['q']}"/>
-          </div>
-        </form> -->
+    <div class="search">
+        <div class="visible-xs search-container">
+            <form action="${bundle.kappLocation}" method="GET" role="form">
+                <div class="form-group has-feedback">
+                    <input type="hidden" value="search" name="page">
+                    <input type="text" class="states form-control x" name="q" value="${param['q']}"/>
+                </div>
+            </form>
+        </div>
         <div class="search-results">
-            <h2>Search Results for '${param['q']}'</h2>
+            <h3>Search Results for '${param['q']}'</h3>
+
             <c:if test="${text.isNotBlank(param['q'])}">
                 <ul>
                     <c:set var="found" value="false" />
@@ -23,11 +27,11 @@
                             <c:if test="${text.contains(text.downcase(form.name), text.downcase(param['q'])) || text.contains(text.downcase(form.description), text.downcase(param['q']))}">
                                 <c:set var="found" value="true"/>
                                 <li>
-                                    <h3>
+                                    <h4>
                                         <a href="${bundle.kappLocation}/${form.slug}">
                                            ${form.name}
                                         </a>
-                                    </h3>
+                                    </h4>
                                     <c:if test="${not empty form.description}">
                                         <p>${form.description}</p>
                                     </c:if>

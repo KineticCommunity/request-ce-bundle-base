@@ -2,6 +2,7 @@
 <%@page pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
 <%@page import="java.util.*" %>
 <%@page import="com.kineticdata.core.models.*" %>
+<%@page import="com.kineticdata.core.web.bundles.Bundle" %>
 <%@page import="com.kineticdata.core.authentication.Identity" %>
 
 <%-- Load tag libraries (JSTL) used in most bundles --%>
@@ -13,7 +14,10 @@
 <%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json" %>
 
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
-
+<%
+    //Get bundle object
+    Bundle bundle = (Bundle)request.getAttribute("bundle"); 
+%>
 <%-- Load helper(s) --%>
 <%@include file="SubmissionHelper.jspf"%>
 <%
