@@ -42,23 +42,21 @@
                     </div>
                 </c:if>
                 </c:forEach>
-                <c:if test="${not empty form.categories}">
-                    <div class="category uncategorized">
-                        <h3>
-                            Uncategorized Forms
-                        </h3>
-                        <div class="row">
-                            <c:forEach items="${kapp.forms}" var="form">
-                            <%-- Only show New or Active forms --%>
-                            <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
-                            <%-- Render the form panel --%>
-                            <c:set scope="request" var="thisForm" value="${form}"/>
-                            <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
-                            </c:if>
-                            </c:forEach>
-                        </div>
+                <div class="category uncategorized">
+                    <h3>
+                        Uncategorized Forms
+                    </h3>
+                    <div class="row">
+                        <c:forEach items="${kapp.forms}" var="form">
+                        <%-- Only show New or Active forms --%>
+                        <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
+                        <%-- Render the form panel --%>
+                        <c:set scope="request" var="thisForm" value="${form}"/>
+                        <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
+                        </c:if>
+                        </c:forEach>
                     </div>
-                </c:if>
+                </div>
             </div>
             <div class="col-md-3 col-md-offset-1 hidden-xs" id="social-column" >
                 <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a>
