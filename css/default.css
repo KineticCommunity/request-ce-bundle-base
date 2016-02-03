@@ -917,6 +917,17 @@ form button[data-button-type='previous-page']:before {
   margin-top: .5em;
 }
 
+.navbar-form {
+    overflow: auto;
+}
+.navbar-form .form-control {
+    display: inline-block;
+    width: 100%; 
+    vertical-align: middle;
+}
+.navbar-form .form-group {
+    display: inline;
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Sticky footer styles
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

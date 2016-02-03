@@ -48,11 +48,12 @@
                 </li>
             </ul>
         <c:if test="${kapp != null}">
-            <div class="navbar-form navbar-right" role="search" style='margin-right:1em;'>
-                <form action="${bundle.kappLocation}" method="GET" role="form"> 
+            <div class="navbar-form" role="search" style='margin-right:1em;'>
+                <form action="${bundle.kappLocation}" method="GET" role="form">
                     <div class="form-group">
-                        <input type="hidden" value="search" name="page">
-                        <input type="text" class="states form-control predictiveText x" name="q" placeholder="Search Forms…" />
+                            <input type="hidden" value="search" name="page">
+                            <input  type="text" class="states form-control predictiveText x" name="q" placeholder="Search Form…" autocomplete="off" autofocus="autofocus">
+                        </div>
                     </div>
                 </form>
             </div>
