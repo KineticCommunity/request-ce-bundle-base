@@ -20,9 +20,6 @@ This bundle easily allows for minor personalization by including optional attrib
 * _logo-url_ : By including this attribute we will use this logo instead of the home icon on the top-left of the page
 * _logo-height-px_ : By including this attribute we will set the height of the logo in the header. Default is 40px with 5px of padding.
 * _sidebar-html_ : We show the Kinetic Data Twitter feed by default, but you can add any HTML/widget by including the HTML/JS in this attribute.
-* _primary-rgb_ : Setting this RGB color (example: 232,130,67 for an orange) will set the primary color on the console and forms.  Including some navigation indicators, icon colors and others. If this is not set, but a logo has been added, we try to get the primary color from the logo.  If nothing is set our default blue is used.
-* _secondary-rgb_ : A secondary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
-* _tertiary-rgb_ : A tertiary color used in the console and forms. Should be in the format of three RGB numbers (example: 232,130,67 for an orange)
 
 #### Form Attributes
 * _form-icon-class_ : We include font-awesome icons by default and just apply a random icon to your forms on the catalog page.  However, you can specify a class for your form by including this attribute and a value. (Example fa-bank)
@@ -47,6 +44,7 @@ This default bundle uses our standard directory structure.  Bundles are complete
   /*js*: All javascript goes here.
   /*layouts*: One or more layouts wraps your views and generally includes your HTML head elements and any content that should show up on all pages.
   /*libraries*: Include CSS, JS or other libraries here including things like JQuery or bootstrap.
+  /*pages*:  Individual page content views. In our example we have a profile.jsp and search.jsp.
   /*partials*: These are view snippets that get used in the top-layer JSP views. Feel free to include sub-directories here if your set of partials gets unwieldy.
   /*confirmation.jsp*: The default confirmation page on form submits.
   /*form.jsp*: The default form JSP wrapper.

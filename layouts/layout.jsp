@@ -34,15 +34,6 @@
                 .navbar-brand {height:${kapp.getAttribute('logo-height-px').value}px;}
             </c:if>
         </style>
-        <script>
-          $(window).load(function(){
-            setColors(
-              [${not empty kapp.getAttribute('primary-rgb') ? kapp.getAttribute('primary-rgb').value.replace(' ','') : null}],
-              [${not empty kapp.getAttribute('secondary-rgb') ? kapp.getAttribute('secondary-rgb').value.replace(' ','') : null}],
-              [${not empty kapp.getAttribute('tertiary-rgb') ? kapp.getAttribute('tertiary-rgb').value.replace(' ','') : null}]
-            );
-          });
-        </script>
     </head>
     <body>
         <div class="view-port">
