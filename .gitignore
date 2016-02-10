@@ -1,2 +1,3 @@
 # Ignore SASS Map File
 *.map
+.sass-cache
