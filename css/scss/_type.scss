@@ -1,0 +1,46 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Type
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+ // heading, display classes, block quote, lists, and horizontal rule
+
+h1,
+.h1 {
+  color: #312f38; /* $black */
+}
+h2,
+.h2 {
+  color: rgba(49, 47, 56, 0.5); /* $black */
+}
+h3,
+.h3 {
+  color: rgba(49, 47, 56, 0.75); /* $black */
+  text-transform: uppercase;
+}
+h4,
+.h4 {
+  color: #312f38; /* $black */
+  text-transform: uppercase;
+}
+h5,
+.h5 {
+  color: #312f38; /* $black */
+}
+h6,
+.h6 {
+  color: #312f38; /* $black */
+}
+
+/* Miscellaneous Elements
+ *-------------------------------------- */
+// Truncates long text with ellipsis 
+.ellipsis {
+  text-overflow: ellipsis;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.category h3 {
+  font-weight: 200;
+}

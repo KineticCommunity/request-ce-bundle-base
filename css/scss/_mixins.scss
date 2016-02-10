@@ -1,0 +1,15 @@
+//* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//*   Mixins
+//*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+// Utilities
+@import 'mixins/opacity';
+@import 'mixins/word-break';
+
+
+// Skins
+@import 'mixins/border-radius';
+@import 'mixins/gradients';
+
+// Layout
+@import 'mixins/clearfix';

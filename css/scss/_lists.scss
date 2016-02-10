@@ -1,0 +1,123 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Lists
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Search Results
+ *-------------------------------------- */
+.search-container form{
+  padding-bottom: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.search-results{
+  background-color: $white;
+  padding: 1em 2em;
+  ul{
+    padding: 0;
+  }
+  li{
+    list-style: none;
+    display: block;
+    position: relative;
+    padding: .5em 1em;
+    cursor: pointer;
+    border-bottom: 1px solid #E6EAF0;
+    text-align: left;
+    text-decoration: none;
+  }
+  h3{
+    margin-top: .5em;
+  }
+}
+
+/* Timeline
+ *-------------------------------------- */
+.menu h3 {
+  margin: 1rem 0 3rem 0;
+}
+
+.submission-meta {
+  padding: 1.5rem 3rem;
+  margin-right: -5rem;
+  background-color: $white;
+  word-wrap: break-word;
+  -webkit-box-shadow: 0.1rem 0.4rem 1rem #eaeaea;
+          box-shadow: 0.1rem 0.4rem 1rem #eaeaea;
+}
+
+.timeline-block {
+  padding-left: 0.9rem;
+  > {
+    p {
+      padding: 2rem 0 2rem 0;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 1rem;
+      border-left: 0.2rem solid #eaeaea;
+      > li {
+        margin-left: 2.25rem !important;
+        /* The Dot */
+        &:before {
+          color: $secondary-color;
+          content: '\f111';
+          font-family: 'FontAwesome';
+          position: absolute;
+          left: -5rem;
+          top: 4rem;
+        }
+        > {
+          h4:nth-child(2) {
+            color: #818181;
+          }
+          div > p {
+            color: #818181;
+            margin-top: 1.25rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.timeline-status {
+  position: relative;
+  margin-right: 0.5em;
+  border: 0.1rem solid #e8e8e8;
+  margin-bottom: 2rem;
+  background-color: $white;
+  border-radius: 0.4rem;
+  -webkit-box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+  /* The Triangle */
+  &:after, &:before {
+    right: 100%;
+    top: 5rem;
+    border: solid transparent;
+    content: ' ';
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+  &:after {
+    border-color: transparent;
+    border-right-color: #ffffff;
+    border-width: 1.4rem;
+    margin-top: -4rem;
+  }
+  &:before {
+    border-color: transparent;
+    border-width: 2rem;
+    margin-top: -4.6rem;
+  }
+  .timeline-status-content {
+    padding: 1em;
+  }
+}
+
+
+

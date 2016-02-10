@@ -1,0 +1,32 @@
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//   Default Colors
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+$primary-color: #428BCA; //Blue //rgb(66, 139, 202)
+$secondary-color: #EDE4A8; //Yellow //rgb(237, 228, 168)
+$tertiary-color: #24B166; //Green //rgb(36, 177, 102)
+
+$gray: #B3C1C4; //rgb(179, 193, 196)
+$black: #312F38; //rgb(49, 47, 56)
+$white: #ffffff; //rgb(255,255,255)
+
+
+//== Scaffolding
+$body-bg: #f1f1f1 !default; // Background color for `<body>`.
+$text-color: $black !default; // Global text color on `<body>`.
+
+$link-color: $primary-color !default; // Global textual link color.
+$link-hover-color: darken($link-color, 15%) !default; // Link hover color set via `darken()` function.
+$link-hover-decoration: underline !default; // Link hover decoration.
+
+//== Typography
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default; // Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-base:        $font-family-sans-serif !default;
+
+$font-size-base:          14px !default;
+
+$line-height-base:        1.428571429 !default; // 20/14 // Unit-less `line-height` for use in components like buttons.

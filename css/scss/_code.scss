@@ -1,0 +1,12 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Code
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+code,
+kbd,
+pre,
+samp {
+  font-family: $font-family-monospace;
+}
+pre {
+    white-space: pre-wrap;
+}

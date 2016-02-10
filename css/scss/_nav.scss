@@ -1,0 +1,32 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Navs
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Nav Pills Elements
+ *-------------------------------------- */
+.nav-pills > li > a {
+  border-radius: 0;
+  color: $black;
+  padding: 1rem 1.6rem;
+}
+
+/* Solid bottom bar on active page */
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: $primary-color;
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 0.4rem solid $primary-color;
+}
+.nav-pills > li > a:hover {
+  color: rgb(66, 139, 202);
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 0.4rem solid rgba($primary-color, 0.5);  
+}
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  background-color: transparent;
+}

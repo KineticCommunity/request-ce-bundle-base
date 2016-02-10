@@ -16,7 +16,7 @@
         <bundle:stylepack>
             <bundle:style src="${bundle.location}/libraries/bootstrap/bootstrap.min.css" />
             <bundle:style src="${bundle.location}/libraries/notifie/jquery.notifie.css" />
-            <bundle:style src="${bundle.location}/css/default.css "/>
+            <bundle:style src="${bundle.location}/css/master.css "/>
         </bundle:stylepack>
         <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
@@ -34,15 +34,6 @@
                 .navbar-brand {height:${kapp.getAttribute('logo-height-px').value}px;}
             </c:if>
         </style>
-        <script>
-          $(window).load(function(){
-            setColors(
-              [${not empty kapp.getAttribute('primary-rgb') ? kapp.getAttribute('primary-rgb').value.replace(' ','') : null}],
-              [${not empty kapp.getAttribute('secondary-rgb') ? kapp.getAttribute('secondary-rgb').value.replace(' ','') : null}],
-              [${not empty kapp.getAttribute('tertiary-rgb') ? kapp.getAttribute('tertiary-rgb').value.replace(' ','') : null}]
-            );
-          });
-        </script>
     </head>
     <body>
         <div class="view-port">

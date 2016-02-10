@@ -1,0 +1,40 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Global Elements
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $text-color;
+  background-color: $body-bg;
+}
+
+// Links
+
+a {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+}
+
+
+/* Section Elements
+ *-------------------------------------- */
+section.page {
+  background-color: $white;
+}
+
+section > .page-header {
+  background: $secondary-color;
+  padding: 2.4rem 2.4rem 1rem;
+  margin: 0;
+}
+section > .content {
+  padding: 2.4em;
+}

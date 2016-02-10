@@ -1,0 +1,86 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Card Elements
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.card-panel {
+  padding: 2rem;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 0.2rem;
+  background-color: $white;
+}
+
+.card {
+  position: relative;
+  margin: 0 0.5rem 1rem 0;
+  background-color: $white;
+  border-radius: 0.2rem;
+  border: 0.1rem solid #e8e8e8;
+  .fa {
+    width: 100%; /* for clickability */
+    height: 100%; /* for clickability */
+    color: $primary-color;
+    font-size: 1.4em;
+  }
+  .card-title {
+    font-size: 2.4rem;
+    font-weight: 300;
+    display: block;
+    &.activator {
+      cursor: pointer;
+    }
+  }
+  &.small, &.medium, &.large {
+    position: relative;
+  }
+  &.small .card-content, &.medium .card-content, &.large .card-content {
+    max-height: 60%;
+    overflow: hidden;
+  }
+  &.small .card-action, &.medium .card-action, &.large .card-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: inherit;
+  }
+  &.small {
+    height: 20rem;
+  }
+  &.medium {
+    height: 30rem;
+  }
+  &.large {
+    height: 40rem;
+  }
+  .card-content {
+    padding: 2rem;
+    border-radius: 0 0 0.2rem 0.2rem;
+    border-top: 0.2rem solid rgba($primary-color, 0.5);
+    p {
+      margin: 0;
+      color: inherit;
+    }
+    .card-title {
+      line-height: 1.2;
+      margin-bottom: 0.4em;
+      a {
+        color: rgb(49, 47, 56);
+      }
+    }
+  }
+  .card-action {
+    border-top: 0.1rem solid rgba($gray, 0.2);
+    padding: 2rem;
+    a {
+      margin-right: 2rem;
+      text-transform: uppercase;
+      margin-right: 2rem;
+      text-transform: uppercase;
+      color: rgba($primary-color, 1);
+      &:hover {
+        color: rgba($primary-color, 0.8);
+      }
+    }
+  }
+}
