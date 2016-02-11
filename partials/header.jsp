@@ -52,7 +52,7 @@
                 <form action="${bundle.kappLocation}" method="GET" role="form">
                     <div class="form-group">
                             <input type="hidden" value="search" name="page">
-                            <input  type="text" class="states form-control predictiveText x" name="q" placeholder="Search Form…" autocomplete="off" autofocus="autofocus">
+                            <input  type="text" class="states form-control predictiveText x" name="q" placeholder="Search Forms…" autocomplete="off" autofocus="autofocus">
                         </div>
                     </div>
                 </form>

@@ -5,14 +5,14 @@
     <div class="row">
         <div class="col-xs-12">
             <h3>
-            <a href='${bundle.kappLocation}'>Return to catalog</a>
+            <a href='${bundle.kappLocation}/#tab-requests'>Return to catalog</a>
             </h3>
         </div>
     </div>
 </section>
 <section class="timeline">
     <div class="row">
-        <div class="col-xs-4">
+        <div class="col-md-4 col-xs-12 ">
             <div class="submission-meta">
                 <h2>${submission.form.name}</h2>
                 <dl>
@@ -26,7 +26,7 @@
                 <p>${submission.form.description}</p>
             </div>
         </div>
-        <div class="col-xs-8">
+        <div class="col-md-8 col-xs-12 ">
             <div class="timeline-block">
                 <c:forEach var="run" items="${TaskRuns.find(submission)}">
                 <ul>
