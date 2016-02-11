@@ -61,7 +61,7 @@
 
 .tt-suggestion.tt-cursor,.tt-suggestion:hover {
   color: #fff;
-  background-color: rgb(66, 139, 202); /* $primary-color */
+  background-color: $primary-color;
 }
 
 .tt-suggestion p {

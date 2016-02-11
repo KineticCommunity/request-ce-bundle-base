@@ -6,29 +6,29 @@
 
 h1,
 .h1 {
-  color: #312f38; /* $black */
+  color: $black;
 }
 h2,
 .h2 {
-  color: rgba(49, 47, 56, 0.5); /* $black */
+  color: rgba($black , 0.5);
 }
 h3,
 .h3 {
-  color: rgba(49, 47, 56, 0.75); /* $black */
+  color: rgba($black , 0.75);
   text-transform: uppercase;
 }
 h4,
 .h4 {
-  color: #312f38; /* $black */
+  color: $black;
   text-transform: uppercase;
 }
 h5,
 .h5 {
-  color: #312f38; /* $black */
+  color: $black;
 }
 h6,
 .h6 {
-  color: #312f38; /* $black */
+  color: $black;
 }
 
 /* Miscellaneous Elements

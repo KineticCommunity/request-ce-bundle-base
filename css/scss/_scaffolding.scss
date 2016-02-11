@@ -26,15 +26,17 @@ a {
 
 /* Section Elements
  *-------------------------------------- */
-section.page {
-  background-color: $white;
-}
+section{
+  &.page {
+    background-color: $white;
+  }
 
-section > .page-header {
-  background: $secondary-color;
-  padding: 2.4rem 2.4rem 1rem;
-  margin: 0;
-}
-section > .content {
-  padding: 2.4em;
+  > .page-header {
+    background: $secondary-color;
+    padding: 2.4rem 2.4rem 1rem;
+    margin: 0;
+  }
+  > .content {
+    padding: 2.4em;
+  }
 }

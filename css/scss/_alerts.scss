@@ -1,32 +1,30 @@
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *   Alert
+ *   Alerts
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* Error Messages
  *-------------------------------------- */
-.errors {
+ .errors {
   display: none;
   margin: 0 auto;
   width: 90%;
 }
 .errors {
   font-size: 1rem;
-}
-.errors {
   background-color: #faf0ef;
   border: 0.1rem solid #d5d5d5;
   color: #000000;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   width: 60%;
-}
-.errors p {
-  font-style: bold;
-  font-size: larger;
-  background-color: #cc0000;
-  border-bottom: 0.1rem solid #d5d5d5;
-  color: white;
-  padding: 0.25rem 0.5rem;
+  p {
+    font-style: bold;
+    font-size: larger;
+    background-color: #cc0000;
+    border-bottom: 0.1rem solid #d5d5d5;
+    color: white;
+    padding: 0.25rem 0.5rem;
+  }
 }
 
 /* Missing Attributes
@@ -42,10 +40,10 @@
   background-color: #fff;
   position: relative;
   border: 1px solid transparent;
-}
-.no-data h3{
-  text-transform: none;
-}
-.no-data ul{
-  text-align: left;
+  h3{
+    text-transform: none;
+  }
+  ul{
+    text-align: left;
+  }
 }

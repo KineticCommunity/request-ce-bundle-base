@@ -1,0 +1,32 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   Tables
+ *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Attachment files
+ *-------------------------------------- */
+.file-table {
+  display: table;
+  margin: 0px;
+  padding: 0px;
+}
+
+.file-row {
+  display: table-row;
+  > span {
+    list-style:none;
+    display: table-cell;
+    border: 1px solid #000;
+    padding: 2px 6px;
+  }
+}
+
+.file-header {
+  display: table-header-group;
+  span {
+    background-color: #ccc;
+  }
+}
+
+.file-container {
+   display: table-row-group;
+ }
