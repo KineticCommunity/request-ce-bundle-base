@@ -22,7 +22,7 @@
                       <a href="${bundle.spaceLocation}/submissions/${submission.id}">${text.escape(submission.label)}</a>
                     </c:when>
                     <c:otherwise>
-                      <a href="${bundle.kappLocation}?submission_id=${submission.id}">${text.escape(submission.label)}</a>
+                      <a href="${bundle.kappLocation}?page=submission&id=${submission.id}">${text.escape(submission.label)}</a>
                     </c:otherwise>
                   </c:choose>
                 </td>

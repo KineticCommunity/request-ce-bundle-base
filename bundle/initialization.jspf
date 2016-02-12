@@ -15,8 +15,10 @@
 
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
 <%
-    //Get bundle object
+    //Get bundle, space, and kapp objects
     Bundle bundle = (Bundle)request.getAttribute("bundle"); 
+    Space space = (Space)request.getAttribute("space");
+    Kapp kapp = (Kapp)request.getAttribute("kapp");
 %>
 <%-- Load helper(s) --%>
 <%@include file="SubmissionHelper.jspf"%>

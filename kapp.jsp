@@ -3,32 +3,79 @@
 <%@include file="bundle/router.jspf" %>
 
 <bundle:layout page="${bundle.path}/layouts/layout.jsp">
-    <c:choose>
-        <c:when test="${kapp!=null && kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
-            <c:choose>
-                <c:when test="${param.submission_id != null}">
-                    <c:import url="${bundle.path}/partials/submission.jsp" charEncoding="UTF-8" />
-                </c:when>
-                <c:otherwise>
-                    <c:import url="${bundle.path}/partials/catalog.jsp" charEncoding="UTF-8" />
-                </c:otherwise>
-            </c:choose>
-            <app:bodyContent/>
-        </c:when>
-        <c:otherwise>
-            <div class="no-data">
-                <h3>Kapp configuration is missing these attributes:</h3>
-                <ul>
-                    <c:if test="${!kapp.hasAttribute('Task Server Url')}">
-                        <li>Task Server Url</li>
-                    </c:if>
-                    <c:if test="${!kapp.hasAttribute('Task Source Name')}">
-                        <li>Task Source Name</li>
-                    </c:if>
-                </ul>
-                <p>To update your configuration go to the <a href="${bundle.spaceLocation}/app/#/${kapp.slug}/setup/kapp/attributes">
-                Kapp Attribute settings</a>.</p>
-            </div>
-        </c:otherwise>
-    </c:choose>
+    <bundle:variable name="head">
+	    <title>Kinetic Data ${text.escape(kapp.name)}</title>
+	</bundle:variable>
+	<section class="menu">
+	    <ul class="nav nav-pills">
+	        <c:set var="pageHome" value="${kapp.getForm('home')}" scope="page"/>
+	        <li role="presentation" class="active">
+	            <a href="#tab-home" aria-controls="tab-home" role="tab" data-toggle="tab">Home</a>
+	        </li>
+	        <li role="presentation">
+	            <a href="#tab-requests" aria-controls="tab-requests" role="tab" data-toggle="tab">My Requests</a>
+	        </li>
+	        <li role="presentation">
+	            <a href="#tab-approvals" aria-controls="tab-approvals" role="tab" data-toggle="tab">My Approvals</a>
+	        </li>
+	    </ul>
+	</section>
+	<div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="tab-home">
+	        <div class="row">
+	            <div class="col-md-8">
+	                <h2>Service Items</h2>
+	                <%-- For each of the categories --%>
+	                <c:forEach items="${kapp.categories}" var="category">
+	                    <%-- If the category is not hidden, and it contains at least 1 form --%>
+	                    <c:if test="${fn:toLowerCase(category.getAttribute('Hidden').value) ne 'true' && not empty category.forms}">
+	                        <div class="category">
+	                            <h3>${text.escape(category.name)}</h3>
+	                            <div class="row">
+	                                <%-- Show the first x number of forms of the category --%>
+	                                <c:forEach items="${category.forms}" var="categoryForm" begin="0" end="8">
+	                                <%-- Only show New or Active forms --%>
+	                                <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
+	                                <%-- Render the form panel --%>
+	                                <c:set scope="request" var="thisForm" value="${categoryForm}"/>
+	                                <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
+	                                </c:if>
+	                                </c:forEach>
+	                            </div>
+	                        </div>
+	                    </c:if>
+	                </c:forEach>
+	                <div class="category uncategorized">
+	                    <h3>
+	                        Uncategorized Forms
+	                    </h3>
+	                    <div class="row">
+	                        <c:forEach items="${kapp.forms}" var="form">
+	                            <%-- Only show New or Active forms --%>
+	                            <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
+	                                <%-- Render the form panel --%>
+	                                <c:set scope="request" var="thisForm" value="${form}"/>
+	                                <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
+	                            </c:if>
+	                        </c:forEach>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-md-3 col-md-offset-1 hidden-xs" id="social-column" >
+	                <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a>
+	                <script async src="https://platform.twitter.com/widgets.js"></script>
+	            </div>
+	        </div>
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="tab-requests">
+	        <h3>My Requests</h3>
+	        <c:set scope="request" var="submissionsList" value="${Submissions.searchByKapp(kapp, SubmissionHelper.requestsQueryOptions())}"/>
+	        <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
+	    </div>
+	    <div role="tabpanel" class="tab-pane" id="tab-approvals">
+	        <h3>My Approvals</h3>
+	        <c:set scope="request" var="submissionsList" value="${Submissions.searchByKapp(kapp, SubmissionHelper.approvalsQueryOptions())}"/>
+	        <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
+	    </div>
+	</div>
 </bundle:layout>
