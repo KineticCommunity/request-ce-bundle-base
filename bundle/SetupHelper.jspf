@@ -1,0 +1,80 @@
+<%@page import="com.google.common.collect.ComparisonChain" %>
+<%!
+    public static class SetupHelper {
+	
+	    private List<SetupAttribute> setupAttributes = new ArrayList<SetupAttribute>();
+	
+	    public SetupHelper(){}
+		
+	    /**
+	     * Returns true is at least one required attribute is missing
+	     */
+		public boolean isMissingRequiredAttributes(Kapp kapp){
+			// Iterate through setup attributes
+			for (SetupAttribute attribute : setupAttributes){
+				// If attribute is required and missing from kapp, return true
+				if (attribute.isRequired() && !kapp.hasAttribute(attribute.getName())){
+					return true;
+				}
+			}
+			// If kapp has all required attributes, return false
+			return false;
+		}
+		
+		/**
+		 * Returns a map of all setup attributes where the key is the attribute and the value is a boolean whether the attribute is set (true)
+		 * Map is sorted to return required attributes (sorted by name) first and then optional attributes (sorted by name)
+		 */
+		public Map<SetupAttribute, Boolean> getSetupAttributes(Kapp kapp){
+			// Results map to store attributes, required and optional, and whether they're present (true) or missing (false)
+			Map<SetupAttribute, Boolean> allSetupAttributes = new TreeMap<SetupAttribute, Boolean>();
+			// Iterate through setup attributes
+			for (SetupAttribute attribute : setupAttributes){
+				allSetupAttributes.put(attribute, kapp.hasAttribute(attribute.getName()));
+            }
+		    // Return list of missing attributes
+		    return allSetupAttributes;
+        }
+		
+		/**
+		 * Adds a new setup attribute
+		 */
+		public SetupHelper addSetupAttribute(String name, String description, boolean required){
+			this.setupAttributes.add(new SetupAttribute(name, description, required));
+			return this;
+		}
+		
+		public static class SetupAttribute implements Comparable<SetupAttribute> {
+			private String name;
+			private String description;
+            private boolean required;
+			
+			public SetupAttribute(String name, String description, boolean required){
+				this.name = name;
+				this.description = description;
+				this.required = required;
+			}
+            
+            public String getName(){
+                return this.name;
+            }
+            
+            public String getDescription(){
+                return this.description;
+            }
+            
+            public boolean isRequired(){
+                return this.required;
+            }
+            
+            public int compareTo(SetupAttribute that) {
+            	// Compare by required first, then by name
+            	// Required compare is negated to have true values return first (instead of false which is default)
+                return ComparisonChain.start()
+                        .compare(!this.required, !that.required)
+                        .compare(this.name, that.name)
+                        .result();
+            }
+		}
+    }
+%>
