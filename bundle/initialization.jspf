@@ -3,7 +3,12 @@
 <%@page import="java.util.*" %>
 <%@page import="com.kineticdata.core.models.*" %>
 <%@page import="com.kineticdata.core.web.bundles.Bundle" %>
+<%@page import="com.kineticdata.core.web.bundles.BundleSubmissionComponent" %>
 <%@page import="com.kineticdata.core.authentication.Identity" %>
+<%@page import="org.slf4j.Logger" %>
+
+<%-- Bundle Java libraries --%>
+<%@page import="com.kineticdata.bundles.*" %>
 
 <%-- Load tag libraries (JSTL) used in most bundles --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
