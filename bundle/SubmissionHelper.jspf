@@ -3,12 +3,12 @@
     public static class SubmissionHelper {
 
         private HttpServletRequest request;
-        private BundleSubmissionComponent service;
+        private BundleSubmissionComponent submissionComponent;
         private Kapp kapp;
 
         public SubmissionHelper(HttpServletRequest request) {
             this.request = request;
-            this.service = (BundleSubmissionComponent)request.getAttribute("Submissions");
+            this.submissionComponent = (BundleSubmissionComponent)request.getAttribute("Submissions");
             this.kapp = (Kapp)request.getAttribute("kapp");
         }
 
@@ -48,9 +48,8 @@
             } else {
                 searchOptions.put("createdBy", new String[] {identity.getUsername()});
             }
- System.out.println(searchOptions);
 
-            return service.searchByKapp(kapp, searchOptions);
+            return submissionComponent.searchByKapp(kapp, searchOptions);
         }
     }
 %>

@@ -5,6 +5,7 @@
 <%@page import="com.kineticdata.core.web.bundles.Bundle" %>
 <%@page import="com.kineticdata.core.web.bundles.BundleSubmissionComponent" %>
 <%@page import="com.kineticdata.core.authentication.Identity" %>
+<%@page import="org.slf4j.Logger" %>
 
 <%-- Bundle Java libraries --%>
 <%@page import="com.kineticdata.bundles.*" %>
@@ -20,7 +21,7 @@
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
 <%
     //Get bundle object
-    Bundle bundle = (Bundle)request.getAttribute("bundle"); 
+    Bundle bundle = (Bundle)request.getAttribute("bundle");
 %>
 <%-- Load helper(s) --%>
 <%@include file="SubmissionHelper.jspf"%>
