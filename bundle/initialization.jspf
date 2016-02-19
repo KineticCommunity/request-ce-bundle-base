@@ -33,11 +33,11 @@
 <%
     SetupHelper setupHelper = new SetupHelper()
         .addSetupAttribute("Task Server Url", 
-        	    "Task Server Url Description", 
-        	    true)
+            "Task Server Url Description", 
+            true)
         .addSetupAttribute("Task Source Name", 
-                "Task Source Name Description", 
-                true); 
+            "Task Source Name Description", 
+            true); 
 %>
 
 <%-- Load helper(s) --%>
