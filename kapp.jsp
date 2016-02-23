@@ -45,21 +45,20 @@
                             </div>
                         </c:if>
                     </c:forEach>
-                    <div class="category uncategorized">
-                        <h3>
-                            Uncategorized Forms
-                        </h3>
-                        <div class="row">
-                            <c:forEach items="${kapp.forms}" var="form">
-                                <%-- Only show New or Active forms --%>
-                                <c:if test="${empty form.categories && (form.status eq 'New' || form.status eq 'Active')}">
-                                    <%-- Render the form panel --%>
+                    <c:set var="uncategorizedForms" value="${FormHelper.getUncategorizedForms(kapp)}"/>
+                    <c:if test="${not empty uncategorizedForms}">
+                        <div class="category uncategorized">
+                            <div class="row">
+                                <h3>
+                                    Uncategorized Forms
+                                </h3>
+                                <c:forEach items="${uncategorizedForms}" var="form">
                                     <c:set scope="request" var="thisForm" value="${form}"/>
                                     <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
-                                </c:if>
-                            </c:forEach>
+                                </c:forEach>
+                            </div>
                         </div>
-                    </div>
+                    </c:if>
                 </div>
                 <div class="col-md-3 col-md-offset-1 hidden-xs" id="social-column" >
                     <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a>

@@ -21,6 +21,7 @@
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
 <%@include file="SubmissionHelper.jspf"%>
 <%@include file="SetupHelper.jspf"%>
+<%@include file="FormHelper.jspf"%>
 
 <%-- Get bundle, space, and kapp objects --%>
 <%
@@ -47,5 +48,6 @@
   request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
   request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
   request.setAttribute("SetupHelper", setupHelper);
+  request.setAttribute("FormHelper", new FormHelper());
 %>
 
