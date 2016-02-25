@@ -30,7 +30,7 @@ KD-Search CE
     /* Define default properties for defaultsBridgeDataTable object. */
     var defaultsBridgeDataTable = {
         execute: performBridgeRequestDataTable,
-		resultsContainer : '<table cellspacing="0", border="0", class="display">',
+		resultsContainer : '<table cellspacing="0" class="table dataTable table-striped table-bordered nowrap dtr-inline">',
         bridgeConfig:{
 //			templateId: BUNDLE.config.commonTemplateId
 		},
