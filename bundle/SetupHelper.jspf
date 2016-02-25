@@ -1,11 +1,11 @@
 <%@page import="com.google.common.collect.ComparisonChain" %>
 <%!
     public static class SetupHelper {
-    
+
         private List<SetupAttribute> setupAttributes = new ArrayList<SetupAttribute>();
-    
+
         public SetupHelper(){}
-        
+
         /**
          * Returns true is at least one required attribute is missing
          */
@@ -20,22 +20,32 @@
             // If kapp has all required attributes, return false
             return false;
         }
-        
+
         /**
-         * Returns a map of all setup attributes where the key is the attribute and the value is a boolean whether the attribute is set (true)
+         * Returns a map of all setup attributes where the key is the attribute
+         * and the value is an AttributeStatus object which tells you if the attribute definition exists and if a vlaue for the attribute is defined
          * Map is sorted to return required attributes (sorted by name) first and then optional attributes (sorted by name)
          */
-        public Map<SetupAttribute, Boolean> getSetupAttributes(Kapp kapp){
+        public Map<SetupAttribute, AttributeStatus> getSetupAttributes(Kapp kapp){
             // Results map to store attributes, required and optional, and whether they're present (true) or missing (false)
-            Map<SetupAttribute, Boolean> allSetupAttributes = new TreeMap<SetupAttribute, Boolean>();
+            Map<SetupAttribute, AttributeStatus> allSetupAttributes = new TreeMap<SetupAttribute, AttributeStatus>();
+            // Get Kapp Attribute Definitions for checking if definition exists
+            List<AttributeDefinition> attributeDefinitions = kapp.getKappAttributeDefinitions();
             // Iterate through setup attributes
             for (SetupAttribute attribute : setupAttributes){
-                allSetupAttributes.put(attribute, kapp.hasAttribute(attribute.getName()));
+                boolean definitionExists = false;
+                for (AttributeDefinition definition : attributeDefinitions){
+                    if (definition.getName().equals(attribute.getName())){
+                        definitionExists = true;
+                        break;
+                    }
+                }
+                allSetupAttributes.put(attribute, new AttributeStatus(definitionExists, kapp.hasAttribute(attribute.getName())));
             }
             // Return list of missing attributes
             return allSetupAttributes;
         }
-        
+
         /**
          * Adds a new setup attribute
          */
@@ -43,30 +53,30 @@
             this.setupAttributes.add(new SetupAttribute(name, description, required));
             return this;
         }
-        
+
         public static class SetupAttribute implements Comparable<SetupAttribute> {
             private String name;
             private String description;
             private boolean required;
-            
+
             public SetupAttribute(String name, String description, boolean required){
                 this.name = name;
                 this.description = description;
                 this.required = required;
             }
-            
+
             public String getName(){
                 return this.name;
             }
-            
+
             public String getDescription(){
                 return this.description;
             }
-            
+
             public boolean isRequired(){
                 return this.required;
             }
-            
+
             public int compareTo(SetupAttribute that) {
                 // Compare by required first, then by name
                 // Required compare is negated to have true values return first (instead of false which is default)
@@ -74,6 +84,24 @@
                         .compare(!this.required, !that.required)
                         .compare(this.name, that.name)
                         .result();
+            }
+        }
+
+        public static class AttributeStatus {
+            private boolean definition;
+            private boolean value;
+
+            public AttributeStatus(boolean definition, boolean value){
+                this.definition = definition;
+                this.value = value;
+            }
+
+            public boolean hasDefinition(){
+                return this.definition;
+            }
+
+            public boolean hasValue(){
+                return this.value;
             }
         }
     }

@@ -695,8 +695,6 @@ footer {
 /* Missing Attributes
  *-------------------------------------- */
 .no-data {
-  color: #999;
-  text-align: center;
   border: 1px solid #999;
   border-radius: 3px;
   line-height: 140%;
@@ -709,6 +707,26 @@ footer {
     text-transform: none; }
   .no-data ul {
     text-align: left; }
+
+.success {
+  color: #00B900; }
+  .success .required,
+  .success .fa-check {
+    color: #46a546; }
+  .success .required {
+    font-weight: bold; }
+
+.danger,
+.warning {
+  color: #312F38; }
+  .danger .required,
+  .danger .fa-times,
+  .warning .required,
+  .warning .fa-times {
+    color: #9d261d; }
+  .danger .required,
+  .warning .required {
+    font-weight: bold; }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Utilities

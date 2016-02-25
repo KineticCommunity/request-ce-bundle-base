@@ -62,8 +62,15 @@
                     </div>
                 </div>
                 <div class="col-md-3 col-md-offset-1 hidden-xs" id="social-column" >
-                    <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a>
-                    <script async src="https://platform.twitter.com/widgets.js"></script>
+                    <c:choose>
+                        <c:when test="${not empty kapp.getAttribute('Sidebar Html')}">
+                            ${kapp.getAttribute('Sidebar Html').value}
+                        </c:when>
+                        <c:otherwise>
+                            <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a>
+                            <script async src="https://platform.twitter.com/widgets.js"></script>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
