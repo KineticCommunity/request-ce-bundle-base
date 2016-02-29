@@ -48,10 +48,11 @@
                     <c:set var="uncategorizedForms" value="${FormHelper.getUncategorizedForms(kapp)}"/>
                     <c:if test="${not empty uncategorizedForms}">
                         <div class="category uncategorized">
-                            <div class="row">
-                                <h3>
+                                                        <h3>
                                     Uncategorized Forms
                                 </h3>
+                            <div class="row">
+
                                 <c:forEach items="${uncategorizedForms}" var="form">
                                     <c:set scope="request" var="thisForm" value="${form}"/>
                                     <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
@@ -61,8 +62,9 @@
                     </c:if>
                 </div>
                 <div class="col-md-3 col-md-offset-1 hidden-xs" id="social-column" >
+                    <h2>Sidebar Items</h2>
                     <c:choose>
-                        <c:when test="${not empty kapp.getAttribute('Sidebar Html')}">
+                        <c:when test="${not empty kapp.getAttribute('Sidebar Html').value}">
                             ${kapp.getAttribute('Sidebar Html').value}
                         </c:when>
                         <c:otherwise>

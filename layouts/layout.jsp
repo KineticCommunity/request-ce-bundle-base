@@ -30,7 +30,7 @@
         </bundle:scriptpack>
         <bundle:yield name="head"/>
         <style>
-            <c:if test="${not empty kapp.getAttribute('Logo Height Px')}">
+            <c:if test="${not empty kapp.getAttribute('Logo Height Px').value}">
                 .navbar-brand {height:${kapp.getAttribute('Logo Height Px').value}px;}
             </c:if>
         </style>
