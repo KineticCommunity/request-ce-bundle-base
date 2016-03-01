@@ -20,7 +20,7 @@
                 <c:forEach items="${SetupHelper.getSetupAttributes(kapp)}" var="setupAttributeEntry">
                     <tr class="${setupAttributeEntry.value.hasValue() ? "success" : setupAttributeEntry.key.isRequired() ? "danger" : "warning"}">
                         <td>
-                            <span class="fa ${setupAttributeEntry.value.hasValue() ? "fa-check" : "fa-times"}"></span>
+                            <span class="fa ${setupAttributeEntry.value.hasValue() ? "fa-check" : "fa-exclamation-triangle"}"></span>
                             <c:choose>
                                 <c:when test="${setupAttributeEntry.value.hasValue()}">
                                     Found

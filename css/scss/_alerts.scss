@@ -59,8 +59,8 @@
 .warning{
   color: $black;
   .required,
-  .fa-times{
-    color: $red
+  .fa-exclamation-triangle{
+    color: $yellow;
   }
   .required{
     font-weight: bold;

@@ -35,10 +35,10 @@
     SetupHelper setupHelper = new SetupHelper()
         .addSetupAttribute("Task Server Url", 
             "Your Kinetic Task Server Url", 
-            true)
+            false)
         .addSetupAttribute("Task Source Name", 
             "The Kinetic Task Source Name", 
-            true)
+            false)
         .addSetupAttribute("Logo Url", 
             "Replaces the logo in header", 
             false)

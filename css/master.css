@@ -720,10 +720,10 @@ footer {
 .warning {
   color: #312F38; }
   .danger .required,
-  .danger .fa-times,
+  .danger .fa-exclamation-triangle,
   .warning .required,
-  .warning .fa-times {
-    color: #9d261d; }
+  .warning .fa-exclamation-triangle {
+    color: #8a6d3b; }
   .danger .required,
   .warning .required {
     font-weight: bold; }
