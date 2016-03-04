@@ -14,6 +14,7 @@
   position: relative;
   background-color: #fefefe;
   margin: auto;
+  margin-top: 20px;
   padding: 0;
   border: 1px solid #888;
   /* width: 80%; */
@@ -23,16 +24,35 @@
 /* Modal Header */
 .kd-modal-header {
   padding: 2px 16px;
-  background-color: lightgrey;
+  background-color: $secondary-color;
   color: white;
+
+  h4 {
+    text-transform: none;
+  }
 }
 
 /* Modal Body */
-.kd-modal-body {padding: 2px 16px;}
+.kd-modal-body {
+  padding: 8px 16px;
+
+  table {
+    width: 100%;
+    th, td {
+      padding: 0.5em;
+    }
+    tbody tr {
+      cursor: pointer;
+      &:hover {
+        background-color: lighten($black, 75%);
+      }
+    }
+  }
+}
 
 /* Modal Footer */
 .kd-modal-footer {
   padding: 2px 16px;
-  background-color: lightgrey;
+  background-color: $secondary-color;
   color: white;
 }
