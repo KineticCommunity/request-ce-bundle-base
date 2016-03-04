@@ -30,8 +30,6 @@
 /* Missing Attributes
  *-------------------------------------- */
 .no-data{
-  color: #999;
-  text-align: center;
   border: 1px solid #999;
   border-radius: 3px;
   line-height: 140%;
@@ -45,5 +43,26 @@
   }
   ul{
     text-align: left;
+  }
+}
+.success{
+  color: #00B900;
+  .required,
+  .fa-check{
+    color: $green;
+  }
+  .required{
+    font-weight: bold;
+  }
+}
+.danger,
+.warning{
+  color: $black;
+  .required,
+  .fa-exclamation-triangle{
+    color: $yellow;
+  }
+  .required{
+    font-weight: bold;
   }
 }

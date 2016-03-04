@@ -1,0 +1,17 @@
+<%!
+
+    public static class FormHelper {
+
+        public List<Form> getUncategorizedForms(Kapp kapp) {
+
+            List<Form> results = new ArrayList<>();
+            for (Form form : kapp.getForms()) {
+                if(form.getCategories().isEmpty() && (form.getStatus().equals("New") || form.getStatus().equals("Active"))){
+                    results.add(form);
+                }
+            }
+
+            return results;
+        }
+    }
+%>

@@ -21,6 +21,7 @@
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
 <%@include file="SubmissionHelper.jspf"%>
 <%@include file="SetupHelper.jspf"%>
+<%@include file="FormHelper.jspf"%>
 
 <%-- Get bundle, space, and kapp objects --%>
 <%
@@ -33,11 +34,20 @@
 <%
     SetupHelper setupHelper = new SetupHelper()
         .addSetupAttribute("Task Server Url", 
-            "Task Server Url Description", 
-            true)
+            "Your Kinetic Task Server Url", 
+            false)
         .addSetupAttribute("Task Source Name", 
-            "Task Source Name Description", 
-            true); 
+            "The Kinetic Task Source Name", 
+            false)
+        .addSetupAttribute("Logo Url", 
+            "Replaces the logo in header", 
+            false)
+        .addSetupAttribute("Logo Height Px", 
+            "Set the height of the logo in the header. Default is 40px with 5px of padding", 
+            false)
+        .addSetupAttribute("Sidebar Html", 
+            "Replace the Kinetic Data Twitter feed with an HTML/widget by including the HTML/JS in this attribute", 
+            false);
 %>
 
 <%-- Load helper(s) --%>
@@ -47,5 +57,6 @@
   request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
   request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
   request.setAttribute("SetupHelper", setupHelper);
+  request.setAttribute("FormHelper", new FormHelper());
 %>
 
