@@ -8,7 +8,7 @@
     <h1>${text.escape(space.name)} Kapps</h1>
     <ul>
         <c:forEach var="kapp" items="${space.kapps}">
-            <li><strong>${text.escape(kapp.name)}:</strong> <a href="${bundle.spaceLocation}/${kapp.slug}">user</a> | <a href="${bundle.spaceLocation}/app">manage</a></li>
+            <li><strong>${text.escape(kapp.name)}:</strong> <a href="${bundle.spaceLocation}/${kapp.slug}">user</a> | <a href="${bundle.spaceLocation}/app/#/${kapp.slug}/activity/overview">manage</a></li>
         </c:forEach>
     </ul>
 </bundle:layout>
