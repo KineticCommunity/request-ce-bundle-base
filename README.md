@@ -19,14 +19,14 @@ This bundle easily allows for minor personalization by including optional attrib
 #### Setup Initialization
 This base bundle has _Required Attributes_ that utilizes Kinetic Task. To edit or add Required Attributes, you define and initialize attribute's in the intilialization.jspf. You can view this Kapp configuration by viewing the passing the parameter in the url, i.e. (http://localhost:8080/kinetic/kappName?partial=setup).
 
-##### Required KAPP Attributes
-* _Task Server Url_ : URL of your Kinetic Task engine.
-* _Task Source Name_ : Source name from Kinetic Task engine.
-
 #### KAPP Attributes
 * _Logo Url_ : By including this attribute we will use this logo instead of the home icon on the top-left of the page
 * _Logo Height Px_ : By including this attribute we will set the height of the logo in the header. Default is 40px with 5px of padding.
 * _Sidebar Html_ : We show the Kinetic Data Twitter feed by default, but you can add any HTML/widget by including the HTML/JS in this attribute.
+
+##### Optional KAPP Attributes
+* _Task Server Url_ : URL of your Kinetic Task engine.
+* _Task Source Name_ : Source name from Kinetic Task engine.
 
 #### Form Attributes
 * _Form Icon Class_ : We include font-awesome icons by default and just apply a random icon to your forms on the catalog page.  However, you can specify a class for your form by including this attribute and a value. (Example fa-bank)
