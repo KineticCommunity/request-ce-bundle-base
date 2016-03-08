@@ -23,7 +23,7 @@
                 <ul>
                     <c:set var="found" value="false" />
                     <c:forEach items="${kapp.forms}" var="form">
-                        <c:if test="${text.equals(form.type.name, 'Service') || text.equals(form.type.name, 'Template')}">
+                        <c:if test="${text.equals(form.typeName, 'Service') || text.equals(form.typeName, 'Template')}">
                             <c:if test="${text.contains(text.downcase(form.name), text.downcase(param['q'])) || text.contains(text.downcase(form.description), text.downcase(param['q']))}">
                                 <c:set var="found" value="true"/>
                                 <li>
