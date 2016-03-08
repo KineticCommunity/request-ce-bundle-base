@@ -28,7 +28,7 @@
                     <%-- For each of the categories --%>
                     <c:forEach items="${kapp.categories}" var="category">
                         <%-- If the category is not hidden, and it contains at least 1 form --%>
-                        <c:if test="${fn:toLowerCase(category.getAttribute('Hidden').value) ne 'true' && not empty category.forms}">
+                        <c:if test="${fn:toLowerCase(category.getAttributeValue('Hidden')) ne 'true' && not empty category.forms}">
                             <div class="category">
                                 <h3>${text.escape(category.name)}</h3>
                                 <div class="row">
@@ -64,8 +64,8 @@
                 <div class="col-md-3 col-md-offset-1 hidden-xs" id="social-column" >
                     <h2>Sidebar Items</h2>
                     <c:choose>
-                        <c:when test="${not empty kapp.getAttribute('Sidebar Html').value}">
-                            ${kapp.getAttribute('Sidebar Html').value}
+                        <c:when test="${not empty kapp.getAttributeValue('Sidebar Html')}">
+                            ${kapp.getAttributeValue('Sidebar Html')}
                         </c:when>
                         <c:otherwise>
                             <a class="twitter-grid" href="https://twitter.com/_/timelines/672792909733842945">A Collection on Twitter</a>
