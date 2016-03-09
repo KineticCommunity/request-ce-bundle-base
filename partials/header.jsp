@@ -12,10 +12,10 @@
             </button>
             <c:if test="${kapp != null}">
                 <a class="navbar-brand" href="${bundle.kappLocation}">
-                    <c:if test="${not empty kapp.getAttribute('logo-url')}">
-                        <img src="${kapp.getAttribute('logo-url').value}" alt="logo">
+                    <c:if test="${not empty kapp.getAttribute('Logo Url')}">
+                        <img src="${kapp.getAttributeValue('Logo Url')}" alt="logo">
                     </c:if>
-                    <c:if test="${empty kapp.getAttribute('logo-url')}">
+                    <c:if test="${empty kapp.getAttribute('Logo Url')}">
                         <i class="fa fa-home"></i> ${text.escape(kapp.name)}
                     </c:if>
                 </a>
