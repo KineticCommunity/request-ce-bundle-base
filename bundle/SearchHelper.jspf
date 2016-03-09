@@ -1,0 +1,54 @@
+<%!
+    public static class SearchHelper {
+
+        public List<Form> filter(List<Form> forms, String queryString) {
+            // Process the query string into a list
+            List<String> terms = new ArrayList<>();
+            for (String term : queryString.trim().split(" ")){
+                terms.add(term.toLowerCase());
+            }
+
+            List<Form> results = new ArrayList<>();
+            for (Form form : forms) {
+                if (matchesAllTerms(form, terms)) {
+                    results.add(form);
+                }
+            }
+            return results;
+        }
+
+        private boolean matchesAllTerms(Form form, List<String> terms) {
+            boolean result = true;
+            for (String term : terms) {
+                if (!matchesTerm(form, term)) {
+                    result = false;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        private boolean matchesTerm(Form form, String term) {
+            return matches(form.getName(), term)
+                || matches(form.getDescription(), term)
+                || anyAttributesMatch(form.getAttributes(), term);
+        }
+
+        private boolean matches(String source, String match) {
+            return source != null 
+                && match != null
+                && source.toLowerCase().contains(match.toLowerCase());
+        }
+
+        private boolean anyAttributesMatch(List<Attribute> attributes, String term) {
+            boolean result = false;
+            for (Attribute attribute : attributes) {
+                if (matches(attribute.getValue(), term)) {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+    }
+%>

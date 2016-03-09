@@ -36,7 +36,12 @@
                                 <li><a href="${bundle.spaceLocation}/app/login"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="${bundle.spaceLocation}/${kapp.slug}?page=profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
+                                <c:if test="${kapp == null}">
+                                    <li><a href="${bundle.spaceLocation}/?page=profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
+                                </c:if>
+                                <c:if test="${kapp != null}">
+                                    <li><a href="${bundle.spaceLocation}/${kapp.slug}?page=profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
+                                </c:if>
                                 <li class="divider"></li>
                                 <li><a href="${bundle.spaceLocation}/app/"><i class="fa fa-dashboard fa-fw"></i> Management Console</a></li>
                                 <li class="divider"></li>

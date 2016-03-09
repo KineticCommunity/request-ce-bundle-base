@@ -20,6 +20,7 @@
 
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
 <%@include file="SubmissionHelper.jspf"%>
+<%@include file="SearchHelper.jspf" %>
 <%@include file="SetupHelper.jspf"%>
 <%@include file="FormHelper.jspf"%>
 
@@ -56,7 +57,7 @@
   request.setAttribute("text", new com.kineticdata.bundles.TextHelper());
   request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
   request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
+  request.setAttribute("SearchHelper", new SearchHelper());
   request.setAttribute("SetupHelper", setupHelper);
   request.setAttribute("FormHelper", new FormHelper());
 %>
-
