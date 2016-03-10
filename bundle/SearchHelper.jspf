@@ -10,7 +10,7 @@
 
             List<Form> results = new ArrayList<>();
             for (Form form : forms) {
-                if (matchesAllTerms(form, terms)) {
+                if (form.getStatus().equals("Active") || form.getStatus().equals("New") && matchesAllTerms(form, terms)) {
                     results.add(form);
                 }
             }

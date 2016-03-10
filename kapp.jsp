@@ -2,6 +2,7 @@
 <%@include file="bundle/initialization.jspf" %>
 <%@include file="bundle/router.jspf" %>
 
+
 <bundle:layout page="${bundle.path}/layouts/layout.jsp">
     <bundle:variable name="head">
         <title>Kinetic Data ${text.escape(kapp.name)}</title>
@@ -27,19 +28,19 @@
                     <h2>Service Items</h2>
                     <%-- For each of the categories --%>
                     <c:forEach items="${kapp.categories}" var="category">
-                        <%-- If the category is not hidden, and it contains at least 1 form --%>
-                        <c:if test="${fn:toLowerCase(category.getAttributeValue('Hidden')) ne 'true' && not empty category.forms}">
-                            <div class="category">
-                                <h3>${text.escape(category.name)}</h3>
-                                <div class="row">
-                                    <%-- Show the first x number of forms of the category --%>
-                                    <c:forEach items="${category.forms}" var="categoryForm" begin="0" end="8">
-                                    <%-- Only show New or Active forms --%>
-                                    <c:if test="${categoryForm.status eq 'New' || categoryForm.status eq 'Active'}">
-                                    <%-- Render the form panel --%>
-                                    <c:set scope="request" var="thisForm" value="${categoryForm}"/>
-                                    <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
-                                    </c:if>
+                        <c:set var="formsStatusActive" value="${FormHelper.getFormsByStatus(kapp,category,'Active')}"/>
+                        <%-- If the category is not hidden --%>
+                        <c:if test="${fn:toLowerCase(category.getAttributeValue('Hidden')) ne 'true' && not empty formsStatusActive}">
+                            <%-- Show the first x number of forms of the category --%>
+                            <h3>${text.escape(category.name)}</h3>
+                            <div class="row">
+                                <div class="category">
+                                    <c:forEach var="categoryForm" items="${formsStatusActive}" begin="0" end="8">
+                                        <c:if test="${categoryForm.getCategory(category.name).name == category.name}">
+                                            <%-- Render the form panel --%>
+                                            <c:set scope="request" var="thisForm" value="${categoryForm}"/>
+                                            <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
+                                        </c:if>
                                     </c:forEach>
                                 </div>
                             </div>
@@ -48,12 +49,21 @@
                     <c:set var="uncategorizedForms" value="${FormHelper.getUncategorizedForms(kapp)}"/>
                     <c:if test="${not empty uncategorizedForms}">
                         <div class="category uncategorized">
-                                                        <h3>
-                                    Uncategorized Forms
-                                </h3>
+                                <h3>Uncategorized Forms </h3>
                             <div class="row">
-
                                 <c:forEach items="${uncategorizedForms}" var="form">
+                                    <c:set scope="request" var="thisForm" value="${form}"/>
+                                    <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </c:if>
+                    <c:set var="formsStatusNew" value="${FormHelper.getFormsByStatus(kapp,'New')}"/>
+                    <c:if test="${not empty formsStatusNew}">
+                        <div class="category uncategorized">
+                                <h3>Forms Status New</h3>
+                            <div class="row">
+                                <c:forEach items="${formsStatusNew}" var="form">
                                     <c:set scope="request" var="thisForm" value="${form}"/>
                                     <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
                                 </c:forEach>
