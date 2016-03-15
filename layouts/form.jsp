@@ -10,6 +10,9 @@
     </c:when>
     <c:otherwise>
         <bundle:layout page="layout.jsp">
+            <bundle:variable name="head">
+                <bundle:yield name="head"/>
+            </bundle:variable>
             <bundle:yield/>
         </bundle:layout>
     </c:otherwise>
