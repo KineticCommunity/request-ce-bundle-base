@@ -28,7 +28,7 @@
                     <h2>Service Items</h2>
                     <%-- For each of the categories --%>
                     <c:forEach items="${kapp.categories}" var="category">
-                        <c:set var="formsStatusActive" value="${FormHelper.getFormsByStatus(kapp,category,'Active')}"/>
+                        <c:set var="formsStatusActive" value="${FormHelper.getFormsByStatus(category,'Active')}"/>
                         <%-- If the category is not hidden --%>
                         <c:if test="${fn:toLowerCase(category.getAttributeValue('Hidden')) ne 'true' && not empty formsStatusActive}">
                             <%-- Show the first x number of forms of the category --%>

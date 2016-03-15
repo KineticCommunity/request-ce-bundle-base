@@ -24,18 +24,6 @@
             return results;
         }
 
-        public List<Form> getFormsByStatus(Kapp kapp, Category category, String status) {
-
-            List<Form> results = new ArrayList<>();
-
-            for (Form form : kapp.getCategory(category.getName()).getForms()) {
-                    if(form.getStatus().equals(status)){
-                        results.add(form);
-                    }
-            }
-            return results;
-        }
-
         public List<Form> getFormsByStatus(Kapp kapp, ArrayList<String> statuses){
              List<Form> results = new ArrayList<>();
 
@@ -49,11 +37,24 @@
             return results;
         }
 
-        public List<Form> getFormsByStatus(Kapp kapp, Category category, ArrayList<String> statuses) {
+        public List<Form> getFormsByStatus(Category category, String status) {
 
             List<Form> results = new ArrayList<>();
 
-            for (Form form : kapp.getCategory(category.getName()).getForms()) {
+            for (Form form : category.getForms()) {
+                    if(form.getStatus().equals(status)){
+                        results.add(form);
+                    }
+            }
+            
+            return results;
+        }
+
+        public List<Form> getFormsByStatus(Category category, ArrayList<String> statuses) {
+
+            List<Form> results = new ArrayList<>();
+
+            for (Form form : category.getForms()) {
                 for(String status : statuses){
                     if(form.getStatus().equals(status)){
                         results.add(form);
