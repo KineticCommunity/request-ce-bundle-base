@@ -728,6 +728,53 @@ footer {
   .warning .required {
     font-weight: bold; }
 
+/* Styles go here */
+.kd-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5); }
+
+/* Modal Content */
+.kd-modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 20px;
+  padding: 0;
+  border: 1px solid #888;
+  /* width: 80%; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+/* Modal Header */
+.kd-modal-header {
+  padding: 2px 16px;
+  background-color: #EDE4A8;
+  color: white; }
+  .kd-modal-header h4 {
+    text-transform: none; }
+
+/* Modal Body */
+.kd-modal-body {
+  padding: 8px 16px; }
+  .kd-modal-body table {
+    width: 100%; }
+    .kd-modal-body table th, .kd-modal-body table td {
+      padding: 0.5em; }
+    .kd-modal-body table tbody tr {
+      cursor: pointer; }
+      .kd-modal-body table tbody tr:hover {
+        background-color: #f2f2f4; }
+
+/* Modal Footer */
+.kd-modal-footer {
+  padding: 2px 16px;
+  background-color: #EDE4A8;
+  color: white; }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Utilities
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

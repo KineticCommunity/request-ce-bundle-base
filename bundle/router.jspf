@@ -1,7 +1,7 @@
 <% 
     // Check for required Kapp Attributes
     if (kapp != null && setupHelper.isMissingRequiredAttributes(kapp)){
-        String setupPath = bundle.getPath()+"/partials/setup.jsp";
+        String setupPath = bundle.getPath()+"/pages/setup.jsp";
 %>
         <jsp:include page="<%=setupPath%>" />
 <%
