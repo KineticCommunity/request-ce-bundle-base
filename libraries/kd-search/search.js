@@ -107,13 +107,16 @@ KD-Search CE
 		if(typeof configObj.bridgeConfig.attributes == "undefined"){
 			configObj.bridgeConfig.attributes = [];
 			$.each(configObj.data, function( k, v ){
-				configObj.bridgeConfig.attributes.push(k)
+			   if(typeof v["notdynamic"] == "undefined") {
+			        //we want include it in the attributes
+					configObj.bridgeConfig.attributes.push(k)
+				}
 			})
 		}
 //        var templateId = (configObj.bridgeConfig.templateId && configObj.bridgeConfig.templateId!="null") ? configObj.bridgeConfig.templateId : clientManager.templateId;
         //create the connector necessary to connect to the bridge
 //        var connector = new KD.bridges.BridgeConnector({templateId: templateId});
-		K('bridgedResource['+configObj.bridgeConfig.model+']')	.load({
+		K('bridgedResource['+configObj.bridgeConfig.resource+']').load({
 			attributes: configObj.bridgeConfig.attributes, 
 			values: parameters,
 			success: function(response) {
@@ -209,13 +212,16 @@ KD-Search CE
 		if(typeof configObj.bridgeConfig.attributes == "undefined"){
 			configObj.bridgeConfig.attributes = [];
 			$.each(configObj.data, function( k, v ){
-				configObj.bridgeConfig.attributes.push(k)
+				if(typeof v["notdynamic"] == "undefined") {
+			        //we want include it in the attributes
+					configObj.bridgeConfig.attributes.push(k)
+				}
 			})
 		}
 //        var templateId = (configObj.bridgeConfig.templateId && configObj.bridgeConfig.templateId!="null") ? configObj.bridgeConfig.templateId : clientManager.templateId;
         //create the connector necessary to connect to the bridge
 //        var connector = new KD.bridges.BridgeConnector({templateId: templateId});
-		K('bridgedResource['+configObj.bridgeConfig.model+']')	.load({
+		K('bridgedResource['+configObj.bridgeConfig.resource+']').load({
 			attributes: configObj.bridgeConfig.attributes, 
 			values: parameters,
 			success: function(response) {
