@@ -33,7 +33,6 @@
                 .subtract(end, 30, "days", java.time.ZoneId.systemDefault());
 
             java.util.Map<String,String[]> searchOptions = new java.util.HashMap<>();
-
             searchOptions.put("end", new String[] {Time.format(end)} );
             searchOptions.put("start", new String[] {Time.format(start)} );
             searchOptions.put("type", new String[] {type});
