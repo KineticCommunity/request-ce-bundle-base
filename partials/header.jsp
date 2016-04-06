@@ -12,16 +12,20 @@
             </button>
             <c:if test="${kapp != null}">
                 <a class="navbar-brand" href="${bundle.kappLocation}">
-                    <c:if test="${not empty kapp.getAttribute('Logo Url')}">
-                        <img src="${kapp.getAttributeValue('Logo Url')}" alt="logo">
-                    </c:if>
-                    <c:if test="${empty kapp.getAttribute('Logo Url')}">
-                        <i class="fa fa-home"></i> ${text.escape(kapp.name)}
-                    </c:if>
+                    <c:choose>
+                        <c:when test="${not empty kapp.getAttribute('Logo Url') && not empty kapp.getAttributeValue('Logo Url')}">
+                            <img src="${kapp.getAttributeValue('Logo Url')}" alt="logo">
+                        </c:when>
+                        <c:when test="${not empty kapp.getAttributeValue('Company Name')}">
+                            <i class="fa fa-home"></i>${kapp.getAttributeValue("Company Name")}
+                        </c:when>
+                        <c:otherwise>
+                            <i class="fa fa-home"></i>${kapp.name}
+                        </c:otherwise>
+                    </c:choose>
                 </a>
             </c:if>
         </div>
-
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -53,7 +57,7 @@
                 <li class="dropdown">
                     <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="hidden-lg hidden-md">Kapps <span class="fa fa-caret-down fa-fw"></span></span><span class="hidden-sm hidden-xs fa fa-th fa-fw"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="drop2">
-                        <c:forEach items="${space.kapps}" var="kapp" begin="0" end="8">
+                        <c:forEach items="${space.kapps}" var="kapp">
                             <li><a href="/kinetic/${space.slug}/${kapp.slug}/">${kapp.name}</a></li>
                         </c:forEach>
                     </ul>

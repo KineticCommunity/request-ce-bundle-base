@@ -1,3 +1,4 @@
+(function($){
 $(function() {
   $('body').on('click', '[data-review]', function(event) {
     event.preventDefault();
@@ -22,3 +23,4 @@ $(function() {
     }
   });
 });
+})(jQuery);
