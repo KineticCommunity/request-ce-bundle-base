@@ -25,7 +25,22 @@
 <% 
     // Determine if there is a JSP that the response should be delegated to
     String delegateJsp = null;
-    if (request.getParameter("page") != null) {
+    // Verify that no more than 1 routing parameter is provided to catch potential infinite loops
+    int routedParameterCount = 0;
+    if (request.getParameterValues("page") != null) {
+        routedParameterCount += request.getParameterValues("page").length;
+    }
+    if (request.getParameterValues("partial") != null) {
+        routedParameterCount += request.getParameterValues("partial").length;
+    }
+    // If more than one routing parameter found, throw error
+    if (routedParameterCount > 1) {
+        throw new RuntimeException("Multiple 'page' or 'partial' parameters provided by the "+
+            "request. This is potentially due to recursively importing or including a routed "+
+            "kapp page.");
+    } 
+    // Otherwise delegate to appropriate page or partial
+    else if (request.getParameter("page") != null) {
         delegateJsp = bundle.getPath()+"/pages/"+request.getParameter("page")+".jsp";
     } else if (request.getParameter("partial") != null) {
         delegateJsp = bundle.getPath()+"/partials/"+request.getParameter("partial")+".jsp";
@@ -46,7 +61,20 @@
         // If the specified delegate JSP is using a normalized form
         else {
             // Render the contents of the jsp
-            request.getRequestDispatcher(delegateJsp).include(request, response);
+            try {
+                request.getRequestDispatcher(delegateJsp).include(request, response);
+            }
+            catch (ServletException e){
+                // If the specified delegate JSP doesn't exist
+                /** This is looking for a Tomcat specific error message **/
+                if (e.getMessage() != null && e.getMessage().trim().matches("^File \\[.+\\] not found$")) {
+                    // Simulate a 404 not found
+                    request.setAttribute("javax.servlet.error.message", delegateJsp);
+                    response.setStatus(response.SC_NOT_FOUND);
+                    request.getRequestDispatcher("/WEB-INF/pages/404.jsp").include(request, response);
+                }
+                else { throw e; }
+            }
         }
         // Return so that no further JSP processing occurs
         return;
