@@ -75,6 +75,7 @@
     }
     /* set currentId as a global variable to be used in searchConfig.
      * we do this so that we can reuse the configuration code for multiple tables on the same page.*/ 
+   
     var currentId = null;
     if(currentId != null){
     catalogTable = currentId;
