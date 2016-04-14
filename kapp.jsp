@@ -99,4 +99,34 @@
             </table>
         </div>
     </div>
+    <table id="testTable" class="table table-striped table-hover">
+        <thead>
+             <tr>
+                <th class="date">Created At</th>
+                <th>Form</th>
+                <th class="nosort">Submission</th>
+                <th>Created By</th>
+                <th>State</th>
+            </tr>
+        </thead>
+    </table>
 </bundle:layout>
+<script>
+$(document).ready(function() {
+    $('#testTable').DataTable( {
+        "serverSide": true,
+        "processing": true,
+        "length" : 10,
+        "dom" : "l",
+        "ajax": "${bundle.spaceLocation}/${kapp.slug}?page=serverSidePagination.json",
+        "columns":[
+            {"data":"created_at"},
+            {"data":"form_name"},
+            {"data":"submission_id"},
+            {"data":"created_by"},
+            {"data":"state"}
+        ]
+    } );
+} );
+    
+</script>
