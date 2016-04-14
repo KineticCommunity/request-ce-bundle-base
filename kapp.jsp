@@ -37,7 +37,7 @@
                             <div class="row">
                                 <div class="category">
                                     <c:forEach var="categoryForm" items="${formsStatusActive}" begin="0" end="8">
-                                        <c:if test="${categoryForm.getCategory(category.name).name == category.name}">
+                                        <c:if test="${categoryForm.getCategory(category.slug).name == category.name}">
                                             <%-- Render the form panel --%>
                                             <c:set scope="request" var="thisForm" value="${categoryForm}"/>
                                             <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
