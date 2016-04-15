@@ -100,7 +100,7 @@
                      "processing": true,
                      "data": data.submissions,
                      "columns": [
-                        { "data":function(data){return data.submittedAt} },
+                        { "data":function(data){debugger; return moment(data.submittedAt).format('MMMM Do YYYY, h:mm:ss A');} },
                         { "data":"form.name" },
                         { "data":"id"},
                         { "data":"submittedBy" },
@@ -110,5 +110,4 @@
             },
         });
     }
-
 })(jQuery);
