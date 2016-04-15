@@ -1,8 +1,6 @@
 <%@page pageEncoding="UTF-8" contentType="application/json" trimDirectiveWhitespaces="true"%>
 <%@include file="../bundle/initialization.jspf" %>
-<%
-    int x = 1;
-    %>
+
 <fmt:parseNumber var="length" type="number" value="${param.length}" />
 <c:set scope="request" var="submissionsList" 
         value="${SubmissionHelper.retrieveRecentSubmissions('Template',length)}"/>

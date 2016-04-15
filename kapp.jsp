@@ -14,11 +14,14 @@
             <li role="presentation" class="active">
                 <a href="#tab-home" aria-controls="tab-home" role="tab" data-toggle="tab">Home</a>
             </li>
-            <li id="Service" class="submissiontable" role="presentation">
+            <li id="service" class="submissiontable" role="presentation">
                 <a href="#tab-requests" aria-controls="tab-requests" role="tab" data-toggle="tab">My Requests</a>
             </li>
-            <li id="Approval" class="submissiontable" role="presentation">
+            <li id="approval" class="submissiontable" role="presentation">
                 <a href="#tab-approvals" aria-controls="tab-approvals" role="tab" data-toggle="tab">My Approvals</a>
+            </li>
+            <li id="test" class="submissiontable" role="presentation">
+                <a href="#tab-test" aria-controls="tab-test" role="tab" data-toggle="tab">test</a>
             </li>
         </ul>
     </section>
@@ -37,7 +40,7 @@
                             <div class="row">
                                 <div class="category">
                                     <c:forEach var="categoryForm" items="${formsStatusActive}" begin="0" end="8">
-                                        <c:if test="${categoryForm.getCategory(category.name).name == category.name}">
+                                        <c:if test="${categoryForm.getCategory(category.slug).name == category.name}">
                                             <%-- Render the form panel --%>
                                             <c:set scope="request" var="thisForm" value="${categoryForm}"/>
                                             <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
@@ -88,45 +91,21 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-requests">
             <h3>My Requests</h3>
-            <table id="ServiceTable" class="table table-striped table-hover">
+            <table id="serviceTable" class="table table-striped table-hover">
                 <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
             </table>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-approvals">
             <h3>My Approvals</h3>
-            <table id="ApprovalTable" class="table table-striped table-hover">
+            <table id="approvalTable" class="table table-striped table-hover">
+                <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
+            </table>
+        </div>
+         <div role="tabpanel" class="tab-pane" id="tab-test">
+             <h3>test</h3>
+            <table id="testTable" class="table table-striped table-hover">
                 <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
             </table>
         </div>
     </div>
-    <table id="testTable" class="table table-striped table-hover">
-        <thead>
-             <tr>
-                <th class="date">Created At</th>
-                <th>Form</th>
-                <th class="nosort">Submission</th>
-                <th>Created By</th>
-                <th>State</th>
-            </tr>
-        </thead>
-    </table>
 </bundle:layout>
-<script>
-$(document).ready(function() {
-    $('#testTable').DataTable( {
-        "serverSide": true,
-        "processing": true,
-        "length" : 10,
-        "dom" : "l",
-        "ajax": "${bundle.spaceLocation}/${kapp.slug}?page=serverSidePagination.json",
-        "columns":[
-            {"data":"created_at"},
-            {"data":"form_name"},
-            {"data":"submission_id"},
-            {"data":"created_by"},
-            {"data":"state"}
-        ]
-    } );
-} );
-    
-</script>

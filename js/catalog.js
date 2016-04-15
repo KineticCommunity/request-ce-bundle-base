@@ -73,42 +73,96 @@
             ]
         });
     }
-    /* set currentId as a global variable to be used in searchConfig.
-     * we do this so that we can reuse the configuration code for multiple tables on the same page.*/ 
-   
-    var currentId = null;
-    if(currentId != null){
-    catalogTable = currentId;
-    }
+    /* */ 
+    window.token = [];
+
     //Request and Approval datatables 
     $(function(){
         $('.submissiontable').on('click',function(){
             currentId = $(this).attr('id');
-          //  global.currentId = currentId;
-            getSubmissions(currentId);
+        
+            if (currentId == 'approval'){
+                renderTable({
+                    table: '#approvalTable',
+                    type: 'Approval',
+                    serverSide: false
+                });
+            }
+            if(currentId == 'service'){
+                renderTable({
+                    table: '#serviceTable',
+                    type: 'Service',
+                    serverSide: false,
+                });
+            } 
+            if(currentId == 'test'){
+                $('#testTable').removeData('pageTokens');
+                renderTable({
+                    table: '#testTable',
+                    type: 'Template',
+                    coreState: 'Closed',
+                    serverSide: true,
+                });
+            }
         });
     });
-    function getSubmissions(currentId){
+    
+    function renderTable(options){
         $.ajax({
             method: 'get',
             contentType: 'application/json',
-            url: bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form&type='+currentId,
+            url: buildAjaxUrl(options),
             success: function(data, textStatus, jqXHR){
-                var token = data.nextPageToken
-                $('#'+currentId+'Table').DataTable({
-                     destroy:true,
-                     "processing": true,
-                     "data": data.submissions,
-                     "columns": [
+                if(options.serverSide){
+                    if ($(options.table).data('pageTokens') === undefined) {
+                        $(options.table).data('pageTokens', []); 
+                    }
+                    $(options.table).data('pageTokens').push(data.nextPageToken);
+                }
+                $(options.table).DataTable({
+                    destroy:true,
+                    "pagingType": options.serverSide ? "simple" : "simple_numbers",
+                    "dom": options.serverSide ? '<"top"l>t<"bottom"p><"clear">' : "lftip",
+                    "data": data.submissions,
+                    "columns": [
                         { "data":function(data){return data.submittedAt} },
                         { "data":"form.name" },
                         { "data":"id"},
                         { "data":"submittedBy" },
-                        { "data":"coreState"  }
-                     ]
-                 });
+                        { "data":"coreState"  },
+                    ]
+                });
+            },
+            complete: function(){
+                if(options.serverSide){
+                    $('.paginate_button').removeClass('disabled');
+                    $('#testTable_next').on('click',function(){
+                        renderTable({
+                            table: '#testTable',
+                            type: 'Template',
+                            coreState: 'Closed',
+                            serverSide: true,
+                            token: function(){
+                                var arr = $('#testTable').data('pageTokens');
+                                var token = arr[arr.length-1];
+                                return token;},
+                        });
+                    });
+                }
             },
         });
     }
-
+    /* This fucntion build a Url to be used by the ajax call.
+     * The intention is to be able to pass parameter to this function to have a configurable url so that we can have 
+     * the ability to configure the query with the same piece of code*/
+    function buildAjaxUrl(options){
+        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form&type='+options.type;
+        if(options.serverSide){
+            url += '&limit=10';
+        }
+        if(options.token){
+            options.token();
+        };
+        return url;
+    }
 })(jQuery);
