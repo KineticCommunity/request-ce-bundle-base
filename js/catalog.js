@@ -142,9 +142,9 @@
                                 // has a coreState of draft the url will link to the submission to be completed.
                                 // TODO: use submission label instead of guid
                                 if(data.coreState == "Draft"){
-                                    var id = "<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.id+"'>"+data.id+"</a>"; 
+                                    var id = "<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.id+"'>"+data.label+"</a>"; 
                                 }else{
-                                    var id = "<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.id+"'>"+data.id+"</a>"; 
+                                    var id = "<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.id+"'>"+data.label+"</a>"; 
                                 }
                                 return id;} },
                         { "data":"coreState"  },
