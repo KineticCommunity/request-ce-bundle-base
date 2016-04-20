@@ -22,6 +22,8 @@
         </bundle:stylepack>
         <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
+            <bundle:script src="${bundle.location}/libraries/moment/moment.js" />
+            <bundle:script src="${bundle.location}/libraries/moment/moment-timezone.js" />
             <bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/media/js/jquery.dataTables.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" />
@@ -50,3 +52,6 @@
         </div>
     </body>
 </html>
+<script>
+    window.identity = '${identity.username}'
+</script>

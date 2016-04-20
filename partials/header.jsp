@@ -29,30 +29,32 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user fa-fw"></i>
-                        ${text.escape(identity.username)}
-                        <span class="fa fa-caret-down fa-fw"></span>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="drop1">
-                        <c:choose>
-                            <c:when test="${identity.anonymous}">
-                                <li><a href="${bundle.spaceLocation}/app/login"><i class="fa fa-sign-in fa-fw"></i> Login</a></li>
-                            </c:when>
-                            <c:otherwise>
-                                <c:if test="${kapp == null}">
-                                    <li><a href="${bundle.spaceLocation}/?page=profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
-                                </c:if>
-                                <c:if test="${kapp != null}">
-                                    <li><a href="${bundle.spaceLocation}/${kapp.slug}?page=profile"><i class="fa fa-pencil fa-fw"></i> Edit Profile</a></li>
-                                </c:if>
-                                <li class="divider"></li>
-                                <li><a href="${bundle.spaceLocation}/app/"><i class="fa fa-dashboard fa-fw"></i> Management Console</a></li>
-                                <li class="divider"></li>
-                                <li><a href="${bundle.spaceLocation}/app/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a></li>
-                            </c:otherwise>
-                        </c:choose>
-                    </ul>
+                    <c:choose>
+                        <c:when test="${identity.anonymous}">
+                            <a href="${bundle.spaceLocation}/app/login" class="hidden-xs"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a id="drop1" href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user fa-fw"></i> ${text.escape(text.trim(identity.displayName, identity.username))} <span class="fa fa-caret-down fa-fw"></span>
+                            </a>
+                            <ul class="dropdown-menu show-xs priority" aria-labelledby="drop1">
+                                <li class="hidden-xs"><a href="${bundle.spaceLocation}/?page=profile">
+                                    <i class="fa fa-pencil fa-fw"></i> Edit Profile</a>
+                                </li>
+                                <li class="priority hidden-lg hidden-md hidden-sm">
+                                    <a href="${bundle.spaceLocation}/?page=profile"><i class="fa fa-user fa-fw"></i> Profile</a>
+                                </li>
+                                <li class="divider hidden-xs"></li>
+                                <li class="hidden-xs"><a href="${bundle.spaceLocation}/app/">
+                                    <i class="fa fa-dashboard fa-fw"></i> Management Console</a>
+                                </li>
+                                <li class="divider hidden-xs"></li>
+                                <li><a href="${bundle.spaceLocation}/app/logout">
+                                    <i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                </li>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
                 <li class="dropdown">
                     <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="hidden-lg hidden-md">Kapps <span class="fa fa-caret-down fa-fw"></span></span><span class="hidden-sm hidden-xs fa fa-th fa-fw"></span></a>
