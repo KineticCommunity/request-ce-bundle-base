@@ -6,7 +6,6 @@
         <th class="date">Created At</th>
         <th>Form</th>
         <th class="nosort">Submission</th>
-        <th>Created By</th>
         <th>State</th>
     </tr>
 </thead>
