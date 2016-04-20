@@ -52,3 +52,6 @@
         </div>
     </body>
 </html>
+<script>
+    window.identity = '${identity.username}'
+</script>

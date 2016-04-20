@@ -14,11 +14,14 @@
             <li role="presentation" class="active">
                 <a href="#tab-home" aria-controls="tab-home" role="tab" data-toggle="tab">Home</a>
             </li>
-            <li id="Service" class="submissiontable" role="presentation">
+            <li id="service" class="submissiontable" role="presentation">
                 <a href="#tab-requests" aria-controls="tab-requests" role="tab" data-toggle="tab">My Requests</a>
             </li>
-            <li id="Approval" class="submissiontable" role="presentation">
+            <li id="approval" class="submissiontable" role="presentation">
                 <a href="#tab-approvals" aria-controls="tab-approvals" role="tab" data-toggle="tab">My Approvals</a>
+            </li>
+            <li id="test" class="submissiontable" role="presentation">
+                <a href="#tab-test" aria-controls="tab-test" role="tab" data-toggle="tab">test</a>
             </li>
         </ul>
     </section>
@@ -88,13 +91,19 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-requests">
             <h3>My Requests</h3>
-            <table id="ServiceTable" class="table table-striped table-hover">
+            <table id="serviceTable" class="table table-striped table-hover">
                 <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
             </table>
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-approvals">
             <h3>My Approvals</h3>
-            <table id="ApprovalTable" class="table table-striped table-hover">
+            <table id="approvalTable" class="table table-striped table-hover">
+                <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
+            </table>
+        </div>
+         <div role="tabpanel" class="tab-pane" id="tab-test">
+             <h3>test</h3>
+            <table id="testTable" class="table table-striped table-hover">
                 <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
             </table>
         </div>
