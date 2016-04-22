@@ -7,24 +7,8 @@
     <bundle:variable name="head">
         <title>Kinetic Data ${text.escape(kapp.name)}</title>
     </bundle:variable>
-
-    <section class="menu">
-        <ul class="nav nav-pills">
-            <c:set var="pageHome" value="${kapp.getForm('home')}" scope="page"/>
-            <li role="presentation" class="active">
-                <a href="#tab-home" aria-controls="tab-home" role="tab" data-toggle="tab">Home</a>
-            </li>
-            <li id="service" class="submissiontable" role="presentation">
-                <a href="#tab-requests" aria-controls="tab-requests" role="tab" data-toggle="tab">My Requests</a>
-            </li>
-            <li id="approval" class="submissiontable" role="presentation">
-                <a href="#tab-approvals" aria-controls="tab-approvals" role="tab" data-toggle="tab">My Approvals</a>
-            </li>
-            <li id="test" class="submissiontable" role="presentation">
-                <a href="#tab-test" aria-controls="tab-test" role="tab" data-toggle="tab">test</a>
-            </li>
-        </ul>
-    </section>
+    <c:import url="${bundle.path}/partials/tabs.jsp" charEncoding="UTF-8"/>
+    
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-home">
             <div class="row">
@@ -95,17 +79,7 @@
                 <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
             </table>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tab-approvals">
-            <h3>My Approvals</h3>
-            <table id="approvalTable" class="table table-striped table-hover">
-                <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
-            </table>
-        </div>
-         <div role="tabpanel" class="tab-pane" id="tab-test">
-             <h3>test</h3>
-            <table id="testTable" class="table table-striped table-hover">
-                <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
-            </table>
-        </div>
+
+
     </div>
 </bundle:layout>
