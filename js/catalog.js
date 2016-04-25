@@ -75,35 +75,32 @@
     }
     //Request and Approval datatables 
     $(function(){
-        $('.submissiontable').on('click',function(){
-            currentId = $(this).attr('id');
-        
-            if (currentId == 'approval'){
-                renderTable({
-                    table: '#approvalTable',
-                    type: 'Approval',
-                    serverSide: false
-                });
-            }
-            if(currentId == 'service'){
-                renderTable({
-                    table: '#serviceTable',
-                    type: 'Service',
-                    serverSide: false,
-                });
-            } 
-            if(currentId == 'test'){
-                $('#testTable').removeData('pageTokens');
-                renderTable({
-                    table: '#testTable',
-                    type: 'Template',
-                    coreState: 'Closed',
-                    serverSide: true,
-                });
-            }
-        });
+        currentId = getUrlParameters().page;
+        console.log(currentId)
+        if (currentId == 'approval'){
+            renderTable({
+                table: '#approvalTable',
+                type: 'Approval',
+                serverSide: false
+            });
+        }
+        if(currentId === 'service'){
+            renderTable({
+                table: '#serviceTable',
+                type: 'Service',
+                serverSide: false,
+            });
+        }
+        if(currentId == 'complete'){
+            $('#completeTable').removeData('pageTokens');
+            renderTable({
+                table: '#completeTable',
+                type: 'Template',
+                coreState: 'Closed',
+                serverSide: true,
+            });
+        }
     });
-    
     function renderTable(options){
         $.ajax({
             method: 'get',
@@ -111,6 +108,8 @@
             url: buildAjaxUrl(options),
             success: function(data, textStatus, jqXHR){
                 if(options.serverSide){
+                    // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
+                    // The token is added to an array that is attached to the table elements data property. 
                     var nextPageToken;
                     if(data.nextPageToken === null){
                         nextPageToken = "lastPage";
@@ -118,18 +117,19 @@
                         nextPageToken = data.nextPageToken;
                     }
                     $(options.table).data('nextPageToken', nextPageToken);
-                    // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
-                    // The token is added to an array that is attached to the table elements data property. 
                     if ($(options.table).data('pageTokens') === undefined) {
                         $(options.table).data('pageTokens', ["firstPage"]); 
                     }
+                    //  To make sure duplicate tokens are not created when pages are revisited.
                     var tokenArray = $(options.table).data('pageTokens');
                     if(!($.inArray(nextPageToken,tokenArray) > 0)){
                         $(options.table).data('pageTokens').push(nextPageToken);
                     }
                 }
+                $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
                 var table = $(options.table).DataTable({
-                    bSort: false,
+                    "order": [[ 0, "desc" ]],
+                    bSort: options.serverSide ? false : true,
                     destroy:true,
                     "pagingType": options.serverSide ? "simple" : "simple_numbers",
                     "dom": options.serverSide ? '<"top"l>t<"bottom"p><"clear">' : "lftip",
@@ -180,9 +180,6 @@
                     }
                 }
             },
-            complete: function(data){
-                
-            },
         });
     }
     /* This fucntion build a Url to be used by the ajax call.
@@ -198,4 +195,21 @@
         };
         return url;
     }
+    
+    // Display error message if authentication error is found in URL.  This happens if login credentials fail.
+    $(function(){
+        if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
+            $('form').notifie({type:'alert',severity:'info',message:'username or password not found'});
+        };
+    });
+    //  utility 
+    getUrlParameters = function() {
+       var searchString = window.location.search.substring(1), params = searchString.split("&"), hash = {};
+
+       for (var i = 0; i < params.length; i++) {
+         var val = params[i].split("=");
+         hash[unescape(val[0])] = unescape(val[1]);
+       }
+       return hash;
+    };
 })(jQuery);
