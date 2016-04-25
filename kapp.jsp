@@ -73,13 +73,5 @@
                 </div>
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tab-requests">
-            <h3>My Requests</h3>
-            <table id="serviceTable" class="table table-striped table-hover">
-                <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
-            </table>
-        </div>
-
-
     </div>
 </bundle:layout>
