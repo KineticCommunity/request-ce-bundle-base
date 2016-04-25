@@ -22,7 +22,8 @@
         </bundle:stylepack>
         <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
-            <bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" />
+            <%--bundle:script src="${bundle.location}/libraries/moment/moment.js" /--%>
+            <%--bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" /--%>
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/media/js/jquery.dataTables.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" />
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
@@ -31,6 +32,8 @@
             <bundle:script src="${bundle.location}/js/catalog.js" />
             <bundle:script src="${bundle.location}/js/review.js" />
         </bundle:scriptpack>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <script src="//cdn.datatables.net/plug-ins/1.10.11/sorting/datetime-moment.js"></script>
         <bundle:yield name="head"/>
         <style>
             <c:if test="${not empty kapp.getAttributeValue('Logo Height Px')}">
@@ -50,3 +53,6 @@
         </div>
     </body>
 </html>
+<script>
+    window.identity = '${identity.username}'
+</script>

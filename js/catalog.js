@@ -73,41 +73,143 @@
             ]
         });
     }
-    /* set currentId as a global variable to be used in searchConfig.
-     * we do this so that we can reuse the configuration code for multiple tables on the same page.*/ 
-    var currentId = null;
-    if(currentId != null){
-    catalogTable = currentId;
-    }
     //Request and Approval datatables 
     $(function(){
-        $('.submissiontable').on('click',function(){
-            currentId = $(this).attr('id');
-          //  global.currentId = currentId;
-            getSubmissions(currentId);
-        });
+        currentId = getUrlParameters().page;
+        console.log(currentId)
+        if (currentId == 'approval'){
+            renderTable({
+                table: '#approvalTable',
+                type: 'Approval',
+                serverSide: false
+            });
+        }
+        if(currentId === 'service'){
+            renderTable({
+                table: '#serviceTable',
+                type: 'Service',
+                serverSide: false,
+            });
+        }
+        if(currentId == 'complete'){
+            $('#completeTable').removeData('pageTokens');
+            renderTable({
+                table: '#completeTable',
+                type: 'Template',
+                coreState: 'Closed',
+                serverSide: true,
+            });
+        }
     });
-    function getSubmissions(currentId){
+    function renderTable(options){
         $.ajax({
             method: 'get',
             contentType: 'application/json',
-            url: bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form&type='+currentId,
+            url: buildAjaxUrl(options),
             success: function(data, textStatus, jqXHR){
-                var token = data.nextPageToken
-                $('#'+currentId+'Table').DataTable({
-                     destroy:true,
-                     "processing": true,
-                     "data": data.submissions,
-                     "columns": [
-                        { "data":function(data){return data.submittedAt} },
+                if(options.serverSide){
+                    // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
+                    // The token is added to an array that is attached to the table elements data property. 
+                    var nextPageToken;
+                    if(data.nextPageToken === null){
+                        nextPageToken = "lastPage";
+                    }else{
+                        nextPageToken = data.nextPageToken;
+                    }
+                    $(options.table).data('nextPageToken', nextPageToken);
+                    if ($(options.table).data('pageTokens') === undefined) {
+                        $(options.table).data('pageTokens', ["firstPage"]); 
+                    }
+                    //  To make sure duplicate tokens are not created when pages are revisited.
+                    var tokenArray = $(options.table).data('pageTokens');
+                    if(!($.inArray(nextPageToken,tokenArray) > 0)){
+                        $(options.table).data('pageTokens').push(nextPageToken);
+                    }
+                }
+                $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
+                var table = $(options.table).DataTable({
+                    "order": [[ 0, "desc" ]],
+                    bSort: options.serverSide ? false : true,
+                    destroy:true,
+                    "pagingType": options.serverSide ? "simple" : "simple_numbers",
+                    "dom": options.serverSide ? '<"top"l>t<"bottom"p><"clear">' : "lftip",
+                    "data": data.submissions,
+                    "columns": [
+                        { "data":function(data){return moment(data.submittedAt).format('MMMM Do YYYY, h:mm:ss A');} },
                         { "data":"form.name" },
-                        { "data":"id"},
-                        { "data":"submittedBy" },
-                        { "data":"coreState"  }
-                     ]
-                 });
+                        { "data":function(data){
+                                // This allows the submission id to be a url to the submission details display page or if the submission
+                                // has a coreState of draft the url will link to the submission to be completed.
+                                // TODO: use submission label instead of guid
+                                if(data.coreState == "Draft"){
+                                    var id = "<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.id+"'>"+data.label+"</a>"; 
+                                }else{
+                                    var id = "<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.id+"'>"+data.label+"</a>"; 
+                                }
+                                return id;} },
+                        { "data":"coreState"  },
+                    ]
+                });
+                
+                if(options.serverSide){
+                    var arr = $(options.table).data('pageTokens');
+                    var nextToken = $(options.table).data('nextPageToken')
+                    var index = $.inArray(nextToken, arr);
+                    
+                    if($(options.table).data('nextPageToken') !== "lastPage"){
+                        $(options.table+'_next').removeClass('disabled');
+                        // Add click event to next button, if serverSide property is set to true, to allow pagination to addintional results.
+                        $(options.table+'_next').on('click',function(){    
+                            renderTable($.extend({},options,{
+                                token: function(){
+                                    var token = arr[index];
+                                    return token;},
+                            }));
+                        });
+                    }
+                    if(index !== 1){
+                        $(options.table+'_previous').removeClass('disabled');
+                        // Add click event to previous button, if serverSide property is set to true, to allow pagination to previous results.
+                        $(options.table+'_previous').on('click',function(){
+                            renderTable($.extend({},options,{
+                                token: function(){
+                                    var token = arr[index-2];
+                                    return token;},
+                            }));
+                        });
+                    }
+                }
             },
         });
     }
+    /* This fucntion build a Url to be used by the ajax call.
+     * The intention is to be able to pass parameter to this function to have a configurable url so that we can have 
+     * the ability to configure the query with the same piece of code*/
+    function buildAjaxUrl(options){
+        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=createdAt&type='+options.type+'&createdBy='+identity;
+        if(options.serverSide){
+            url += '&limit=10';
+        }
+        if(options.token && options.token() != "firstPage"){
+            url += '&pageToken='+options.token();
+        };
+        return url;
+    }
+    
+    // Display error message if authentication error is found in URL.  This happens if login credentials fail.
+    $(function(){
+        if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
+            $('form').notifie({type:'alert',severity:'info',message:'username or password not found'});
+        };
+    });
+    //  utility 
+    getUrlParameters = function() {
+       var searchString = window.location.search.substring(1), params = searchString.split("&"), hash = {};
 
+       for (var i = 0; i < params.length; i++) {
+         var val = params[i].split("=");
+         hash[unescape(val[0])] = unescape(val[1]);
+       }
+       return hash;
+    };
 })(jQuery);

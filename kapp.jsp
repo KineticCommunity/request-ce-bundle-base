@@ -7,21 +7,8 @@
     <bundle:variable name="head">
         <title>Kinetic Data ${text.escape(kapp.name)}</title>
     </bundle:variable>
-
-    <section class="menu">
-        <ul class="nav nav-pills">
-            <c:set var="pageHome" value="${kapp.getForm('home')}" scope="page"/>
-            <li role="presentation" class="active">
-                <a href="#tab-home" aria-controls="tab-home" role="tab" data-toggle="tab">Home</a>
-            </li>
-            <li id="Service" class="submissiontable" role="presentation">
-                <a href="#tab-requests" aria-controls="tab-requests" role="tab" data-toggle="tab">My Requests</a>
-            </li>
-            <li id="Approval" class="submissiontable" role="presentation">
-                <a href="#tab-approvals" aria-controls="tab-approvals" role="tab" data-toggle="tab">My Approvals</a>
-            </li>
-        </ul>
-    </section>
+    <c:import url="${bundle.path}/partials/tabs.jsp" charEncoding="UTF-8"/>
+    
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="tab-home">
             <div class="row">
@@ -37,7 +24,7 @@
                             <div class="row">
                                 <div class="category">
                                     <c:forEach var="categoryForm" items="${formsStatusActive}" begin="0" end="8">
-                                        <c:if test="${categoryForm.getCategory(category.name).name == category.name}">
+                                        <c:if test="${categoryForm.getCategory(category.slug).name == category.name}">
                                             <%-- Render the form panel --%>
                                             <c:set scope="request" var="thisForm" value="${categoryForm}"/>
                                             <c:import url="${bundle.path}/partials/formCard.jsp" charEncoding="UTF-8" />
@@ -88,15 +75,13 @@
         </div>
         <div role="tabpanel" class="tab-pane" id="tab-requests">
             <h3>My Requests</h3>
-            <table id="ServiceTable" class="table table-striped table-hover">
+
+            <table id="serviceTable" class="table table-striped table-hover">
+
                 <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
             </table>
         </div>
-        <div role="tabpanel" class="tab-pane" id="tab-approvals">
-            <h3>My Approvals</h3>
-            <table id="ApprovalTable" class="table table-striped table-hover">
-                <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
-            </table>
-        </div>
+
+
     </div>
 </bundle:layout>
