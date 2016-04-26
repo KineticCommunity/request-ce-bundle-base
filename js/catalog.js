@@ -76,12 +76,12 @@
     //Request and Approval datatables 
     $(function(){
         currentId = getUrlParameters().page;
-        console.log(currentId)
+       
         if (currentId == 'approval'){
             renderTable({
                 table: '#approvalTable',
                 type: 'Approval',
-                serverSide: false
+                serverSide: false,
             });
         }
         if(currentId === 'service'){
@@ -95,10 +95,16 @@
             $('#completeTable').removeData('pageTokens');
             renderTable({
                 table: '#completeTable',
-                type: 'Template',
-                coreState: 'Closed',
+                length: 10,
                 serverSide: true,
             });
+        }
+        
+        /* We are using the page load to set some visual cues so the user know what tab they are on*/
+        if(currentId === undefined){
+            $('#home').addClass('active');
+        }else{
+            $('#'+currentId).addClass('active');
         }
     });
     function renderTable(options){
@@ -128,12 +134,15 @@
                 }
                 $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
                 var table = $(options.table).DataTable({
+                    "destroy": true,
                     "order": [[ 0, "desc" ]],
                     bSort: options.serverSide ? false : true,
                     destroy:true,
                     "pagingType": options.serverSide ? "simple" : "simple_numbers",
                     "dom": options.serverSide ? '<"top"l>t<"bottom"p><"clear">' : "lftip",
                     "data": data.submissions,
+                    "language": {"search":""},
+                    "pageLength": options.length,
                     "columns": [
                         { "data":function(data){return moment(data.submittedAt).format('MMMM Do YYYY, h:mm:ss A');} },
                         { "data":"form.name" },
@@ -178,17 +187,35 @@
                             }));
                         });
                     }
+                    /* Sets the number of rows displayed with the select option menu */
+                    $(options.table+'_length').change(function(){
+                        delete options.token;
+                        $('#completeTable').removeData('pageTokens');
+                        renderTable($.extend({},options,{
+                            length: $(options.table+'_length option:selected').val(),
+                        }));
+                    });
                 }
             },
+            complete: function(){
+                $('.dataTables_filter input').addClass('form-control');
+                $('.dataTables_filter input').attr('placeholder', 'Filter...');
+            }
         });
     }
     /* This fucntion build a Url to be used by the ajax call.
      * The intention is to be able to pass parameter to this function to have a configurable url so that we can have 
      * the ability to configure the query with the same piece of code*/
     function buildAjaxUrl(options){
-        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=createdAt&type='+options.type+'&createdBy='+identity;
+        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=createdAt&createdBy='+identity;
+        
         if(options.serverSide){
-            url += '&limit=10';
+            url += '&coreState=Closed'; 
+        }else{
+            url += '&coreState=Draft&coreState=Submitted&type='+options.type;
+        }
+        if(options.serverSide && options.length !== undefined){
+            url += '&limit=' + options.length;
         }
         if(options.token && options.token() != "firstPage"){
             url += '&pageToken='+options.token();

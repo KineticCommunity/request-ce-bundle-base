@@ -76,7 +76,8 @@
                         <form action="${bundle.kappLocation}" method="GET" role="form">
                             <div class="form-group">
                                     <input type="hidden" value="search" name="page">
-                                    <input  type="text" class="states form-control predictiveText x" name="q" placeholder="Search Forms…" autocomplete="off" autofocus="autofocus">
+                                    <%--removed the states and x from the class. if this note is still here by 8/22/16 delete it.--%>
+                                    <input  type="text" class="form-control predictiveText" name="q" placeholder="Search Forms…" autocomplete="off" autofocus="autofocus">
                                 </div>
                             </div>
                         </form>
