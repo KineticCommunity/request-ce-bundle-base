@@ -4,17 +4,17 @@
 <section class="menu">
     <ul class="nav nav-pills">
         <c:set var="pageHome" value="${kapp.getForm('home')}" scope="page"/>
-        <li role="presentation" class="active">
+        <li id="home">
             <a href="${bundle.kappLocation}">Home</a>
         </li>
-        <li id="service" class="submissiontable" role="presentation">
+        <li id="service" class="submissiontable">
             <a href="${bundle.kappLocation}?page=service">My Requests</a>
         </li>
-        <li id="approval" class="submissiontable" role="presentation">
+        <li id="approval" class="submissiontable">
             <a href="${bundle.kappLocation}?page=approval">My Approvals</a>
         </li>
-        <li id="test" class="submissiontable" role="presentation">
-            <a href="${bundle.kappLocation}?page=complete">Complete Submissions</a>
+        <li id="complete" class="submissiontable">
+            <a href="${bundle.kappLocation}?page=complete">Closed Submissions</a>
         </li>
     </ul>
 </section>

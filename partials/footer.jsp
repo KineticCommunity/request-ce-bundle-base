@@ -8,11 +8,11 @@
         <div class="build col-xs-6">
             <dl class="dl-horizontal">
                 <dt>Build Date:</dt>
-                <dd>${buildDate}</dd>
+                <dd data-moment>${time.format(time.parse(buildDate, 'yyyy-MM-dd HH:mm:ss Z', zoneId, locale))}</dd>
                 <dt>Version:</dt>
                 <dd>${buildVersion}</dd>
                 <dt>Bundle:</dt>
-                <dd>Base <a href='https://github.com/kineticdata/request-ce-bundle-base' target="_blank">(Learn More)</a></dd>
+                <dd>Base <a href='https://github.com/KineticCommunity/request-ce-bundle-base' target="_blank">(Learn More)</a></dd>
             </dl>
         </div>
     </div>

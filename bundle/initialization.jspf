@@ -1,10 +1,11 @@
 <%-- Load Java libraries, Kinetic models & Identity --%>
 <%@page pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@page import="java.util.*" %>
 <%@page import="com.kineticdata.core.models.*" %>
 <%@page import="com.kineticdata.core.web.bundles.Bundle" %>
 <%@page import="com.kineticdata.core.web.bundles.BundleSubmissionComponent" %>
 <%@page import="com.kineticdata.core.authentication.Identity" %>
+<%@page import="java.time.ZoneId"%>
+<%@page import="java.util.*" %>
 <%@page import="org.slf4j.Logger" %>
 
 <%-- Bundle Java libraries --%>
@@ -19,6 +20,12 @@
 <%@taglib prefix="json" uri="http://kineticdata.com/taglibs/json" %>
 
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
+
+<%-- Initialize the default zoneId and locale --%>
+<%
+    request.setAttribute("zoneId", ZoneId.systemDefault());
+    request.setAttribute("locale", Locale.US);
+%>
 
 <%-- Get bundle, space, and kapp objects --%>
 <%
