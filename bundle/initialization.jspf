@@ -1,11 +1,11 @@
 <%-- Load Java libraries, Kinetic models & Identity --%>
-<%@page import="java.time.ZoneId"%>
 <%@page pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
-<%@page import="java.util.*" %>
 <%@page import="com.kineticdata.core.models.*" %>
 <%@page import="com.kineticdata.core.web.bundles.Bundle" %>
 <%@page import="com.kineticdata.core.web.bundles.BundleSubmissionComponent" %>
 <%@page import="com.kineticdata.core.authentication.Identity" %>
+<%@page import="java.time.ZoneId"%>
+<%@page import="java.util.*" %>
 <%@page import="org.slf4j.Logger" %>
 
 <%-- Bundle Java libraries --%>
