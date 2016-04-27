@@ -2,7 +2,9 @@
  * Forms Search using Twitter Typeahead. Prefetch all accessible forms
  * for the Kapp.
 **/
-(function($){
+(function($, moment){
+    var locale = window.navigator.userLanguage || window.navigator.language;
+    moment.locale(locale);
     $(function(){
       if (!$('.navbar-form .typeahead').length){
         return;
@@ -246,5 +248,5 @@
             element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
         });
     });
-})(jQuery);
+})(jQuery, moment);
    
