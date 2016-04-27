@@ -27,7 +27,7 @@
                                 <dt>Submission:</dt>
                                 <dd>${submission.label}</dd>
                                 <dt>Request Date:</dt>
-                                <dd>${submission.submittedAt}</dd>
+                                <dd data-moment>${time.format(submission.submittedAt)}</dd>
                                 <dt>Status:</dt>
                                 <dd>${submission.coreState}</dd>
                             </dl>
@@ -43,7 +43,7 @@
                                         <li class="timeline-status">
                                             <div class="timeline-status-content">
                                                 <h4>${text.escape(task.name)}</h4>
-                                                <h5>${text.escape(task.createdAt)}</h5>
+                                                <h5 data-moment>${task.createdAt}</h5>
                                                 <ul>
                                                     <c:forEach var="entry" items="${task.messages}">
                                                         <li>${text.escape(entry.message)}</li>

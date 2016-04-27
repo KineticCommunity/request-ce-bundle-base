@@ -239,4 +239,12 @@
        }
        return hash;
     };
+    
+    $(function() {
+        $('[data-moment]').each(function(index, item) {
+            var element = $(item);
+            element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
+        });
+    });
 })(jQuery);
+   

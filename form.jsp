@@ -12,7 +12,6 @@
         <c:if test="${param.review != null && pages.size() > 1}">
             <c:import url="partials/review.jsp" charEncoding="UTF-8"></c:import>
         </c:if>
-        <div class="errors"></div>
         <app:bodyContent/>
     </section>
 </bundle:layout>

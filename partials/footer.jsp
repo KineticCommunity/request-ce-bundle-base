@@ -8,7 +8,7 @@
         <div class="build col-xs-6">
             <dl class="dl-horizontal">
                 <dt>Build Date:</dt>
-                <dd>${buildDate}</dd>
+                <dd data-moment>${buildDate}</dd>
                 <dt>Version:</dt>
                 <dd>${buildVersion}</dd>
                 <dt>Bundle:</dt>
