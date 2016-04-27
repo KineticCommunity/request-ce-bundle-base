@@ -8,7 +8,7 @@
         <div class="build col-xs-6">
             <dl class="dl-horizontal">
                 <dt>Build Date:</dt>
-                <dd data-moment>${buildDate}</dd>
+                <dd data-moment>${time.format(time.parse(buildDate, 'yyyy-MM-dd HH:mm:ss Z', zoneId, locale))}</dd>
                 <dt>Version:</dt>
                 <dd>${buildVersion}</dd>
                 <dt>Bundle:</dt>
