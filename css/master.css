@@ -134,6 +134,9 @@ form {
     font-size: 1.6rem;
     font-weight: 600; }
 
+/* Required asterisk after label */
+.checkbox.required label:first-child:after,
+.radio.required label:first-child:after,
 .form-group.required label:after {
   content: '*'; }
 
