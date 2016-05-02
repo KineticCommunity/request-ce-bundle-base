@@ -51,5 +51,5 @@
     </body>
 </html>
 <script>
-    window.identity = '${identity.username}'
+    window.identity = '${identity.username}';
 </script>

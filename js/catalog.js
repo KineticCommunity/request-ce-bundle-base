@@ -225,12 +225,18 @@
         return url;
     }
     
-    // Display error message if authentication error is found in URL.  This happens if login credentials fail.
     $(function(){
+        // Display error message if authentication error is found in URL.  This happens if login credentials fail.
         if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
-            $('form').notifie({type:'alert',severity:'info',message:'username or password not found'});
+            $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});
         };
+        
+        //  Add the query parameter to the search field on the search page
+        if(getUrlParameters().page === 'search'){
+            $('.predictiveText').val(getUrlParameters().q)
+        }
     });
+   
     //  utility 
     getUrlParameters = function() {
        var searchString = window.location.search.substring(1), params = searchString.split("&"), hash = {};
