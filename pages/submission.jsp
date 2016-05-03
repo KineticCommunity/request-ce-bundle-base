@@ -6,7 +6,7 @@
 <bundle:layout page="${bundle.path}/layouts/layout.jsp">
     <c:choose>
         <c:when test="${submissionException != null}">
-            Error
+            <h3>Unable to retrieve submission</h3>
         </c:when>
         <c:otherwise>
             <section class="menu">
