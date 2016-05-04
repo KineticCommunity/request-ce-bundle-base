@@ -3,7 +3,7 @@
 
 <thead>
     <tr>
-        <th class="date">Created At</th>
+        <th class="date">Updated At</th>
         <th>Form</th>
         <th class="nosort">Submission</th>
         <th>State</th>

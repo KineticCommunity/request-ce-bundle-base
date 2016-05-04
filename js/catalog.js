@@ -146,7 +146,7 @@
                     "language": {"search":""},
                     "pageLength": options.length,
                     "columns": [
-                        { "data":function(data){return moment(data.submittedAt).format('MMMM Do YYYY, h:mm:ss A');} },
+                        { "data":function(data){return moment(data.updatedAt).format('MMMM Do YYYY, h:mm:ss A');} },
                         { "data":"form.name" },
                         { "data":function(data){
                                 // This allows the submission id to be a url to the submission details display page or if the submission
@@ -209,7 +209,7 @@
      * The intention is to be able to pass parameter to this function to have a configurable url so that we can have 
      * the ability to configure the query with the same piece of code*/
     function buildAjaxUrl(options){
-        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=createdAt&createdBy='+identity;
+        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=updatedAt&createdBy='+identity;
         
         if(options.serverSide){
             url += '&coreState=Closed'; 
