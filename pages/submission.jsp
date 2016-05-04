@@ -28,6 +28,8 @@
                                 <dd>${submission.label}</dd>
                                 <dt>Request Date:</dt>
                                 <dd data-moment>${time.format(submission.submittedAt)}</dd>
+                                <dt>Type:</dt>
+                                <dd>${submission.type.name}</dd>
                                 <dt>Status:</dt>
                                 <dd>${submission.coreState}</dd>
                             </dl>
@@ -36,37 +38,67 @@
                     </div>
                     <div class="col-md-8 col-xs-12 ">
                         <div class="timeline-block">
-                            <c:catch var="taskRunException">
-                                <c:forEach var="run" items="${TaskRuns.find(submission)}">
-                                <ul>
-                                    <c:forEach var="task" items="${run.tasks}">
+                            <c:choose>
+                                <c:when test="${kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
+                                    <c:catch var="taskRunException">
+                                        <c:set var="runSet" value="${TaskRuns.find(submission)}" />
+                                    </c:catch>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="runSet" value="${[]}" />
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test="${taskRunException != null}">
+                                    <ul>
                                         <li class="timeline-status">
                                             <div class="timeline-status-content">
-                                                <h4>${text.escape(task.name)}</h4>
-                                                <h5 data-moment>${task.createdAt}</h5>
-                                                <ul>
-                                                    <c:forEach var="entry" items="${task.messages}">
-                                                        <li>${text.escape(entry.message)}</li>
-                                                    </c:forEach>
-                                                </ul>
+                                            There was a problem retrieving post processing task information
+                                            for this submission.
+                                            <hr>
+                                            ${fn:escapeXml(taskRunException.message)}
                                             </div>
                                         </li>
+                                    </ul>
+                                </c:when>
+                                <c:when test="${empty runSet}">
+                                    <ul class="timeline-block__no-task">
+                                        <li class="timeline-status">
+                                            <div class="timeline-status-content">
+                                                <h4>First Task Node</h4>
+                                                <h5 data-moment>${time.now()}</h5>
+                                                <p>This is a fake Task run node</p>
+                                            </div>
+                                        </li>
+                                         <li class="timeline-status">
+                                            <div class="timeline-status-content">
+                                                <h4>Second Task Node</h4>
+                                                <h5 data-moment>${time.add(time.now(), 1, "hour", "America/Chicago")}</h5>
+                                                <p>Set up a Task Tree to see node completion here</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach var="run" items="${runSet}">
+                                    <ul>
+                                        <c:forEach var="task" items="${run.tasks}">
+                                            <li class="timeline-status">
+                                                <div class="timeline-status-content">
+                                                    <h4>${text.escape(task.name)}</h4>
+                                                    <h5 data-moment>${task.createdAt}</h5>
+                                                    <ul>
+                                                        <c:forEach var="entry" items="${task.messages}">
+                                                            <li>${text.escape(entry.message)}</li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
                                     </c:forEach>
-                                </ul>
-                                </c:forEach>
-                            </c:catch>
-                            <c:if test="${taskRunException != null}">
-                                <ul>
-                                    <li class="timeline-status">
-                                        <div class="timeline-status-content">
-                                        There was a problem retrieving post processing task information
-                                        for this submission.
-                                        <hr>
-                                        ${fn:escapeXml(taskRunException.message)}
-                                        </div>
-                                    </li>
-                                </ul>
-                            </c:if>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
