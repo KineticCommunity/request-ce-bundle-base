@@ -31,13 +31,13 @@
                 <li class="dropdown">
                     <c:choose>
                         <c:when test="${identity.anonymous && kapp == null}">
-                            <a href="${bundle.spaceLocation}/app/login" class="hidden-xs"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+                            <a href="${bundle.spaceLocation}/app/login" ><i class="fa fa-sign-in fa-fw"></i> Login</a>
                         </c:when>
                         <c:when test="${identity.anonymous}">
-                            <a href="${bundle.spaceLocation}/app/login?kapp=${kapp.slug}" class="hidden-xs"><i class="fa fa-sign-in fa-fw"></i> Login</a>
+                            <a href="${bundle.spaceLocation}/app/login?kapp=${kapp.slug}" ><i class="fa fa-sign-in fa-fw"></i> Login</a>
                         </c:when>
                         <c:otherwise>
-                            <a id="drop1" href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user fa-fw"></i> ${text.escape(text.trim(identity.displayName, identity.username))} <span class="fa fa-caret-down fa-fw"></span>
                             </a>
                             <ul class="dropdown-menu show-xs priority" aria-labelledby="drop1">

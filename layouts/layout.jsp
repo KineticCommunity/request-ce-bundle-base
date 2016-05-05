@@ -34,15 +34,15 @@
         <bundle:yield name="head"/>
         <style>
             <c:if test="${not empty kapp.getAttributeValue('Logo Height Px')}">
-                .navbar-brand {height:${kapp.getAttributeValue('Logo Height Px')}px;}
+                .navbar-brand {
+                    height:${kapp.getAttributeValue('Logo Height Px')}px;
+                }
             </c:if>
         </style>
     </head>
     <body>
         <div class="view-port">
-            <c:if test="${not empty identity}">
-                <c:import url="${bundle.path}/partials/header.jsp" charEncoding="UTF-8"/>
-            </c:if>
+            <c:import url="${bundle.path}/partials/header.jsp" charEncoding="UTF-8"/>
             <div class="container">
                 <bundle:yield/>
             </div>
