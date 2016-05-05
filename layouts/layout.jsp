@@ -42,7 +42,10 @@
     </head>
     <body>
         <div class="view-port">
-            <c:import url="${bundle.path}/partials/header.jsp" charEncoding="UTF-8"/>
+            <%-- Identity will be empty on root context page (/kinetic) --%>
+            <c:if test="${not empty identity}">
+                <c:import url="${bundle.path}/partials/header.jsp" charEncoding="UTF-8"/>
+            </c:if>
             <div class="container">
                 <bundle:yield/>
             </div>
