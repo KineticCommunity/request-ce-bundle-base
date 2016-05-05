@@ -63,20 +63,44 @@
                                 </c:when>
                                 <c:when test="${empty runSet}">
                                     <ul class="timeline-block__no-task">
-                                        <li class="timeline-status">
-                                            <div class="timeline-status-content">
-                                                <h4>First Task Node</h4>
-                                                <h5 data-moment>${time.now()}</h5>
-                                                <p>This is a fake Task run node</p>
-                                            </div>
-                                        </li>
-                                         <li class="timeline-status">
-                                            <div class="timeline-status-content">
-                                                <h4>Second Task Node</h4>
-                                                <h5 data-moment>${time.add(time.now(), 1, "hour", "America/Chicago")}</h5>
-                                                <p>Set up a Task Tree to see node completion here</p>
-                                            </div>
-                                        </li>
+                                        <c:if test="${submission.coreState == 'Draft'}">
+                                            <li class="timeline-status">
+                                                <div class="timeline-status-content">
+                                                    <h4>Started</h4>
+                                                    <h5 data-moment>${time.format(submission.createdAt)}</h5>
+                                                </div>
+                                            </li>
+                                        </c:if>
+                                        <c:if test="${submission.coreState == 'Submitted'}">
+                                            <li class="timeline-status">
+                                                <div class="timeline-status-content">
+                                                    <h4>Submitted</h4>
+                                                    <h5 data-moment>${time.format(submission.submittedAt)}</h5>
+                                                </div>
+                                            </li>
+                                            <li class="timeline-status">
+                                               <div class="timeline-status-content">
+                                                   <h4>In Progress</h4>
+                                                   <h5 data-moment>${time.format(submission.submittedAt)}</h5>
+                                                   <p>The request is in progress.</p>
+                                               </div>
+                                           </li>
+                                        </c:if>
+                                        <c:if test="${submission.coreState == 'Closed'}">
+                                            <li class="timeline-status">
+                                                <div class="timeline-status-content">
+                                                    <h4>Submitted</h4>
+                                                    <h5 data-moment>${time.format(submission.submittedAt)}</h5>
+                                                </div>
+                                            </li>
+                                            <li class="timeline-status">
+                                               <div class="timeline-status-content">
+                                                   <h4>Completed</h4>
+                                                   <h5 data-moment>${time.format(submission.submittedAt)}</h5>
+                                                   <p>The request has been completed.</p>
+                                               </div>
+                                           </li>
+                                        </c:if>
                                     </ul>
                                 </c:when>
                                 <c:otherwise>
