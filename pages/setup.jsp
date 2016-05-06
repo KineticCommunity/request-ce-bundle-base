@@ -2,7 +2,7 @@
 <%@include file="../bundle/initialization.jspf" %>
 
 <bundle:layout page="${bundle.path}/layouts/layout.jsp">
-    <div class="no-data">
+    <div class="no-data no-data-setup">
         <c:choose>
             <c:when test="${!identity.spaceAdmin}">
                 <div class="alert alert-danger">

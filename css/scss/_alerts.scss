@@ -33,11 +33,15 @@
   border: 1px solid #999;
   border-radius: 3px;
   line-height: 140%;
+  margin-top: 20px;
   margin-bottom: 20px;
   padding: 1em;
-  background-color: #fff;
+  background-color: transparent;
   position: relative;
   border: 1px solid transparent;
+  &.no-data-setup{
+    background-color: #fff;
+  }
   h3{
     text-transform: none;
   }
