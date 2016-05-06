@@ -10,6 +10,9 @@
             content in this case).
         --%>
         <bundle:yield/>
+        <script>
+            window.identity = '${identity.username}'
+        </script>
     </c:when>
     <%-- 
         If the form is being rendered in "normal" mode, 
@@ -34,6 +37,3 @@
         </bundle:layout>
     </c:otherwise>
 </c:choose>
-<script>
-    window.identity = '${identity.username}'
-</script>

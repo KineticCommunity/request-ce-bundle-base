@@ -24,7 +24,7 @@
         <bundle:scriptpack>
             <bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" />
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
-            <bundle:script src="${bundle.location}/libraries/moment/moment.js" /> 
+            <bundle:script src="${bundle.location}/libraries/moment/moment-with-locales.js" /> 
             <bundle:script src="${bundle.location}/libraries/moment/moment-timezone.js" /> 
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/media/js/jquery.dataTables.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" /> 
@@ -55,7 +55,7 @@
             <c:import url="${bundle.path}/partials/footer.jsp" charEncoding="UTF-8"/>
         </div>
     </body>
+    <script>
+        window.identity = '${identity.username}';
+    </script>
 </html>
-<script>
-    window.identity = '${identity.username}';
-</script>
