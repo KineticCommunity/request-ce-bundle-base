@@ -17,10 +17,10 @@
                             <img src="${kapp.getAttributeValue('Logo Url')}" alt="logo">
                         </c:when>
                         <c:when test="${not empty kapp.getAttributeValue('Company Name')}">
-                            <i class="fa fa-home"></i>${kapp.getAttributeValue("Company Name")}
+                            <i class="fa fa-home"></i> ${kapp.getAttributeValue("Company Name")}
                         </c:when>
                         <c:otherwise>
-                            <i class="fa fa-home"></i>${kapp.name}
+                            <i class="fa fa-home"></i> ${kapp.name}
                         </c:otherwise>
                     </c:choose>
                 </a>
