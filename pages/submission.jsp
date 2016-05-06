@@ -63,7 +63,7 @@
                                 </c:when>
                                 <c:when test="${empty runSet}">
                                     <div class="no-data text-center" >
-                                        <img src="${bundle.location}/images/empty-state.png" alt="">
+                                        <img src="${bundle.location}/images/empty-state@2x.png" alt="There are no tasks to display for this Submission"  width="262" height="151">
                                         <h4 style="color:#999;">There are no tasks to display for this Submission</h4>
             
                                     </div>
