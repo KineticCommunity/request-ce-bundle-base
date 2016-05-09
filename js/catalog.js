@@ -86,9 +86,9 @@
                 serverSide: false,
             });
         }
-        if(currentId === 'service'){
+        if(currentId === 'requests'){
             renderTable({
-                table: '#serviceTable',
+                table: '#requestsTable',
                 type: 'Service',
                 serverSide: false,
             });

@@ -8,7 +8,7 @@
                 <a href="${bundle.kappLocation}">Home</a>
             </li>
             <li id="service" class="submissiontable">
-                <a href="${bundle.kappLocation}?page=service">My Requests</a>
+                <a href="${bundle.kappLocation}?page=requests">My Requests</a>
             </li>
             <li id="approval" class="submissiontable">
                 <a href="${bundle.kappLocation}?page=approval">My Approvals</a>
