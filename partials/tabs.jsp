@@ -7,10 +7,10 @@
             <li id="home">
                 <a href="${bundle.kappLocation}">Home</a>
             </li>
-            <li id="request" class="submissiontable">
+            <li id="requests" class="submissiontable">
                 <a href="${bundle.kappLocation}?page=requests">My Requests</a>
             </li>
-            <li id="approval" class="submissiontable">
+            <li id="approvals" class="submissiontable">
                 <a href="${bundle.kappLocation}?page=approvals">My Approvals</a>
             </li>
             <li id="closed" class="submissiontable">
