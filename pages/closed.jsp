@@ -8,7 +8,7 @@
     <%--Tables are built on page load using dataTables library and an ajax call.
         In catalog.js an object to render the table is configured on page load and the mathod renderTable is called.  --%>
         <div role="tabpanel" class="tab-pane" id="tab-test">
-             <h3>Complete Submissions</h3>
+            <h3>Closed Submissions</h3>
             <table id="closedTable" class="table table-striped table-hover">
                 <thead>
                     <tr>
