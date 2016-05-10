@@ -2,7 +2,23 @@
  * Forms Search using Twitter Typeahead. Prefetch all accessible forms
  * for the Kapp.
 **/
-(function($, moment){
+(function($, moment, _){
+    // UTILITY METHODS
+    
+    /**
+     * Returns an Object with keys/values for each of the url parameters.
+     * 
+     * @returns {Object}
+     */
+    bundle.getUrlParameters = function() {
+       var searchString = window.location.search.substring(1), params = searchString.split("&"), hash = {};
+       for (var i = 0; i < params.length; i++) {
+         var val = params[i].split("=");
+         hash[unescape(val[0])] = unescape(val[1]);
+       }
+       return hash;
+    };
+    
     var locale = window.navigator.userLanguage || window.navigator.language;
     moment.locale(locale);
     $(function(){
@@ -77,26 +93,29 @@
     }
     //Request and Approval datatables 
     $(function(){
-        currentId = getUrlParameters().page;
+        var currentId = bundle.getUrlParameters().page;
        
-        if (currentId == 'approval'){
+        if (currentId === 'approvals'){
             renderTable({
                 table: '#approvalTable',
                 type: 'Approval',
+                coreState: ['Draft','Submitted'],
                 serverSide: false,
             });
         }
-        if(currentId === 'service'){
+        if(currentId === 'requests'){
             renderTable({
-                table: '#serviceTable',
+                table: '#requestsTable',
                 type: 'Service',
+                coreState: ['Draft','Submitted'],
                 serverSide: false,
             });
         }
-        if(currentId == 'complete'){
-            $('#completeTable').removeData('pageTokens');
+        if(currentId == 'closed'){
+            $('#closedTable').removeData('pageTokens');
             renderTable({
-                table: '#completeTable',
+                table: '#closedTable',
+                coreState: ['Closed'],
                 length: 10,
                 serverSide: true,
             });
@@ -115,25 +134,7 @@
             contentType: 'application/json',
             url: buildAjaxUrl(options),
             success: function(data, textStatus, jqXHR){
-                if(options.serverSide){
-                    // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
-                    // The token is added to an array that is attached to the table elements data property. 
-                    var nextPageToken;
-                    if(data.nextPageToken === null){
-                        nextPageToken = "lastPage";
-                    }else{
-                        nextPageToken = data.nextPageToken;
-                    }
-                    $(options.table).data('nextPageToken', nextPageToken);
-                    if ($(options.table).data('pageTokens') === undefined) {
-                        $(options.table).data('pageTokens', ["firstPage"]); 
-                    }
-                    //  To make sure duplicate tokens are not created when pages are revisited.
-                    var tokenArray = $(options.table).data('pageTokens');
-                    if(!($.inArray(nextPageToken,tokenArray) > 0)){
-                        $(options.table).data('pageTokens').push(nextPageToken);
-                    }
-                }
+                
                 $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
                 var table = $(options.table).DataTable({
                     "destroy": true,
@@ -146,7 +147,7 @@
                     "language": {"search":""},
                     "pageLength": options.length,
                     "columns": [
-                        { "data":function(data){return moment(data.submittedAt).format('MMMM Do YYYY, h:mm:ss A');} },
+                        { "data":function(data){return moment(data.updatedAt).format('MMMM Do YYYY, h:mm:ss A');} },
                         { "data":"form.name" },
                         { "data":function(data){
                                 // This allows the submission id to be a url to the submission details display page or if the submission
@@ -163,28 +164,33 @@
                 });
                 
                 if(options.serverSide){
-                    var arr = $(options.table).data('pageTokens');
-                    var nextToken = $(options.table).data('nextPageToken')
-                    var index = $.inArray(nextToken, arr);
-                    
-                    if($(options.table).data('nextPageToken') !== "lastPage"){
+                    // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
+                    // The token is added to an array that is attached to the table elements data property. 
+                    if ($(options.table).data('nextPageTokens') === undefined) {
+                        $(options.table).data('nextPageTokens', []); 
+                    }
+                    $(options.table).data('nextPageTokens').push(data.nextPageToken);
+                    var arr = $(options.table).data('nextPageTokens');
+                    var token = _.last(arr);
+                    if(token !== null){
                         $(options.table+'_next').removeClass('disabled');
                         // Add click event to next button, if serverSide property is set to true, to allow pagination to addintional results.
                         $(options.table+'_next').on('click',function(){    
                             renderTable($.extend({},options,{
                                 token: function(){
-                                    var token = arr[index];
                                     return token;},
                             }));
                         });
                     }
-                    if(index !== 1){
+                    if(arr.length > 1){
                         $(options.table+'_previous').removeClass('disabled');
                         // Add click event to previous button, if serverSide property is set to true, to allow pagination to previous results.
                         $(options.table+'_previous').on('click',function(){
+                            $(options.table).data('nextPageTokens').pop();
+                            $(options.table).data('nextPageTokens').pop();
                             renderTable($.extend({},options,{
                                 token: function(){
-                                    var token = arr[index-2];
+                                    token = _.last(arr);
                                     return token;},
                             }));
                         });
@@ -192,7 +198,7 @@
                     /* Sets the number of rows displayed with the select option menu */
                     $(options.table+'_length').change(function(){
                         delete options.token;
-                        $('#completeTable').removeData('pageTokens');
+                        $('#closedTable').removeData('pageTokens');
                         renderTable($.extend({},options,{
                             length: $(options.table+'_length option:selected').val(),
                         }));
@@ -209,44 +215,43 @@
      * The intention is to be able to pass parameter to this function to have a configurable url so that we can have 
      * the ability to configure the query with the same piece of code*/
     function buildAjaxUrl(options){
-        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=createdAt&createdBy='+identity;
-        
-        if(options.serverSide){
-            url += '&coreState=Closed'; 
-        }else{
-            url += '&coreState=Draft&coreState=Submitted&type='+options.type;
+        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=updatedAt&createdBy='+identity;
+
+        if(options.coreState !== undefined){
+            $.each(options.coreState, function(k,v){
+                url += '&coreState='+v; 
+            });
+        }
+        if(options.type !== undefined){
+            url += '&type='+options.type;
         }
         if(options.serverSide && options.length !== undefined){
             url += '&limit=' + options.length;
         }
-        if(options.token && options.token() != "firstPage"){
+        if(options.token && options.token() !== undefined){
             url += '&pageToken='+options.token();
         };
         return url;
     }
     
-    // Display error message if authentication error is found in URL.  This happens if login credentials fail.
+    // PAGE LOAD EVENTS
     $(function(){
+        // Display error message if authentication error is found in URL.  This happens if login credentials fail.
         if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
-            $('form').notifie({type:'alert',severity:'info',message:'username or password not found'});
+            $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});
         };
-    });
-    //  utility 
-    getUrlParameters = function() {
-       var searchString = window.location.search.substring(1), params = searchString.split("&"), hash = {};
-
-       for (var i = 0; i < params.length; i++) {
-         var val = params[i].split("=");
-         hash[unescape(val[0])] = unescape(val[1]);
-       }
-       return hash;
-    };
-    
-    $(function() {
+        
+        //  Add the query parameter to the search field on the search page
+        if(bundle.getUrlParameters().page === 'search'){
+            $('.predictiveText').val(bundle.getUrlParameters().q)
+        }
+        
+         // Moment-ify any elements with the data-moment attribute
         $('[data-moment]').each(function(index, item) {
             var element = $(item);
             element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
         });
+        
     });
-})(jQuery, moment);
+})(jQuery, moment, _);
    

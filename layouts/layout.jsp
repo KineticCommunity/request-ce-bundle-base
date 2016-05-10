@@ -22,9 +22,13 @@
         </bundle:stylepack>
         <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
-            <bundle:script src="${bundle.location}/libraries/jquery-datatables/media/js/jquery.dataTables.js" />
-            <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" />
+            <bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" />
+            <bundle:script src="${bundle.location}/libraries/underscore/underscore-min.js" />
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
+            <bundle:script src="${bundle.location}/libraries/moment/moment-with-locales.js" /> 
+            <bundle:script src="${bundle.location}/libraries/moment/moment-timezone.js" /> 
+            <bundle:script src="${bundle.location}/libraries/jquery-datatables/media/js/jquery.dataTables.js" />
+            <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" /> 
             <bundle:script src="${bundle.location}/libraries/notifie/jquery.notifie.js" />
             <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/moment.js" />
@@ -34,12 +38,15 @@
         <bundle:yield name="head"/>
         <style>
             <c:if test="${not empty kapp.getAttributeValue('Logo Height Px')}">
-                .navbar-brand {height:${kapp.getAttributeValue('Logo Height Px')}px;}
+                .navbar-brand {
+                    height:${kapp.getAttributeValue('Logo Height Px')}px;
+                }
             </c:if>
         </style>
     </head>
     <body>
         <div class="view-port">
+            <%-- Identity will be empty on root context page (/kinetic) --%>
             <c:if test="${not empty identity}">
                 <c:import url="${bundle.path}/partials/header.jsp" charEncoding="UTF-8"/>
             </c:if>
@@ -49,7 +56,7 @@
             <c:import url="${bundle.path}/partials/footer.jsp" charEncoding="UTF-8"/>
         </div>
     </body>
+    <script>
+        window.identity = '${identity.username}';
+    </script>
 </html>
-<script>
-    window.identity = '${identity.username}'
-</script>

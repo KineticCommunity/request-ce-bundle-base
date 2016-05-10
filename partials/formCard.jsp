@@ -4,7 +4,7 @@
 <div class="col-sm-4">
     <div class="card small">
         <div class="card-content">
-            <span class="fa ${empty thisForm.getAttribute('Icon') ? ['fa-adjust','fa-bank','fa-cloud','fa-desktop','fa-eye','fa-file-image-o','fa-globe'][random.nextInt(6)] : thisForm.getAttributeValue('Icon')} secondary-color"></span>
+            <span class="fa ${empty thisForm.getAttribute('Icon') ? 'fa-star' : thisForm.getAttributeValue('Icon')} secondary-color"></span>
             <span class="card-title">
                 <a href="${bundle.kappLocation}/${thisForm.slug}">
                     ${text.escape(thisForm.name)}

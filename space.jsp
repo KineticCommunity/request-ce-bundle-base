@@ -10,7 +10,7 @@
     <ul>
         <c:forEach var="kapp" items="${space.kapps}">
             <li><strong>${text.escape(kapp.name)}:</strong> 
-                <a href="${bundle.spaceLocation}/${kapp.slug}">user</a><c:if test="${!(identity.anonymous)}"> | <a href="${bundle.spaceLocation}/app">manage</a> </c:if>
+                <a href="${bundle.spaceLocation}/${kapp.slug}">user</a><c:if test="${!(identity.anonymous)}"> | <a href="${bundle.spaceLocation}/app/#/${kapp.slug}/activity/overview">manage</a> </c:if>
             </li>
         </c:forEach>
     </ul>

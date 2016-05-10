@@ -44,10 +44,28 @@ form {
       border: 0.2rem solid rgba($black, 0.5);
       outline: none;
     }
+    &[type='text'][disabled],
+    &[type='password'][disabled],
+    &[type='radio'][disabled],
+    &[type='checkbox'][disabled],
+    &[disabled]{
+      cursor: not-allowed;
+    }
+    &[disabled]{
+      background-color: #eee;
+      opacity: 1;
+    }
   }
   textarea {
     border: 0.2rem solid rgba($black, 0.5);
     outline: none;
+    &[disabled]{
+      cursor: not-allowed;
+    }
+    &[disabled]{
+      background-color: #eee;
+      opacity: 1;
+    }
   }
   input[type='text']:focus, textarea:focus {
     border-color: $primary-color;
@@ -61,5 +79,12 @@ form {
     background-image: none;
     border: 0.1rem solid #cccccc;
     border-radius: 0.4rem;
+    &[disabled]{
+      cursor: not-allowed;
+    }
+    &[disabled]{
+      background-color: #eee;
+      opacity: 1;
+    }
   }
 }

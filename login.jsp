@@ -34,6 +34,3 @@
         </form>
     </section>
 </bundle:layout>
-<script>
-    
-</script>

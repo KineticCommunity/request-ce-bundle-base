@@ -151,19 +151,9 @@ form .checkbox label + input {
 form input[type='text'], form input[type='password'] {
   border: 0.2rem solid rgba(49, 47, 56, 0.5);
   outline: none; }
-form input[type='text'][disabled], form input[type='password'][disabled], form input[type='radio'][disabled], form input[type='checkbox'][disabled], form input[disabled] {
-  cursor: not-allowed; }
-form input[disabled] {
-  background-color: #eee;
-  opacity: 1; }
 form textarea {
   border: 0.2rem solid rgba(49, 47, 56, 0.5);
   outline: none; }
-  form textarea[disabled] {
-    cursor: not-allowed; }
-  form textarea[disabled] {
-    background-color: #eee;
-    opacity: 1; }
 form input[type='text']:focus, form textarea:focus {
   border-color: #428BCA; }
 form select {
@@ -175,11 +165,6 @@ form select {
   background-image: none;
   border: 0.1rem solid #cccccc;
   border-radius: 0.4rem; }
-  form select[disabled] {
-    cursor: not-allowed; }
-  form select[disabled] {
-    background-color: #eee;
-    opacity: 1; }
 
 /* Form Button Styles
  *-------------------------------------- */
@@ -237,12 +222,6 @@ form button[data-button-type='previous-page']:before {
   -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
   opacity: 1; }
-form button[disabled] {
-  cursor: not-allowed;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  opacity: .65; }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Lists
@@ -725,14 +704,11 @@ footer {
   border: 1px solid #999;
   border-radius: 3px;
   line-height: 140%;
-  margin-top: 20px;
   margin-bottom: 20px;
   padding: 1em;
-  background-color: transparent;
+  background-color: #fff;
   position: relative;
   border: 1px solid transparent; }
-  .no-data.no-data-setup {
-    background-color: #fff; }
   .no-data h3 {
     text-transform: none; }
   .no-data ul {
