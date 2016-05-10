@@ -11,7 +11,7 @@
                 <a href="${bundle.kappLocation}?page=requests">My Requests</a>
             </li>
             <li id="approval" class="submissiontable">
-                <a href="${bundle.kappLocation}?page=approval">My Approvals</a>
+                <a href="${bundle.kappLocation}?page=approvals">My Approvals</a>
             </li>
             <li id="closed" class="submissiontable">
                 <a href="${bundle.kappLocation}?page=closed">Closed Submissions</a>
