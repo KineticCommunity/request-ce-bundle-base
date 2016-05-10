@@ -7,14 +7,14 @@
             <li id="home">
                 <a href="${bundle.kappLocation}">Home</a>
             </li>
-            <li id="service" class="submissiontable">
+            <li id="request" class="submissiontable">
                 <a href="${bundle.kappLocation}?page=requests">My Requests</a>
             </li>
             <li id="approval" class="submissiontable">
                 <a href="${bundle.kappLocation}?page=approval">My Approvals</a>
             </li>
-            <li id="complete" class="submissiontable">
-                <a href="${bundle.kappLocation}?page=complete">Closed Submissions</a>
+            <li id="closed" class="submissiontable">
+                <a href="${bundle.kappLocation}?page=closed">Closed Submissions</a>
             </li>
         </ul>
     </section>

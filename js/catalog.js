@@ -93,10 +93,10 @@
                 serverSide: false,
             });
         }
-        if(currentId == 'complete'){
-            $('#completeTable').removeData('pageTokens');
+        if(currentId == 'closed'){
+            $('#closedTable').removeData('pageTokens');
             renderTable({
-                table: '#completeTable',
+                table: '#closedTable',
                 length: 10,
                 serverSide: true,
             });
@@ -192,7 +192,7 @@
                     /* Sets the number of rows displayed with the select option menu */
                     $(options.table+'_length').change(function(){
                         delete options.token;
-                        $('#completeTable').removeData('pageTokens');
+                        $('#closedTable').removeData('pageTokens');
                         renderTable($.extend({},options,{
                             length: $(options.table+'_length option:selected').val(),
                         }));

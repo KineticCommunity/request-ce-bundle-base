@@ -8,7 +8,7 @@
     
         <div role="tabpanel" class="tab-pane" id="tab-test">
              <h3>Complete Submissions</h3>
-            <table id="completeTable" class="table table-striped table-hover">
+            <table id="closedTable" class="table table-striped table-hover">
                 <c:import url="${bundle.path}/partials/submissions.jsp" charEncoding="UTF-8"/>
             </table>
         </div>
