@@ -13,6 +13,10 @@
         <link rel="icon" type="image/png" href="${bundle.location}/images/favicon-16x16.png" sizes="16x16">
         <link rel="shortcut icon" href="${bundle.location}/images/favicon.ico" type="image/x-icon"/>
         <app:headContent/>
+        
+        <%-- Bundle stylepack and scriptpack create a minified and single file of referanced stylesheet and javascript
+        Add ?debugjs to the end of your URL to view individual files --%>
+        
         <bundle:stylepack>
             <bundle:style src="${bundle.location}/libraries/bootstrap/bootstrap.min.css" />
             <bundle:style src="${bundle.location}/libraries/notifie/jquery.notifie.css" />
