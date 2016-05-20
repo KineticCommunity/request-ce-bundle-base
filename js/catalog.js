@@ -182,10 +182,16 @@
                             }));
                         });
                     }
+                    
+                    // TODO: should we and a refresh button?
+                    // If we do a $.pop() action will be required to remove the next page token from the nextPageTokens array.
+                    
                     if(arr.length > 1){
                         $(options.table+'_previous').removeClass('disabled');
                         // Add click event to previous button, if serverSide property is set to true, to allow pagination to previous results.
                         $(options.table+'_previous').on('click',function(){
+                            // To move to a previous page two $.pop() actions required.
+                            // One to remove the next page token and One to remove the current page token from the nextPageTokens array.
                             $(options.table).data('nextPageTokens').pop();
                             $(options.table).data('nextPageTokens').pop();
                             renderTable($.extend({},options,{
@@ -198,7 +204,7 @@
                     /* Sets the number of rows displayed with the select option menu */
                     $(options.table+'_length').change(function(){
                         delete options.token;
-                        $('#closedTable').removeData('pageTokens');
+                        $('#closedTable').removeData('nextPageTokens');
                         renderTable($.extend({},options,{
                             length: $(options.table+'_length option:selected').val(),
                         }));
