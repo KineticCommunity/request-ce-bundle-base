@@ -55,6 +55,17 @@ form {
       background-color: #eee;
       opacity: 1;
     }
+    &[readonly],
+    &[type='text'][readonly],
+    &[type='search'][readonly], 
+    &[type='url'][readonly], 
+    &[type='tel'][readonly], 
+    &[type='email'][readonly], 
+    &[type='number'][readonly], 
+    &[type='password'][readonly]{
+      background-color: #eee;
+      opacity: 1;
+    }
   }
   textarea {
     border: 0.2rem solid rgba($black, 0.5);
@@ -62,11 +73,13 @@ form {
     &[disabled]{
       cursor: not-allowed;
     }
-    &[disabled]{
+    &[disabled],
+    &[readonly]{
       background-color: #eee;
       opacity: 1;
     }
   }
+  // Focus
   input[type='text']:focus, textarea:focus {
     border-color: $primary-color;
   }

@@ -156,12 +156,15 @@ form input[type='text'][disabled], form input[type='password'][disabled], form i
 form input[disabled] {
   background-color: #eee;
   opacity: 1; }
+form input[readonly], form input[type='text'][readonly], form input[type='search'][readonly], form input[type='url'][readonly], form input[type='tel'][readonly], form input[type='email'][readonly], form input[type='number'][readonly], form input[type='password'][readonly] {
+  background-color: #eee;
+  opacity: 1; }
 form textarea {
   border: 0.2rem solid rgba(49, 47, 56, 0.5);
   outline: none; }
   form textarea[disabled] {
     cursor: not-allowed; }
-  form textarea[disabled] {
+  form textarea[disabled], form textarea[readonly] {
     background-color: #eee;
     opacity: 1; }
 form input[type='text']:focus, form textarea:focus {
