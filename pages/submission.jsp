@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h3>
-                        <a href='${bundle.kappLocation}/#tab-requests'>Return to catalog</a>
+                        <a href='${bundle.kappLocation}'>Return to catalog</a>
                         </h3>
                     </div>
                 </div>
@@ -37,39 +37,40 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-xs-12 ">
-                        <div class="timeline-block">
-                            <c:choose>
-                                <c:when test="${kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
-                                    <c:catch var="taskRunException">
-                                        <c:set var="runSet" value="${TaskRuns.find(submission)}" />
-                                    </c:catch>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:set var="runSet" value="${[]}" />
-                                </c:otherwise>
-                            </c:choose>
-                            <c:choose>
-                                <c:when test="${taskRunException != null}">
-                                    <ul>
-                                        <li class="timeline-status">
-                                            <div class="timeline-status-content">
-                                            There was a problem retrieving post processing task information
-                                            for this submission.
-                                            <hr>
-                                            ${fn:escapeXml(taskRunException.message)}
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </c:when>
-                                <c:when test="${empty runSet}">
-                                    <div class="no-data text-center" >
-                                        <img src="${bundle.location}/images/empty-state@2x.png" alt="There are no tasks to display for this Submission"  width="262" height="151">
-                                        <h4 style="color:#999;">There are no tasks to display for this Submission</h4>
-            
-                                    </div>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach var="run" items="${runSet}">
+                        <c:choose>
+                            <c:when test="${kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
+                                <c:catch var="taskRunException">
+                                    <c:set var="runSet" value="${TaskRuns.find(submission)}" />
+                                </c:catch>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="runSet" value="${[]}" />
+                            </c:otherwise>
+                        </c:choose>
+                        <c:choose>
+                            <c:when test="${taskRunException != null}">
+
+                                <ul>
+                                    <li class="timeline-status">
+                                        <div class="timeline-status-content">
+                                        There was a problem retrieving post processing task information
+                                        for this submission.
+                                        <hr>
+                                        ${fn:escapeXml(taskRunException.message)}
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:when test="${empty runSet}">
+                                <div class="no-data text-center" >
+                                    <img src="${bundle.location}/images/empty-state@2x.png" alt="There are no tasks to display for this Submission"  width="262" height="151">
+                                    <h4 style="color:#999;">There are no tasks to display for this Submission</h4>
+
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="run" items="${runSet}">
+                                <div class="timeline-block">
                                     <ul>
                                         <c:forEach var="task" items="${run.tasks}">
                                             <li class="timeline-status">
@@ -85,10 +86,10 @@
                                             </li>
                                         </c:forEach>
                                     </ul>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
+                                </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </section>
