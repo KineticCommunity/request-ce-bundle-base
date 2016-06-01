@@ -152,7 +152,6 @@
                         { "data":function(data){
                                 // This allows the submission id to be a url to the submission details display page or if the submission
                                 // has a coreState of draft the url will link to the submission to be completed.
-                                // TODO: use submission label instead of guid
                                 if(data.coreState == "Draft"){
                                     var id = "<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.id+"'>"+data.label+"</a>"; 
                                 }else{
@@ -217,12 +216,16 @@
             }
         });
     }
-    /* This fucntion build a Url to be used by the ajax call.
-     * The intention is to be able to pass parameter to this function to have a configurable url so that we can have 
-     * the ability to configure the query with the same piece of code*/
+    /* This fucntion builds a Url to be used by the ajax call.
+     * The intention is to pass parameters to this function to make the url configurable.  This gives 
+     * the ability to use the same piece of code to configure multiple queries.*/
     function buildAjaxUrl(options){
-        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=updatedAt&createdBy='+identity;
-
+        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=updatedAt';
+        if(options.type === 'Approval'){
+            url += '&values[Assigned Individual]='+identity;
+        }else{
+            url += '&createdBy='+identity+'&requestedFor='+identity;
+        }
         if(options.coreState !== undefined){
             $.each(options.coreState, function(k,v){
                 url += '&coreState='+v; 
@@ -236,7 +239,7 @@
         }
         if(options.token && options.token() !== undefined){
             url += '&pageToken='+options.token();
-        };
+        }
         return url;
     }
     
