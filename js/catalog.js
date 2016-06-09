@@ -140,7 +140,6 @@
                     "destroy": true,
                     "order": [[ 0, "desc" ]],
                     bSort: options.serverSide ? false : true,
-                    destroy:true,
                     "pagingType": options.serverSide ? "simple" : "simple_numbers",
                     "dom": options.serverSide ? '<"top"l>t<"bottom"p><"clear">' : "lftip",
                     "data": data.submissions,
@@ -260,7 +259,6 @@
             var element = $(item);
             element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
         });
-        
     });
 })(jQuery, moment, _);
    

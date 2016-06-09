@@ -61,7 +61,11 @@
                 </li>
                 <c:if test="${!(identity.anonymous)}">
                     <li class="dropdown">
-                        <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="hidden-lg hidden-md">Kapps <span class="fa fa-caret-down fa-fw"></span></span><span class="hidden-sm hidden-xs fa fa-th fa-fw"></span></a>
+                        <a id="drop2" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <span class="hidden-lg hidden-md">Kapps
+                            <span class="fa fa-caret-down fa-fw"></span></span>
+                            <span class="hidden-sm hidden-xs fa fa-th fa-fw"></span>
+                        </a>
                         <ul class="dropdown-menu" aria-labelledby="drop2">
                             <c:forEach items="${space.kapps}" var="kapp">
                                 <li><a href="/kinetic/${space.slug}/${kapp.slug}/">${kapp.name}</a></li>

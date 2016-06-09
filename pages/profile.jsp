@@ -11,6 +11,7 @@
         <div class="page-header">
             <h2>Edit Your Profile</h2>
         </div>
+        <p>The logged in user Id: ${identity.username}</p>
         <div class="profile card">
             <div class="panel-body">
                 <div class="form-group">
