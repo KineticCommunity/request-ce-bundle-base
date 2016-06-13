@@ -260,5 +260,30 @@
             element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
         });
     });
+    
+    /*----------------------------------------------------------------------------------------------
+     * BUNDLE.CONFIG OVERWRITES
+     *--------------------------------------------------------------------------------------------*/
+    
+    /**
+     * Overwrite the default field constraint violation error handler to use Notifie to display the errors above the individual fields.
+     */
+    bundle.config = bundle.config || {};
+    bundle.config.renderers = bundle.config.renderers || {};
+    bundle.config.renderers.fieldConstraintViolations = function(form, fieldConstraintViolations) {
+        _.each(fieldConstraintViolations, function(value, key){
+            $(form.getFieldByName(key).wrapper()).notifie({
+                message: value.join("<br>"),
+                exitEvents: "click"
+            });
+        });
+    }
+    bundle.config.renderers.submitErrors = function(response) {
+        $('[data-form]').notifie({
+            message: 'There was a ' + response.status + ' : "' + response.statusText + '" error.' ,
+            exitEvents: "click"
+        });
+        console.log(response)
+    }
 })(jQuery, moment, _);
    
