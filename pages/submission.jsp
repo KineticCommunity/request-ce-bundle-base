@@ -37,16 +37,11 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-xs-12 ">
-                        <c:choose>
-                            <c:when test="${kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
-                                <c:catch var="taskRunException">
-                                    <c:set var="runSet" value="${TaskRuns.find(submission)}" />
-                                </c:catch>
-                            </c:when>
-                            <c:otherwise>
-                                <c:set var="runSet" value="${[]}" />
-                            </c:otherwise>
-                        </c:choose>
+                        <c:if test="${kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
+                            <c:catch var="taskRunException">
+                                <c:set var="runSet" value="${TaskRuns.find(submission)}" />
+                            </c:catch>
+                        </c:if>
                         <c:choose>
                             <c:when test="${taskRunException != null}">
 

@@ -91,7 +91,10 @@
             ]
         });
     }
-    //Request and Approval datatables 
+    /* The Request and Approval datatables are configured here using object that call the renderTable function.
+     * We do this so the the function can be reused for mulitple data sets. 
+     */
+   
     $(function(){
         var currentId = bundle.getUrlParameters().page;
        
@@ -137,6 +140,12 @@
                 
                 $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
                 var table = $(options.table).DataTable({
+                    responsive:    {breakpoints: [
+            { name: 'desktop', width: Infinity },
+            { name: 'tablet',  width: 1024 },
+            { name: 'fablet',  width: 768 },
+            { name: 'phone',   width: 480 }
+        ]},
                     "destroy": true,
                     "order": [[ 0, "desc" ]],
                     bSort: options.serverSide ? false : true,
@@ -170,6 +179,10 @@
                     $(options.table).data('nextPageTokens').push(data.nextPageToken);
                     var arr = $(options.table).data('nextPageTokens');
                     var token = _.last(arr);
+                    
+                    /*  If the table DOM element has a 'nextPageTokens' data attribute array that has a token in it then we remove the disabled class from the Next button.
+                     *  When the Next button is clicked the current object is extended to add the next page token (of the next page) parameter that will be appended to the URL.
+                     */
                     if(token !== null){
                         $(options.table+'_next').removeClass('disabled');
                         // Add click event to next button, if serverSide property is set to true, to allow pagination to addintional results.
@@ -184,6 +197,9 @@
                     // TODO: should we and a refresh button?
                     // If we do a $.pop() action will be required to remove the next page token from the nextPageTokens array.
                     
+                    /*  If the table DOM element has a 'nextPageTokens' data attribute greater than one then we remove the disabled class from the Previous button.
+                     *  When the Previous button is clicked the current object is extended to add the next page tokens (of the privous page) parameter that will be appended to the URL.
+                     */
                     if(arr.length > 1){
                         $(options.table+'_previous').removeClass('disabled');
                         // Add click event to previous button, if serverSide property is set to true, to allow pagination to previous results.
@@ -192,6 +208,7 @@
                             // One to remove the next page token and One to remove the current page token from the nextPageTokens array.
                             $(options.table).data('nextPageTokens').pop();
                             $(options.table).data('nextPageTokens').pop();
+                            // We rebuild that table with the values of the previous page including any new rows of data.
                             renderTable($.extend({},options,{
                                 token: function(){
                                     token = _.last(arr);
@@ -202,7 +219,7 @@
                     /* Sets the number of rows displayed with the select option menu */
                     $(options.table+'_length').change(function(){
                         delete options.token;
-                        $('#closedTable').removeData('nextPageTokens');
+                        $(options.table).removeData('nextPageTokens');
                         renderTable($.extend({},options,{
                             length: $(options.table+'_length option:selected').val(),
                         }));
