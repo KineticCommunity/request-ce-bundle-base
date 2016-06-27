@@ -37,21 +37,28 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-xs-12 ">
-                        <c:if test="${kapp.hasAttribute('Task Server Url') && kapp.hasAttribute('Task Source Name')}">
-                            <c:catch var="taskRunException">
-                                <c:set var="runSet" value="${TaskRuns.find(submission)}" />
-                            </c:catch>
-                        </c:if>
+                        <c:catch var="taskRunException">
+                            <c:set var="runSet" value="${TaskRuns.find(submission)}" />
+                        </c:catch>
                         <c:choose>
                             <c:when test="${taskRunException != null}">
-
                                 <ul>
                                     <li class="timeline-status">
                                         <div class="timeline-status-content">
-                                        There was a problem retrieving post processing task information
-                                        for this submission.
-                                        <hr>
-                                        ${fn:escapeXml(taskRunException.message)}
+                                            There was a problem retrieving post processing task information
+                                            for this submission.
+                                            <hr>
+                                            <c:choose>
+                                                <c:when test="${taskRunException.cause == null}">
+                                                    ${fn:escapeXml(taskRunException.message)}
+                                                </c:when>
+                                                <c:otherwise>
+                                                    ${fn:escapeXml(taskRunException.cause.message)}
+                                                    <c:if test="${taskRunException.cause.cause != null}">
+                                                        : ${fn:escapeXml(taskRunException.cause.cause.message)}
+                                                    </c:if>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </div>
                                     </li>
                                 </ul>
