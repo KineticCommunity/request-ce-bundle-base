@@ -19,7 +19,7 @@
                         <c:when test='${empty submission.currentPage}'>
                             <h4>Thank you for your submission</h4>
                             <p><a href="${bundle.kappLocation}/${form.slug}">Submit again</a></p>
-                            <p><a href="${bundle.kappLocation}">Return to the catalog</a></p>
+                            <p><a href="${bundle.kappLocation}">Return to ${kapp.name}</a></p>
                         </c:when>
                         <c:otherwise>
                             <app:bodyContent/>

@@ -1,4 +1,4 @@
-<%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
+
 <%@include file="../bundle/initialization.jspf" %>
 <jsp:useBean id="random" class="java.util.Random" scope="application" />
 <div class="col-sm-4">
