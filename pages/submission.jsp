@@ -44,7 +44,6 @@
                         </c:if>
                         <c:choose>
                             <c:when test="${taskRunException != null}">
-
                                 <ul>
                                     <li class="timeline-status">
                                         <div class="timeline-status-content">
