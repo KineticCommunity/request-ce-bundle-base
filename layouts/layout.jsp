@@ -13,10 +13,10 @@
         <link rel="icon" type="image/png" href="${bundle.location}/images/favicon-16x16.png" sizes="16x16">
         <link rel="shortcut icon" href="${bundle.location}/images/favicon.ico" type="image/x-icon"/>
         <app:headContent/>
-        
+
         <%-- Bundle stylepack and scriptpack create a minified and single file of referanced stylesheet and javascript
         Add ?debugjs to the end of your URL to view individual files --%>
-        
+
         <bundle:stylepack>
             <bundle:style src="${bundle.location}/libraries/bootstrap/bootstrap.min.css" />
             <bundle:style src="${bundle.location}/libraries/notifie/jquery.notifie.css" />
@@ -29,16 +29,17 @@
             <bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" />
             <bundle:script src="${bundle.location}/libraries/underscore/underscore-min.js" />
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
-            <bundle:script src="${bundle.location}/libraries/moment/moment-with-locales.js" /> 
-            <bundle:script src="${bundle.location}/libraries/moment/moment-timezone.js" /> 
+            <bundle:script src="${bundle.location}/libraries/moment/moment-with-locales.js" />
+            <bundle:script src="${bundle.location}/libraries/moment/moment-timezone.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/media/js/jquery.dataTables.js" />
-            <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" /> 
+            <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" />
             <bundle:script src="${bundle.location}/libraries/notifie/jquery.notifie.js" />
             <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/moment.js" />
             <bundle:script src="${bundle.location}/js/catalog.js" />
             <bundle:script src="${bundle.location}/js/review.js" />
         </bundle:scriptpack>
+        <%-- <script type="text/javascript" src="${bundle.location}/libraries/scrolling-tabs/scrolling-tabs.js"> --%>
         <bundle:yield name="head"/>
         <style>
             <c:if test="${not empty kapp.getAttributeValue('Logo Height Px')}">
