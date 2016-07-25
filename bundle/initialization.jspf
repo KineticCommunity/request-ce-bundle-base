@@ -81,3 +81,9 @@
 <%
     request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
 %>
+
+<%-- PaginationHelper --%>
+<%@include file="PaginationHelper.jspf"%>
+<%
+    request.setAttribute("PaginationHelper", new PaginationHelper(request));
+%>

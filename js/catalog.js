@@ -104,6 +104,7 @@
                 table: '#approvalTable',
                 type: 'Approval',
                 coreState: ['Draft','Submitted'],
+                length: 1000,
                 serverSide: false,
             });
         }
@@ -112,6 +113,7 @@
                 table: '#requestsTable',
                 type: 'Service',
                 coreState: ['Draft','Submitted'],
+                length: 1000,
                 serverSide: false,
             });
         }
@@ -135,42 +137,42 @@
     function renderTable(options){
         $.ajax({
             method: 'get',
-            contentType: 'application/json',
             url: buildAjaxUrl(options),
+            dataType: "json",
+            contentType: 'application/json',
             success: function(data, textStatus, jqXHR){
-                
                 $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
-                var table = $(options.table).DataTable({
-                    responsive:    {breakpoints: [
-            { name: 'desktop', width: Infinity },
-            { name: 'tablet',  width: 1024 },
-            { name: 'fablet',  width: 768 },
-            { name: 'phone',   width: 480 }
-        ]},
+                // Set up DataTable configuration object with export/import buttons
+                records = $.extend(data, {
+                    responsive: {breakpoints: [
+                        { name: 'desktop', width: Infinity },
+                        { name: 'tablet',  width: 1024 },
+                        { name: 'fablet',  width: 768 },
+                        { name: 'phone',   width: 480 }
+                    ]},
                     "destroy": true,
                     "order": [[ 0, "desc" ]],
                     bSort: options.serverSide ? false : true,
                     "pagingType": options.serverSide ? "simple" : "simple_numbers",
                     "dom": options.serverSide ? '<"top"l>t<"bottom"p><"clear">' : "lftip",
-                    "data": data.submissions,
                     "language": {"search":""},
-                    "pageLength": options.length,
-                    "columns": [
-                        { "data":function(data){return moment(data.updatedAt).format('MMMM Do YYYY, h:mm:ss A');} },
-                        { "data":"form.name" },
-                        { "data":function(data){
-                                // This allows the submission id to be a url to the submission details display page or if the submission
-                                // has a coreState of draft the url will link to the submission to be completed.
-                                if(data.coreState == "Draft"){
-                                    var id = "<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.id+"'>"+data.label+"</a>"; 
-                                }else{
-                                    var id = "<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.id+"'>"+data.label+"</a>"; 
-                                }
-                                return id;} },
-                        { "data":"coreState"  },
-                    ]
+                    "pageLength": options.serverSide ? options.length : 10,
+                    "columnDefs": [{
+                        "targets": 0,
+                        "createdCell": function (td, cellData, rowData, row, col) { $(td).html(moment(cellData).format('MMMM Do YYYY, h:mm:ss A'));}
+                      },
+                      {
+                        "targets": 2,
+                        "createdCell": function (td, cellData, rowData, row, col) {
+                            if(rowData.State == "Draft"){
+                                $(td).html("<a href='"+window.bundle.spaceLocation()+"/submissions/"+rowData.Id+"'>"+rowData.Submission+"</a>"); 
+                            }else{
+                                $(td).html("<a href='"+window.bundle.kappLocation()+"?page=submission&id="+rowData.Id+"'>"+rowData.Submission+"</a>"); 
+                            }
+                        }
+                    }]
                 });
-                
+                var table = $(options.table).DataTable(records);
                 if(options.serverSide){
                     // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
                     // The token is added to an array that is attached to the table elements data property. 
@@ -237,7 +239,7 @@
      * The intention is to pass parameters to this function to make the url configurable.  This gives 
      * the ability to use the same piece of code to configure multiple queries.*/
     function buildAjaxUrl(options){
-        var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=updatedAt';
+        var url = bundle.kappLocation() + "?partial=tableRecords.json";
         if(options.type === 'Approval'){
             url += '&values[Assigned Individual]='+identity;
         }else{
@@ -251,7 +253,7 @@
         if(options.type !== undefined){
             url += '&type='+options.type;
         }
-        if(options.serverSide && options.length !== undefined){
+        if(options.length !== undefined){
             url += '&limit=' + options.length;
         }
         if(options.token && options.token() !== undefined){
