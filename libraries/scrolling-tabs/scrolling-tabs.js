@@ -1,6 +1,12 @@
 $(document).ready(function() {
     var hidWidth;
-    var scrollBarWidths = 50;
+    var scrollBarWidths = 150;
+
+    var activeLeft = $('.submissiontable.active').position().left;
+
+    $('.nav.nav-pills.list').css({
+      left: '-' + activeLeft + 'px'
+    });
 
     var widthOfList = function() {
         var itemsWidth = 0;
@@ -29,7 +35,7 @@ $(document).ready(function() {
         if (getLeftPosi() < 0) {
             $('.scroller-left').show();
         } else {
-            $('.item').animate({
+            $('.list').animate({
                 left: "-=" + getLeftPosi() + "px"
             }, 'slow');
             $('.scroller-left').hide();
