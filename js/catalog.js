@@ -132,6 +132,7 @@
             $('#home').addClass('active');
         }else{
             $('#'+currentId).addClass('active');
+            $('#tab-menu').scrollLeft($('#'+currentId).position().left);
         }
     });
     function renderTable(options){

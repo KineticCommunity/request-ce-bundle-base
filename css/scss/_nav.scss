@@ -58,80 +58,80 @@ $L:     1024px;
 
 
 .menu {
-	position: relative;
-	z-index: 1;
-	clear: both;
-	width: 100%;
-	background-color: $color-1;
-	/* Force Hardware Acceleration */
-	transform: translateZ(0);
-	will-change: transform;
-	transition: transform .5s;
+    position: relative;
+    z-index: 1;
+    clear: both;
+    width: 100%;
+    background-color: $color-1;
+    /* Force Hardware Acceleration */
+    transform: translateZ(0);
+    will-change: transform;
+    transition: transform .5s;
 
-	&::after {
-		/* gradient on the right - to indicate it's possible to scroll */
-		content: '';
-		position: absolute;
-		z-index: 1;
-		top: 0;
-		right: 0;
-		height: 100%;
-		width: 35px;
-		background: transparent;
-		background: linear-gradient(to left, $color-1, rgba($color-1, 0));
-		pointer-events: none;
-		transition: opacity .2s;
-	}
+    &::after {
+        /* gradient on the right - to indicate it's possible to scroll */
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 35px;
+        background: transparent;
+        background: linear-gradient(to left, $color-1, rgba($color-1, 0));
+        pointer-events: none;
+        transition: opacity .2s;
+    }
 
-	&.nav-end::after {
-		opacity: 0;
-	}
+    &.nav-end::after {
+        opacity: 0;
+    }
 
-	ul, li, a {
-		height: 100%;
-	}
+    ul, li, a {
+        height: 100%;
+    }
 
-	ul {
-		/* enables a flex context for all its direct children */
-		display: flex;
-		padding: 0;
-    margin: 0;
-		@include clearfix;
-		overflow-x: auto;
-		-webkit-overflow-scrolling: touch;
-	}
+    ul {
+        /* enables a flex context for all its direct children */
+        display: flex;
+        padding: 0;
+        margin: 0;
+        @include clearfix;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 
-	li {
-		display: inline-block;
-		float: left;
-		/* do not shrink - elements float on the right of the element */
-		flex-shrink: 0;
+    li {
+        display: inline-block;
+        float: left;
+        /* do not shrink - elements float on the right of the element */
+        flex-shrink: 0;
 
-		&:last-of-type {
-			padding-right: 20px;
-		}
-	}
+        &:last-of-type {
+                padding-right: 20px;
+        }
+    }
 
-	a {
-		display: block;
-		color: $white;
-		&:hover, &.active {
-			opacity: 1;
-		}
-	}
+    a {
+        display: block;
+        color: $white;
+        &:hover, &.active {
+                opacity: 1;
+        }
+    }
 
-	@include MQ(L) {
-		overflow: visible;
-		ul {
-			/* reset mobile style */
-			display: block;
-			//text-align: center;
-		}
+    @include MQ(L) {
+        overflow: visible;
+        ul {
+            /* reset mobile style */
+            display: block;
+            //text-align: center;
+        }
 
-		li {
-			/* reset mobile style */
-			float: none;
-			flex-shrink: 1;
-		}
-	}
+        li {
+            /* reset mobile style */
+            float: none;
+            flex-shrink: 1;
+        }
+    }
 }

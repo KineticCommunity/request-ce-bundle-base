@@ -2,7 +2,7 @@
 <%@include file="../bundle/initialization.jspf" %>
 <c:if test="${!(identity.anonymous)}">
     <section class="menu">
-          <ul class="nav nav-pills">
+          <ul id="tab-menu" class="nav nav-pills">
               <c:set var="pageHome" value="${kapp.getForm('home')}" scope="page"/>
               <li id="home">
                   <a href="${bundle.kappLocation}">Home</a>
