@@ -116,6 +116,18 @@ pre {
 .file-container {
   display: table-row-group; }
 
+/*
+   dataTables overrides
+*/
+.dataTables_date {
+  float: left;
+  margin: 0 10px 0 10px;
+  color: #333; }
+  @media (max-width: 640px) {
+    .dataTables_date {
+      float: none;
+      text-align: center; } }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Forms
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

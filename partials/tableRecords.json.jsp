@@ -9,6 +9,7 @@
         <json:object>
             <json:property name="title" value="Updated At"/>
             <json:property name="data" value="Updated At"/>
+            <json:property name="className" value="data-moment"/>
         </json:object>
         <json:object>
             <json:property name="title" value="Form"/>
@@ -17,6 +18,7 @@
         <json:object>
             <json:property name="title" value="Submission"/>
             <json:property name="data" value="Submission"/>
+            <json:property name="className" value="data-link"/>
         </json:object>
         <json:object>
             <json:property name="title" value="State"/>

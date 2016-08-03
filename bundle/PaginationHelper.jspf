@@ -16,11 +16,18 @@
             com.kineticdata.core.authentication.Identity identity =
                 (com.kineticdata.core.authentication.Identity) request.getAttribute("identity");
 
+            Long date;
+            if(request.getParameter("date") != null){
+                date = Long.parseLong(request.getParameter("date"));
+            } else {
+                date = Long.parseLong("30");
+            }
             java.time.Instant end = Time.now();
             java.time.Instant start = Time
-                .subtract(end, 90, "days", java.time.ZoneId.systemDefault());
+                .subtract(end, date, "days", java.time.ZoneId.systemDefault());
 
             java.util.Map<String,String[]> searchOptions = new java.util.HashMap<>();
+
             searchOptions.put("end", new String[] {Time.format(end)} );
             searchOptions.put("start", new String[] {Time.format(start)} );
             
@@ -36,8 +43,10 @@
                 searchOptions.put("pageToken", new String[]{request.getParameter("pageToken")});
             }
 
-            if(request.getParameter("type") != null){
-                searchOptions.put("type", new String[]{request.getParameter("type")});
+            if("Approval".equals(request.getParameter("type"))){
+                searchOptions.put("values[Assigned Individual]", new String[] {identity.getUsername()});
+            } else {
+                searchOptions.put("createdBy", new String[] {identity.getUsername()});
             }
 
             if(request.getParameter("coreState") != null){
@@ -46,8 +55,6 @@
 
             PaginatedList<Submission> page;
             page = this.submissionComponent.searchByKapp(kapp, searchOptions);
-
-            
             return page;
         }
     }
