@@ -38,7 +38,6 @@
             <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/moment.js" />
             <bundle:script src="${bundle.location}/js/catalog.js" />
             <bundle:script src="${bundle.location}/js/review.js" />
-            <bundle:script src="${bundle.location}/libraries/scrolling-tabs/scrolling-tabs.js" />
         </bundle:scriptpack>
 
         <bundle:yield name="head"/>
