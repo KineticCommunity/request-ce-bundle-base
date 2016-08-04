@@ -34,6 +34,7 @@
  *-------------------------------------- */
 .menu h3 {
   margin: 1rem 0 3rem 0;
+  text-transform: capitalize;
 }
 
 .submission-meta {
@@ -58,7 +59,7 @@
         padding-left: 0;
         > li {
           /* The Dot */
-          
+
           > {
             h4:nth-child(2) {
               color: #818181;
@@ -78,7 +79,7 @@
 }
 
 @media(min-width: 992px){
-    .timeline-block{   
+    .timeline-block{
         > ul{
             margin-left: 1rem;
             border-left: 0.2rem solid #eaeaea;
@@ -156,5 +157,3 @@
 .timeline-block__no-task{
     opacity: .5;
 }
-
-

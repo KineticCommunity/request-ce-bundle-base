@@ -275,7 +275,8 @@ form button[disabled] {
 /* Timeline
  *-------------------------------------- */
 .menu h3 {
-  margin: 1rem 0 3rem 0; }
+  margin: 1rem 0 3rem 0;
+  text-transform: capitalize; }
 
 .submission-meta {
   padding: 1.5rem 3rem;
@@ -554,7 +555,7 @@ footer {
 
 /* Auto-Hiding Navigation
  *-------------------------------------- */
-.menu {
+.menu-nav {
   position: relative;
   z-index: 1;
   clear: both;
@@ -564,7 +565,7 @@ footer {
   transform: translateZ(0);
   will-change: transform;
   transition: transform .5s; }
-  .menu::after {
+  .menu-nav::after {
     /* gradient on the right - to indicate it's possible to scroll */
     content: '';
     position: absolute;
@@ -577,43 +578,47 @@ footer {
     background: linear-gradient(to left, #f1f1f1, rgba(241, 241, 241, 0));
     pointer-events: none;
     transition: opacity .2s; }
-  .menu.nav-end::after {
+  .menu-nav.nav-end::after {
     opacity: 0; }
-  .menu ul, .menu li, .menu a {
+  .menu-nav ul, .menu-nav li, .menu-nav a {
     height: 100%; }
-  .menu ul {
+  .menu-nav ul {
     /* enables a flex context for all its direct children */
     display: flex;
     padding: 0;
     margin: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch; }
-    .menu ul::after {
+    .menu-nav ul::after {
       content: "";
       display: table;
       clear: both; }
-  .menu li {
+  .menu-nav li {
     display: inline-block;
     float: left;
     /* do not shrink - elements float on the right of the element */
     flex-shrink: 0; }
-    .menu li:last-of-type {
+    .menu-nav li:last-of-type {
       padding-right: 20px; }
-  .menu a {
+  .menu-nav a {
     display: block;
     color: #ffffff; }
-    .menu a:hover, .menu a.active {
+    .menu-nav a:hover, .menu-nav a.active {
       opacity: 1; }
   @media only screen and (min-width: 1024px) {
-    .menu {
+    .menu-nav {
       overflow: visible; }
-      .menu ul {
+      .menu-nav ul {
         /* reset mobile style */
         display: block; }
-      .menu li {
+      .menu-nav li {
         /* reset mobile style */
         float: none;
         flex-shrink: 1; } }
+
+.category__subcategory ul {
+  margin: 0;
+  padding: 0; }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Navbar

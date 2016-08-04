@@ -4,10 +4,10 @@
 **/
 (function($, moment, _){
     // UTILITY METHODS
-    
+
     /**
      * Returns an Object with keys/values for each of the url parameters.
-     * 
+     *
      * @returns {Object}
      */
     bundle.getUrlParameters = function() {
@@ -18,7 +18,7 @@
        }
        return hash;
     };
-    
+
     var locale = window.navigator.userLanguage || window.navigator.language;
     moment.locale(locale);
     $(function(){
@@ -95,12 +95,12 @@
 
 
     /* The Request and Approval datatables are configured here using object that call the renderTable function.
-     * We do this so the the function can be reused for mulitple data sets. 
+     * We do this so the the function can be reused for mulitple data sets.
      */
-   
+
     $(function(){
         var currentId = bundle.getUrlParameters().page;
-       
+
         if (currentId === 'approvals'){
             renderTable({
                 table: '#approvalTable',
@@ -126,13 +126,13 @@
                 serverSide: true,
             });
         }
-        
+
         /* We are using the page load to set some visual cues so the user know what tab they are on*/
         if(currentId === undefined){
             $('#home').addClass('active');
         }else{
             $('#'+currentId).addClass('active');
-            $('#tab-menu').scrollLeft($('#'+currentId).position().left);
+            $('#tab-nav').scrollLeft($('#'+currentId).position().left);
         }
     });
     function renderTable(options){
@@ -164,42 +164,42 @@
                                 // This allows the submission id to be a url to the submission details display page or if the submission
                                 // has a coreState of draft the url will link to the submission to be completed.
                                 if(data.coreState == "Draft"){
-                                    var id = "<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.id+"'>"+data.label+"</a>"; 
+                                    var id = "<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.id+"'>"+data.label+"</a>";
                                 }else{
-                                    var id = "<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.id+"'>"+data.label+"</a>"; 
+                                    var id = "<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.id+"'>"+data.label+"</a>";
                                 }
                                 return id;} },
                         { "data":"coreState"  },
                     ]
                 });
-                
+
                 if(options.serverSide){
                     // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
-                    // The token is added to an array that is attached to the table elements data property. 
+                    // The token is added to an array that is attached to the table elements data property.
                     if ($(options.table).data('nextPageTokens') === undefined) {
-                        $(options.table).data('nextPageTokens', []); 
+                        $(options.table).data('nextPageTokens', []);
                     }
                     $(options.table).data('nextPageTokens').push(data.nextPageToken);
                     var arr = $(options.table).data('nextPageTokens');
                     var token = _.last(arr);
-                    
+
                     /*  If the table DOM element has a 'nextPageTokens' data attribute array that has a token in it then we remove the disabled class from the Next button.
                      *  When the Next button is clicked the current object is extended to add the next page token (of the next page) parameter that will be appended to the URL.
                      */
                     if(token !== null){
                         $(options.table+'_next').removeClass('disabled');
                         // Add click event to next button, if serverSide property is set to true, to allow pagination to addintional results.
-                        $(options.table+'_next').on('click',function(){    
+                        $(options.table+'_next').on('click',function(){
                             renderTable($.extend({},options,{
                                 token: function(){
                                     return token;},
                             }));
                         });
                     }
-                    
+
                     // TODO: should we and a refresh button?
                     // If we do a $.pop() action will be required to remove the next page token from the nextPageTokens array.
-                    
+
                     /*  If the table DOM element has a 'nextPageTokens' data attribute greater than one then we remove the disabled class from the Previous button.
                      *  When the Previous button is clicked the current object is extended to add the next page tokens (of the privous page) parameter that will be appended to the URL.
                      */
@@ -236,7 +236,7 @@
         });
     }
     /* This fucntion builds a Url to be used by the ajax call.
-     * The intention is to pass parameters to this function to make the url configurable.  This gives 
+     * The intention is to pass parameters to this function to make the url configurable.  This gives
      * the ability to use the same piece of code to configure multiple queries.*/
     function buildAjaxUrl(options){
         var url = bundle.apiLocation()+'/kapps/'+bundle.kappSlug()+'/submissions?include=form,details&timeline=updatedAt';
@@ -247,7 +247,7 @@
         }
         if(options.coreState !== undefined){
             $.each(options.coreState, function(k,v){
-                url += '&coreState='+v; 
+                url += '&coreState='+v;
             });
         }
         if(options.type !== undefined){
@@ -261,30 +261,30 @@
         }
         return url;
     }
-    
+
     // PAGE LOAD EVENTS
     $(function(){
         // Display error message if authentication error is found in URL.  This happens if login credentials fail.
         if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
             $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});
         };
-        
+
         //  Add the query parameter to the search field on the search page
         if(bundle.getUrlParameters().page === 'search'){
             $('.predictiveText').val(bundle.getUrlParameters().q)
         }
-        
+
          // Moment-ify any elements with the data-moment attribute
         $('[data-moment]').each(function(index, item) {
             var element = $(item);
             element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
         });
     });
-    
+
     /*----------------------------------------------------------------------------------------------
      * BUNDLE.CONFIG OVERWRITES
      *--------------------------------------------------------------------------------------------*/
-    
+
     /**
      * Overwrite the default field constraint violation error handler to use Notifie to display the errors above the individual fields.
      */
@@ -306,4 +306,3 @@
         console.log(response)
     }
 })(jQuery, moment, _);
-   

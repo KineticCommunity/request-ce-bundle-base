@@ -57,7 +57,7 @@ $L:     1024px;
 }
 
 
-.menu {
+.menu-nav {
     position: relative;
     z-index: 1;
     clear: both;
@@ -134,4 +134,11 @@ $L:     1024px;
             flex-shrink: 1;
         }
     }
+}
+
+.category__subcategory{
+  ul{
+    margin:0;
+    padding:0;
+  }
 }
