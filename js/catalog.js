@@ -179,7 +179,7 @@
                 /* After the table has been built we are adding an html element that has a dropdown list so that a user can select a number of days back
                  * to retrieve the list from.
                  */
-                addDateDropdown(options)
+                //addDateDropdown(options)
                 if(options.serverSide){
                     serverOptions(options,data);
                 }
