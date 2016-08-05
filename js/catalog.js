@@ -160,6 +160,7 @@
                     "bSort": options.serverSide ? false : true,
                     "pagingType": options.serverSide ? "simple" : "simple_numbers",
                     "dom": options.serverSide ? '<"top"l><"dataTables_date">t<"bottom"p><"clear">' : 'l<"dataTables_date">ftip',
+                    "language": {"search":""},
                     "pageLength": options.serverSide ? options.length : 10,
                     "createdRow": function (row, data) {
                         $(row).find('td.data-moment').each(function(index, td) {
