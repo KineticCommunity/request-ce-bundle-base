@@ -107,6 +107,7 @@
         if (currentId === 'approvals'){
             renderTable({
                 table: '#approvalTable',
+                jsonFileName: 'tableRecords.json',
                 type: 'Approval',
                 coreState: ['Draft','Submitted'],
                 length: 1000,
@@ -116,7 +117,9 @@
         if(currentId === 'requests'){
             renderTable({
                 table: '#requestsTable',
+                jsonFileName: 'tableRecords.json',
                 type: 'Service',
+                excludeTypes: ['Template','Approval'],
                 coreState: ['Draft','Submitted'],
                 length: 1000,
                 serverSide: false,
@@ -126,6 +129,7 @@
             $('#closedTable').removeData('pageTokens');
             renderTable({
                 table: '#closedTable',
+                jsonFileName: 'paginatedRecords.json',
                 coreState: ['Closed'],
                 length: 10,
                 serverSide: true,
@@ -196,7 +200,7 @@
      * This gives the ability to use the same piece of code to configure multiple queries.
     */
     function buildAjaxUrl(options){
-        var url = bundle.kappLocation() + "?partial=tableRecords.json";
+        var url = bundle.kappLocation() + "?partial=" +options.jsonFileName;
         if(options.type === 'Approval'){
             url += '&values[Assigned Individual]='+identity;
         }else{
@@ -205,6 +209,11 @@
         if(options.coreState !== undefined){
             $.each(options.coreState, function(k,v){
                 url += '&coreState='+v; 
+            });
+        }
+        if(options.excludeTypes !== undefined){
+            $.each(options.excludeTypes, function(k,v){
+                url += '&excludeTypes='+v; 
             });
         }
         if(options.type !== undefined){

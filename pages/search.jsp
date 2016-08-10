@@ -17,7 +17,7 @@
             </form>
         </div>
         <div class="search-results">
-            <h3>Search Results for '${param['q']}'</h3>
+            <h3>Search Results for '${text.escape(param['q'])}'</h3>
             <c:if test="${text.isNotBlank(param['q'])}">
                 <ul>
                     <c:set scope="request" var="formsMatchSearch" value="${SearchHelper.filter(kapp.forms,param['q'])}"/>
@@ -36,7 +36,8 @@
                          </c:if>
                     </c:forEach>
                     <c:if test="${formsMatchSearch == null}">
-                        <h5>No results found for ${param['q']}.</h5>
+                        <%--Use text escape to sanitize the output and prevent XXS attacks--%>
+                        <h5>No results found for ${text.escape(param['q'])}.</h5>
                     </c:if>
                 </ul>
             </c:if>
