@@ -25,7 +25,7 @@
                 <c:if test="${ObjectsHelper.hasMethod(identity.user, 'getPreferredLocale')}">
                     <div class="form-group">
                         <label for="displayName" class="control-label">Preferred Language</label>
-                        <select class="form-control">
+                        <select id="preferredLocale" class="form-control">
                             <option></option>
                             <c:forEach var="option" items="${LocaleHelper.getLocaleOptions()}">
                                 <option value="${text.escape(option.code)}" 
