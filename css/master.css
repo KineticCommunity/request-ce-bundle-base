@@ -116,6 +116,18 @@ pre {
 .file-container {
   display: table-row-group; }
 
+/*
+   dataTables overrides
+*/
+.dataTables_date {
+  float: left;
+  margin: 0 10px 0 10px;
+  color: #333; }
+  @media (max-width: 640px) {
+    .dataTables_date {
+      float: none;
+      text-align: center; } }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Forms
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -213,6 +225,8 @@ form button, form .btn {
   transition: all 0.15s ease-out; }
 form button:hover, form .btn:hover {
   background-color: rgba(36, 177, 102, 0.8); }
+form .btn.fileinput-button:hover {
+  color: #ffffff; }
 form button[data-button-type='previous-page'] {
   /* Button Types */
   position: relative;
@@ -275,7 +289,8 @@ form button[disabled] {
 /* Timeline
  *-------------------------------------- */
 .menu h3 {
-  margin: 1rem 0 3rem 0; }
+  margin: 1rem 0 3rem 0;
+  text-transform: capitalize; }
 
 .submission-meta {
   padding: 1.5rem 3rem;
@@ -552,6 +567,73 @@ footer {
 .nav-pills > li.active > a:focus {
   background-color: transparent; }
 
+/* Auto-Hiding Navigation
+ *-------------------------------------- */
+.menu-nav {
+  position: relative;
+  z-index: 1;
+  clear: both;
+  width: 100%;
+  background-color: #f1f1f1;
+  /* Force Hardware Acceleration */
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform .5s; }
+  .menu-nav::after {
+    /* gradient on the right - to indicate it's possible to scroll */
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 35px;
+    background: transparent;
+    background: linear-gradient(to left, #f1f1f1, rgba(241, 241, 241, 0));
+    pointer-events: none;
+    transition: opacity .2s; }
+  .menu-nav.nav-end::after {
+    opacity: 0; }
+  .menu-nav ul, .menu-nav li, .menu-nav a {
+    height: 100%; }
+  .menu-nav ul {
+    /* enables a flex context for all its direct children */
+    display: flex;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; }
+    .menu-nav ul::after {
+      content: "";
+      display: table;
+      clear: both; }
+  .menu-nav li {
+    display: inline-block;
+    float: left;
+    /* do not shrink - elements float on the right of the element */
+    flex-shrink: 0; }
+    .menu-nav li:last-of-type {
+      padding-right: 20px; }
+  .menu-nav a {
+    display: block;
+    color: #ffffff; }
+    .menu-nav a:hover, .menu-nav a.active {
+      opacity: 1; }
+  @media only screen and (min-width: 1024px) {
+    .menu-nav {
+      overflow: visible; }
+      .menu-nav ul {
+        /* reset mobile style */
+        display: block; }
+      .menu-nav li {
+        /* reset mobile style */
+        float: none;
+        flex-shrink: 1; } }
+
+.category__subcategory ul {
+  margin: 0;
+  padding: 0; }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Navbar
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -593,9 +675,9 @@ footer {
   /* used to be tt-dropdown-menu in older versions */
   width: 160px;
   margin-top: 0;
-  padding: .4rem 0;
+  padding: 0.4rem 0;
   background-color: #fff;
-  border: .1rem solid #ccc;
+  border: 0.1rem solid #ccc;
   border: 0.1rem solid rgba(0, 0, 0, 0.2);
   border-radius: 0;
   -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
@@ -607,14 +689,15 @@ footer {
   padding: 0.3rem 2rem;
   line-height: 2.4; }
 
-.tt-suggestion.tt-cursor, .tt-suggestion:hover {
+.tt-suggestion.tt-cursor,
+.tt-suggestion:hover {
   color: #fff;
   background-color: #428BCA; }
 
 .tt-suggestion p {
   margin: 0; }
 
-/* Navbar Brand 
+/* Navbar Brand
  *-------------------------------------- */
 /* Logo height is always set at 50px in header */
 .navbar-brand {

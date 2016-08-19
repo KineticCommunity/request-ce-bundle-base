@@ -28,7 +28,7 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
+                <li class="dropdown keep-open">
                     <c:choose>
                         <c:when test="${identity.anonymous && kapp == null}">
                             <a href="${bundle.spaceLocation}/app/login" ><i class="fa fa-sign-in fa-fw"></i> Login</a>
@@ -91,3 +91,17 @@
         </div>
     </div>
 </nav>
+
+<style media="screen">
+  .in .keep-open .dropdown-menu{
+    display: block;
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+</style>
