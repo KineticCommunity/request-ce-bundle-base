@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <h3>
-                        <a href='${bundle.kappLocation}'>Return to catalog</a>
+                            <a href='${bundle.kappLocation}'>Return to catalog</a>
                         </h3>
                     </div>
                 </div>
