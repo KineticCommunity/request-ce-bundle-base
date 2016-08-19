@@ -58,6 +58,15 @@
     request.setAttribute("SetupHelper", setupHelper);
 %>
 
+<%-- I18nHelper --%>
+<%@include file="I18nHelper.jspf"%>
+<%
+    I18nHelper i18nHelper = new I18nHelper(request);
+    request.setAttribute("i18n", i18nHelper);
+    request.setAttribute("locale", i18nHelper.getLocale());
+    request.setAttribute("zoneId", i18nHelper.getZoneId());
+%>
+
 <%-- Load helper(s) --%>
 <%
     request.setAttribute("json", new com.kineticdata.bundles.JsonHelper());
@@ -81,4 +90,10 @@
 <%@include file="SubmissionHelper.jspf"%>
 <%
     request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
+%>
+
+<%-- ObjectsHelper --%>
+<%@include file="ObjectsHelper.jspf"%>
+<%
+    request.setAttribute("ObjectsHelper", new ObjectsHelper());
 %>
