@@ -225,6 +225,8 @@ form button, form .btn {
   transition: all 0.15s ease-out; }
 form button:hover, form .btn:hover {
   background-color: rgba(36, 177, 102, 0.8); }
+form .btn.fileinput-button:hover {
+  color: #ffffff; }
 form button[data-button-type='previous-page'] {
   /* Button Types */
   position: relative;
