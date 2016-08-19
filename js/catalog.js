@@ -5,10 +5,10 @@
 
 (function($, moment, _){
     // UTILITY METHODS
-    
+
     /**
      * Returns an Object with keys/values for each of the url parameters.
-     * 
+     *
      * @returns {Object}
      */
     bundle.getUrlParameters = function() {
@@ -19,11 +19,46 @@
        }
        return hash;
     };
-    
 
-    
-    
-      //commented out 7/22/16 remove by 12/01/16 if no side effects are found.
+    var locale = window.navigator.userLanguage || window.navigator.language;
+    moment.locale(locale);
+    $(function(){
+      if (!$('.navbar-form .typeahead').length){
+        return;
+      }
+      var matcher = function(strs) {
+        return function findMatches(query, callback) {
+            var matches, substringRegex;
+            matches = [];
+            substrRegex = new RegExp(query, 'i');
+            $.each(strs, function(i, str) {
+              if (substrRegex.test(str)) {
+                matches.push(str);
+              }
+            });
+            callback(matches);
+        };
+      };
+      var formNames = [];
+      var forms = {};
+      $.get(window.bundle.apiLocation() + "/kapps/" + window.bundle.kappSlug() + "/forms", function( data ) {
+        forms = data.forms;
+        $.each(forms, function(i,val) {
+          formNames.push(val.name);
+          forms[val.name] = val;
+        });
+      });
+      $('.navbar-form .typeahead').typeahead({
+          highlight:true
+        },{
+          name: 'forms',
+          source: matcher(formNames),
+        }).bind('typeahead:select', function(ev, suggestion) {
+          window.location.replace(window.bundle.kappLocation() + "/" + forms[suggestion].slug)
+      });
+    });
+
+//commented out 7/22/16 remove by 12/01/16 if no side effects are found.
 //    var locale = window.navigator.userLanguage || window.navigator.language;
 //    moment.locale(locale);
 //    $(function(){
@@ -62,6 +97,7 @@
 //      });
 //    });
 
+
     /**
      * Applies the Jquery DataTables plugin to a rendered HTML table to provide
      * column sorting and Moment.js functionality to date/time values.
@@ -98,9 +134,6 @@
 //        });
 //    }
 
-    /* The Request and Approval datatables are configured here using object that call the renderTable function.
-     * We do this so the the function can be reused for mulitple data sets. 
-     */
     $(function(){
         var currentId = bundle.getUrlParameters().page;
 
@@ -135,13 +168,14 @@
                 serverSide: true,
             });
         }
-        
+
         /* We are using the page load to set some visual cues so the user know what tab they are on
          */
         if(currentId === undefined){
             $('#home').addClass('active');
         }else{
             $('#'+currentId).addClass('active');
+            $('#tab-nav').scrollLeft($('#'+currentId).position().left);
         }
     });
     function renderTable(options){
@@ -172,15 +206,15 @@
                         });
                         $(row).find('td.data-link').each(function(index, td) {
                             if(data.State == "Draft"){
-                                $(td).html("<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.Id+"'>"+data.Submission+"</a>"); 
+                                $(td).html("<a href='"+window.bundle.spaceLocation()+"/submissions/"+data.Id+"'>"+data.Submission+"</a>");
                             }else{
-                                $(td).html("<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.Id+"'>"+data.Submission+"</a>"); 
+                                $(td).html("<a href='"+window.bundle.kappLocation()+"?page=submission&id="+data.Id+"'>"+data.Submission+"</a>");
                             }
                         });
                     },
                 });
                 var table = $(options.table).DataTable(records);
-                
+
                 /* After the table has been built we are adding an html element that has a dropdown list so that a user can select a number of days back
                  * to retrieve the list from.
                  */
@@ -196,9 +230,10 @@
         });
     }
     /* This fucntion builds a Url to be used by the ajax call.
-     * The intention is to pass parameters to this function to make the url configurable.  
+     * The intention is to pass parameters to this function to make the url configurable.
      * This gives the ability to use the same piece of code to configure multiple queries.
     */
+
     function buildAjaxUrl(options){
         var url = bundle.kappLocation() + "?partial=" +options.jsonFileName;
         if(options.type === 'Approval'){
@@ -208,12 +243,12 @@
         }
         if(options.coreState !== undefined){
             $.each(options.coreState, function(k,v){
-                url += '&coreState='+v; 
+                url += '&coreState='+v;
             });
         }
         if(options.excludeTypes !== undefined){
             $.each(options.excludeTypes, function(k,v){
-                url += '&excludeTypes='+v; 
+                url += '&excludeTypes='+v;
             });
         }
         if(options.type !== undefined){
@@ -230,7 +265,7 @@
         }
         return url;
     }
-    
+
     function addDateDropdown(options){
         /*  We use the DOM: property in dataTables to create the div.dataTables_date element.
         *   Then we build up the html; the <label> tag was added to give the new element a similar style to the other elements around the table.
@@ -241,7 +276,7 @@
         if(options.backDate !== undefined){
             $('div.dataTables_date select').val(options.backDate);
         }
-        
+
         /* When a new option is selected we rebuild the table.  We have to delete the old tokens from the object and remove the data-nextPageTokens attribute.
          * We do this so that the token store is clear and the display of the Previous and Next button behaves correctly
          */
@@ -253,15 +288,15 @@
             }));
         });
     }
-    
-    /*  This code is to override dataTables default behavior. 
+
+    /*  This code is to override dataTables default behavior.
      *  This is done because dataTables uses an offset token for pagination but core does has the concept of page tokens.
     */
     function serverOptions(options,data){
         // For server side pagination we are collecting the nextpagetoken metadata that is attached to submissions return object.
-        // The token is added to an array that is attached to the table elements data property. 
+        // The token is added to an array that is attached to the table elements data property.
         if ($(options.table).data('nextPageTokens') === undefined) {
-            $(options.table).data('nextPageTokens', []); 
+            $(options.table).data('nextPageTokens', []);
         }
         $(options.table).data('nextPageTokens').push(data.nextPageToken);
         var arr = $(options.table).data('nextPageTokens');
@@ -273,7 +308,7 @@
         if(token !== ''){
             $(options.table+'_next').removeClass('disabled');
             // Add click event to next button, if serverSide property is set to true, to allow pagination to addintional results.
-            $(options.table+'_next').on('click',function(){    
+            $(options.table+'_next').on('click',function(){
                 renderTable($.extend({},options,{
                     token: function(){
                         return token;},
@@ -304,7 +339,7 @@
             });
         }
         /* Sets the number of rows displayed with the select option menu.  We have to delete the old tokens from the object and remove the data-nextPageTokens attribute.
-         * We do this so that the token store is clear and the display of the Previous and Next button behaves correctly 
+         * We do this so that the token store is clear and the display of the Previous and Next button behaves correctly
          */
         $(options.table+'_length').change(function(){
             delete options.token;
@@ -314,30 +349,30 @@
             }));
         });
     };
-    
+
     // PAGE LOAD EVENTS
     $(function(){
         // Display error message if authentication error is found in URL.  This happens if login credentials fail.
         if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
             $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});
         };
-        
+
         //  Add the query parameter to the search field on the search page
         if(bundle.getUrlParameters().page === 'search'){
             $('.predictiveText').val(bundle.getUrlParameters().q)
         }
-        
+
          // Moment-ify any elements with the data-moment attribute
         $('[data-moment]').each(function(index, item) {
             var element = $(item);
             element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
         });
     });
-    
+
     /*----------------------------------------------------------------------------------------------
      * BUNDLE.CONFIG OVERWRITES
      *--------------------------------------------------------------------------------------------*/
-    
+
     /**
      * Overwrite the default field constraint violation error handler to use Notifie to display the errors above the individual fields.
      */
@@ -356,7 +391,6 @@
             message: 'There was a ' + response.status + ' : "' + response.statusText + '" error.' ,
             exitEvents: "click"
         });
-    }   
+    }
     
 })(jQuery, moment, _);
-   
