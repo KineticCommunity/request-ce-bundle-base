@@ -82,15 +82,3 @@
 <%
     request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
 %>
-
-<%-- LocaleHelper --%>
-<%@include file="LocaleHelper.jspf"%>
-<%
-    request.setAttribute("LocaleHelper", new LocaleHelper(request));
-%>
-
-<%-- ObjectsHelper --%>
-<%@include file="ObjectsHelper.jspf"%>
-<%
-    request.setAttribute("ObjectsHelper", new ObjectsHelper());
-%>
