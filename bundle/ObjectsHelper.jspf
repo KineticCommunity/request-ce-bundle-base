@@ -1,0 +1,130 @@
+<%!
+    /**
+     * Helper class used the check whether a Class or Object defines a given method.  This may be 
+     * beneficial to do when a bundle needs to support older versions of Kinetic Request CE and
+     * still leverage newer functionality.  For example, in Kinetic Request CE v1.0.5 the concept of
+     * preferred locale was added to the User class.  If the bundle attempts to call the
+     * user.getPreferredLocale() method when running in a version released prior to v1.0.5 than an
+     * error would be thrown.  The code below illustrates how to write code that functions in both
+     * versions of Kinetic Request CE:
+     *
+     *
+     * Java/Bundle Helpers Example
+     *     String preferredLocale = null;
+     *     if (ObjectsHelper.hasMethod(identity.getUser(), "getPreferredLocale")) {
+     *         preferredLocale = ObjectsHelper.callMethod(identity.getUser(), "getPreferredLocale");
+     *     }
+     *
+     * JSTL/Bundle Page Example
+     *     <c:if test="${ObjectsHelper.hasMethod(identity.user, 'getPreferredLocale')}">
+     *         <div>Preferred Locale: ${identity.user.preferredLocale}</div>
+     *     </c:if>
+     */
+    public static class ObjectsHelper {
+
+        /*------------------------------------------------------------------------------------------
+         * CONSTRUCTOR
+         *----------------------------------------------------------------------------------------*/
+
+        public ObjectsHelper() {
+
+        }
+
+        /*------------------------------------------------------------------------------------------
+         * CALL METHOD
+         *----------------------------------------------------------------------------------------*/
+        
+        public <T extends Object> T callMethod(
+            Class<?> objectClass, 
+            String methodName
+        ) {
+            return callMethod(objectClass, methodName, (Object[])null);
+        }
+        
+        public <T extends Object> T callMethod(
+            Class<?> objectClass, 
+            String methodName, 
+            Object... parameters
+        ) {
+            T result = null;
+            java.lang.reflect.Method method = getMethod(objectClass, methodName);
+            try {
+                result = (T)method.invoke(null, parameters);
+            } catch (Exception e) {
+                throw new RuntimeException("Unable to execute the \""+methodName+"\" method.", e);
+            }
+            return result;
+        }
+        
+        public <T extends Object> T callMethod(
+            Object object, 
+            String methodName
+        ) {
+            return callMethod(object, methodName, (Object[])null);
+        }
+        
+        public <T extends Object> T callMethod(
+            Object object, 
+            String methodName, 
+            Object... parameters
+        ) {
+            T result = null;
+            java.lang.reflect.Method method = getMethod(object, methodName);
+            if (object != null) {
+                try {
+                    result = (T)method.invoke(object, parameters);
+                } catch (Exception e) {
+                    throw new RuntimeException("Unable to execute the \""+methodName+"\" method.", e);
+                }
+            }
+            return result;
+        }
+        
+        /*------------------------------------------------------------------------------------------
+         * GET METHOD
+         *----------------------------------------------------------------------------------------*/
+        
+        public java.lang.reflect.Method getMethod(Class<?> objectClass, String methodName) {
+            // Initialize the resul
+            java.lang.reflect.Method result = null;
+            // While the current class is not null
+            Class<?> currentClass = objectClass;
+            while (currentClass != null) {
+                // Get the list of all methods associated to the class/interface
+                java.lang.reflect.Method[] methods = currentClass.isInterface() ? 
+                    currentClass.getMethods() : 
+                    currentClass.getDeclaredMethods();
+                // For each of the methods
+                for (java.lang.reflect.Method method : methods) {
+                    // If the method names match
+                    if (method.getName().equals(methodName)) {
+                        // Set the method and break out of the loop
+                        result = method;
+                        break;
+                    }
+                }
+                // If there wasn't a matching method, check the parent class
+                currentClass = currentClass.getSuperclass();
+            }
+            // Return the result
+            return result;
+        }
+        
+        public java.lang.reflect.Method getMethod(Object object, String methodName) {
+            return object == null ? null : getMethod(object.getClass(), methodName);
+        }
+        
+        /*------------------------------------------------------------------------------------------
+         * HAS METHOD
+         *----------------------------------------------------------------------------------------*/
+        
+        public boolean hasMethod(Class<?> objectClass, String methodName) {
+            return objectClass != null && getMethod(objectClass, methodName) != null;
+        }
+        
+        public boolean hasMethod(Object object, String methodName) {
+            return object != null && getMethod(object.getClass(), methodName) != null;
+        }
+
+    }
+%>

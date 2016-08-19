@@ -22,6 +22,19 @@
                     <label for="displayName" class="control-label">Display Name</label>
                     <input id="displayName" name="displayName" class="form-control" value="${identity.user.displayName}">
                 </div>
+                <c:if test="${ObjectsHelper.hasMethod(identity.user, 'getPreferredLocale')}">
+                    <div class="form-group">
+                        <label for="displayName" class="control-label">Preferred Language</label>
+                        <select class="form-control">
+                            <option></option>
+                            <c:forEach var="optionLocale" items="${i18n.getSystemLocales(pageContext.request.locales)}">
+                                <option value="${i18n.getLocaleCode(optionLocale)}" 
+                                        ${i18n.getLocaleCode(optionLocale) == identity.user.preferredLocale ? 'selected' : ''}
+                                    >${text.escape(i18n.getLocaleNameGlobalized(optionLocale))}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </c:if>
                 <a href="#" id="password-toggle">Change Password</a>
                 <div id="password-section" class="hidden">
                     <div class="form-group">
