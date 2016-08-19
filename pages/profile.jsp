@@ -15,7 +15,7 @@
         <div class="profile card">
             <div class="panel-body">
                 <div class="form-group">
-                    <label for="email" class="control-label">Emailx</label>
+                    <label for="email" class="control-label">Email</label>
                     <input id="email" name="email" class="form-control" value="${identity.user.email}">
                 </div>
                 <div class="form-group">
