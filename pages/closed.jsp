@@ -5,19 +5,12 @@
         <title>Kinetic Data ${text.escape(kapp.name)}</title>
     </bundle:variable>
     <c:import url="${bundle.path}/partials/tabs.jsp" charEncoding="UTF-8"/>
-    <%--Tables are built on page load using dataTables library and an ajax call.
+    <%--Tables are built on page load using dataTables library and an ajax call to the tableRecords.json.jsp page in the bundle.
         In catalog.js an object to render the table is configured on page load and the mathod renderTable is called.  --%>
-        <div role="tabpanel" class="tab-pane" id="tab-test">
-            <h3>Closed Submissions</h3>
-            <table id="closedTable" class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th class="date">Updated At</th>
-                        <th>Form</th>
-                        <th class="nosort">Submission</th>
-                        <th>State</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
+    <div role="tabpanel" class="tab-pane">
+        <h3>Closed Submissions</h3>
+        <table id="closedTable" class="table table-striped table-hover">
+
+        </table>
+    </div>
 </bundle:layout>
