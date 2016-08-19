@@ -119,12 +119,10 @@
          *----------------------------------------------------------------------------------------*/
         
         public boolean hasMethod(Class<?> objectClass, String methodName) {
-            System.out.println("hi");
             return objectClass != null && getMethod(objectClass, methodName) != null;
         }
         
         public boolean hasMethod(Object object, String methodName) {
-            System.out.println("bye");
             return object != null && getMethod(object.getClass(), methodName) != null;
         }
 

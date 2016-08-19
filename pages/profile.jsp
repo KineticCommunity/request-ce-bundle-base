@@ -27,10 +27,10 @@
                         <label for="displayName" class="control-label">Preferred Language</label>
                         <select class="form-control">
                             <option></option>
-                            <c:forEach var="option" items="${LocaleHelper.getLocaleOptions()}">
-                                <option value="${text.escape(option.code)}" 
-                                        ${option.code == identity.user.preferredLocale ? 'selected' : ''}
-                                    >${text.escape(option.name)}</option>
+                            <c:forEach var="optionLocale" items="${i18n.getSystemLocales(pageContext.request.locales)}">
+                                <option value="${i18n.getLocaleCode(optionLocale)}" 
+                                        ${i18n.getLocaleCode(optionLocale) == identity.user.preferredLocale ? 'selected' : ''}
+                                    >${text.escape(i18n.getLocaleNameGlobalized(optionLocale))}</option>
                             </c:forEach>
                         </select>
                     </div>
