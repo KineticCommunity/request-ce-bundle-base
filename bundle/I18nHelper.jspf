@@ -80,24 +80,15 @@
             }
         }
         
-        
         /*------------------------------------------------------------------------------------------
-         * ACCESSOR METHODS
+         * METHODS
          *----------------------------------------------------------------------------------------*/
         
         public Locale getLocale() {
             return locale.getLocale();
         }
         
-        public ZoneId getZoneId() {
-            return ZoneId.systemDefault();
-        }
-        
-        /*------------------------------------------------------------------------------------------
-         * LOCALE METHODS
-         *----------------------------------------------------------------------------------------*/
-        
-        public String getCode(Locale locale) {
+        public String getLocaleCode(Locale locale) {
             String result;
             if (!"".equals(locale.getVariant())) {
                 result = locale.getLanguage() 
@@ -114,11 +105,11 @@
             return result;
         }
         
-        public String getGlobalizedName(Locale locale) {
+        public String getLocaleNameGlobalized(Locale locale) {
             return locale.getDisplayName(locale);
         }
 
-        public String getLocalizedName(Locale locale, Locale inLocale) {
+        public String getLocaleNameLocalized(Locale locale, Locale inLocale) {
             return locale.getDisplayName((inLocale == null) ? Locale.getDefault() : inLocale);
         }
         
@@ -151,6 +142,10 @@
             }
             Collections.sort(results, new LocaleComparator(locale, preferredLocales));
             return results;
+        }
+        
+        public ZoneId getZoneId() {
+            return ZoneId.systemDefault();
         }
         
         /*------------------------------------------------------------------------------------------

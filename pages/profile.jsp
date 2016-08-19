@@ -22,6 +22,7 @@
                     <label for="displayName" class="control-label">Display Name</label>
                     <input id="displayName" name="displayName" class="form-control" value="${identity.user.displayName}">
                 </div>
+           
                 <c:if test="${ObjectsHelper.hasMethod(identity.user, 'getPreferredLocale')}">
                     <div class="form-group">
                         <label for="displayName" class="control-label">Preferred Language</label>

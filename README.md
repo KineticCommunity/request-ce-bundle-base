@@ -1,3 +1,6 @@
+## WARNING
+This bundle is only compatible with kinetic core version 1.0.5 and after.
+
 ## Overview
 This bundle is used internally by Kinetic Request CE and is a good starting point to build out your own bundles.
 
