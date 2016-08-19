@@ -7,6 +7,7 @@
 <%@page import="java.time.ZoneId"%>
 <%@page import="java.util.*" %>
 <%@page import="org.slf4j.Logger" %>
+<%@page import="java.lang.reflect.Method"%>
 
 <%-- Bundle Java libraries --%>
 <%@page import="com.kineticdata.bundles.*" %>

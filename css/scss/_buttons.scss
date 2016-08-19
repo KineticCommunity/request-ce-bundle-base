@@ -36,6 +36,9 @@ form {
     background-color: rgba($tertiary-color, 0.8);
 
   }
+  .btn.fileinput-button:hover {
+    color: $white;
+  }
   button {
     &[data-button-type='previous-page'] {
       /* Button Types */
