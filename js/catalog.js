@@ -175,7 +175,10 @@
             $('#home').addClass('active');
         }else{
             $('#'+currentId).addClass('active');
-            $('#tab-nav').scrollLeft($('#'+currentId).position().left);
+            var currentIdPosition = $('#'+currentId).position();
+            if(currentIdPosition){
+                $('#tab-nav').scrollLeft($('#'+currentId).position().left);
+            }
         }
     });
     function renderTable(options){
