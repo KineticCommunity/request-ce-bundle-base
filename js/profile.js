@@ -28,11 +28,9 @@
             }
             var data = {
                 displayName: $('input#displayName').val().trim(),
-                email: $('input#email').val().trim()
+                email: $('input#email').val().trim(),
+                preferredLocale: $('select#preferredLocale').val()
             };
-            if ($('select#preferredLocale').val() != ""){
-                data.preferredLocale = $('select#preferredLocale').val();
-            }
             if ($('input#password').val().length > 0){
                 data.password = $('input#password').val();
             }
