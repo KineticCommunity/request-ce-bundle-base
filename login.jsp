@@ -38,13 +38,13 @@
 
                     <!-- Username field -->
                     <div class="form-group">
-                        <label for="j_username">${resourceBundle.getString("auth.login.username")}</label>
+                        <label for="j_username">Username</label>
                         <input type="text" name="j_username" id="j_username" class="form-control" autofocus/>
                     </div>
 
                     <!-- Password field -->
                     <div class="form-group">
-                        <label for="j_password">${resourceBundle.getString("auth.login.password")}</label>
+                        <label for="j_password">Password</label>
                         <input type="password" name="j_password" id="j_password" class="form-control" autocomplete="off"/>
                     </div>
 

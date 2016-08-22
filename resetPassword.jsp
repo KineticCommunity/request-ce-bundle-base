@@ -20,14 +20,12 @@
 
             <!-- Email field -->
             <div class="form-group">
-                <label for="username">
-                    ${resourceBundle.getString("auth.resetPassword.username")}
-                </label>
+                <label for="username">Username</label>
                 <input type="text" name="username" id="username" class="form-control" autofocus/>
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-default">${resourceBundle.getString("auth.resetPassword.submit")}</button>
+                <button type="submit" class="btn btn-default">Reset Password</button>
                 <a href="<c:url value="/${space.slug}/app/reset-password?confirmation"/>">I already have a reset code.</a>
             </div>
             </form>
@@ -52,30 +50,24 @@
 
             <!-- Token field -->
             <div class="form-group">
-                <label for="token">
-                    ${resourceBundle.getString("auth.resetPassword.token")}
-                </label>
+                <label for="token">Reset Password Token</label>
                 <input type="text" name="token" id="token" class="form-control" autofocus/>
             </div>
 
             <!-- Password field -->
             <div class="form-group">
-                <label for="password">
-                    ${resourceBundle.getString("auth.resetPassword.password")}
-                </label>
+                <label for="password">Reset Password</label>
                 <input type="password" name="password" id="password" class="form-control"/>
             </div>
 
             <!-- Password Confirmation field -->
             <div class="form-group">
-                <label for="confirmPassword">
-                    ${resourceBundle.getString("auth.resetPassword.confirm_password")}
-                </label>
+                <label for="confirmPassword">Confirm Password</label>
                 <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"/>
             </div>
 
             <div class="form-group">
-                <button type="submit" class="btn btn-default">${resourceBundle.getString("auth.resetPassword.submit")}</button>
+                <button type="submit" class="btn btn-default">Submit</button>
                 <a href="<c:url value="/${space.slug}/app/reset-password"/>">I don't have a reset code.</a>
             </div>
             </form>
