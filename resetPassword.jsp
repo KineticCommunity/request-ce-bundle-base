@@ -50,7 +50,7 @@
 
             <!-- Token field -->
             <div class="form-group">
-                <label for="token">Reset Password Tokens</label>
+                <label for="token">Reset Password Token</label>
                 <input type="text" name="token" id="token" class="form-control" autofocus/>
             </div>
 
