@@ -49,10 +49,10 @@
                 success: function(data, textStatus, jqXHR){
                     $('div.profile').notifie({
                         severity: 'success',
-                            message: 'Saved changes to user ' + data.user.displayName,
-                            expire: 5000
-                        });
-                },
+                        message: 'Saved changes to user ' + data.user.displayName,
+                        expire: 5000
+                    });
+            },
                 error: function(jqXHR, textStatus, errorThrown){
                     $('div.profile').notifie({
                             message: 'Failed to save changes'
