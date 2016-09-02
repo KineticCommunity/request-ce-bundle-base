@@ -119,12 +119,12 @@ pre {
 /*
    dataTables overrides
 */
-.dataTables_date {
+.dataTables_dateRange {
   float: left;
   margin: 0 10px 0 10px;
   color: #333; }
   @media (max-width: 640px) {
-    .dataTables_date {
+    .dataTables_dateRange {
       float: none;
       text-align: center; } }
 
@@ -380,6 +380,12 @@ form button[disabled] {
 
 .timeline-block__no-task {
   opacity: .5; }
+
+ul.date-range > li > p {
+  display: inline-flex;
+  margin: 0; }
+  ul.date-range > li > p > input {
+    margin: 1em; }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Footer

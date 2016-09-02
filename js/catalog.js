@@ -58,82 +58,6 @@
       });
     });
 
-//commented out 7/22/16 remove by 12/01/16 if no side effects are found.
-//    var locale = window.navigator.userLanguage || window.navigator.language;
-//    moment.locale(locale);
-//    $(function(){
-//      if (!$('.navbar-form .typeahead').length){
-//        return;
-//      }
-//      var matcher = function(strs) {
-//        return function findMatches(query, callback) {
-//            var matches, substringRegex;
-//            matches = [];
-//            substrRegex = new RegExp(query, 'i');
-//            $.each(strs, function(i, str) {
-//              if (substrRegex.test(str)) {
-//                matches.push(str);
-//              }
-//            });
-//            callback(matches);
-//        };
-//      };
-//      var formNames = [];
-//      var forms = {};
-//      $.get(window.bundle.apiLocation() + "/kapps/" + window.bundle.kappSlug() + "/forms", function( data ) {
-//        forms = data.forms;
-//        $.each(forms, function(i,val) {
-//          formNames.push(val.name);
-//          forms[val.name] = val;
-//        });
-//      });
-//      $('.navbar-form .typeahead').typeahead({
-//          highlight:true
-//        },{
-//          name: 'forms',
-//          source: matcher(formNames),
-//        }).bind('typeahead:select', function(ev, suggestion) {
-//          window.location.replace(window.bundle.kappLocation() + "/" + forms[suggestion].slug)
-//      });
-//    });
-
-
-    /**
-     * Applies the Jquery DataTables plugin to a rendered HTML table to provide
-     * column sorting and Moment.js functionality to date/time values.
-     *
-     * @param {String} tableId The id of the table element.
-     * @returns {undefined}
-     */
-    //commented out 7/22/16 remove by 12/01/16 if no side effects are found.
-//    function submissionsTable (tableId) {
-//        $('#'+tableId).DataTable({
-//            dom: '<"wrapper">t',
-//            columns: [ { defaultContent: ''}, null, null, null, null ],
-//            columnDefs: [
-//                {
-//                    render: function ( cellData, type, row ) {
-//                        var span = $('<a>').attr('href', 'javascript:void(0);');
-//                        var iso8601date = cellData;
-//                        $(span).text(moment(iso8601date).fromNow())
-//                                .attr('title', moment(iso8601date).format('MMMM Do YYYY, h:mm:ss A'))
-//                                .addClass('time-ago')
-//                                .data('toggle', 'tooltip')
-//                                .data('placement', 'top');
-//                        var td = $('#'+tableId+' td:contains('+cellData+')');
-//                        td.html(span);
-//                        return td.html();
-//                    },
-//                    targets: 'date'
-//                },
-//                {
-//                    orderable: false,
-//                    targets: 'nosort'
-//                }
-//            ]
-//        });
-//    }
-
     $(function(){
         var currentId = bundle.getUrlParameters().page;
 
@@ -200,7 +124,7 @@
                     "order": [[ 0, "desc" ]],
                     "bSort": options.serverSide ? false : true,
                     "pagingType": options.serverSide ? "simple" : "simple_numbers",
-                    "dom": options.serverSide ? '<"top"l><"dataTables_date">t<"bottom"p><"clear">' : 'l<"dataTables_date">ftip',
+                    "dom": options.serverSide ? '<"top"l><"dataTables_datRange">t<"bottom"p><"clear">' : 'l<"dataTables_dateRange">ftip',
                     "language": {"search":""},
                     "pageLength": options.serverSide ? options.length : 10,
                     "createdRow": function (row, data) {
@@ -221,7 +145,7 @@
                 /* After the table has been built we are adding an html element that has a dropdown list so that a user can select a number of days back
                  * to retrieve the list from.
                  */
-                //addDateDropdown(options)
+                addSegmentedControls(options)
                 if(options.serverSide){
                     serverOptions(options,data);
                 }
@@ -257,8 +181,8 @@
         if(options.type !== undefined){
             url += '&type='+options.type;
         }
-        if(options.backDate !== undefined){
-            url += '&date=' + options.backDate;
+        if(options.start !== undefined){
+            url += '&start=' + options.start;
         }
         if(options.length !== undefined){
             url += '&limit=' + options.length;
@@ -266,29 +190,111 @@
         if(options.token && options.token() !== undefined){
             url += '&pageToken='+options.token();
         }
+        if(options.end !== undefined && options.end !== null){
+            url += '&end='+options.end;
+        }
         return url;
     }
 
-    function addDateDropdown(options){
-        /*  We use the DOM: property in dataTables to create the div.dataTables_date element.
-        *   Then we build up the html; the <label> tag was added to give the new element a similar style to the other elements around the table.
-        */
-        $('div.dataTables_date').html('<label>Over <select class="form-control-inline"> <option value="30">30</option> <option value="60">60</option> <option value="90">90</option> </select> &nbsp;Days</label>');
-
-        // The dropdown needs to be readded to dataTables every time the table is rebuild so we need to set the displayed option to the last option the user selected.
-        if(options.backDate !== undefined){
-            $('div.dataTables_date select').val(options.backDate);
-        }
-
-        /* When a new option is selected we rebuild the table.  We have to delete the old tokens from the object and remove the data-nextPageTokens attribute.
-         * We do this so that the token store is clear and the display of the Previous and Next button behaves correctly
+    function addSegmentedControls(options){
+        /* We use the DOM: property in dataTables to create the div.dataTables_dateRange element.
+         * Then we build up the html.  We are using a Jquery plugin to render a segmented control to the dom.
          */
-        $('div.dataTables_date').change(function(){
-            delete options.token;
-            $(options.table).removeData('nextPageTokens');
-            renderTable($.extend({},options,{
-                backDate: $('div.dataTables_date option:selected').val(),
-            }));
+        $('div.dataTables_dateRange').html('<select class="segment-select"><option value="1">1 year</option><option value="2">Custom</option><option value="3">View All</option></select>');
+       
+        /* This is required to initialize the Jquery Plugin "Segmented Control" */
+        $(".segment-select").Segment();
+        
+        addDateRangeDropdown();
+                               
+        /* The active state to be re-added to the correct segment of the segmented controls every time the table is rebuild.
+         * We remove the active state from the defult option.
+         */
+        if(options.state !== undefined){
+            $('[data-segment] .option').removeClass('active')
+            $('[data-segment] .option[value="'+options.state+'"]').addClass('active');
+        }
+        /* On click of a segmented control we set the value of the selected segement to a state variable on our options object.
+         */
+        $('[data-segment]').on('click',function(){
+            options.state = $('[data-segment] .active').attr('value');
+            /* When a new option is selected we rebuild the table.  We have to delete the old tokens from the object and remove the data-nextPageTokens attribute.
+             * We do this so that the token store is clear and the display of the Previous and Next button behaves correctly if we are displaying the table with server-side pagination
+             */
+            if(options.state === "1"){
+                delete options.token;
+                $(options.table).removeData('nextPageTokens');
+                renderTable($.extend({},options,{
+                    start: moment().subtract(1,"year").format(),
+                }));
+            }else if(options.state === "2"){
+                $('#get-date-range').off().on('click',function(){
+                    if($('#date_timepicker_start').val() !== ""){
+                        renderTable($.extend({},options,{
+                            start: $('#date_timepicker_start').val() ? new Date($('#date_timepicker_start').val()).toISOString() : null,
+                            end: $('#date_timepicker_end').val() ? new Date($('#date_timepicker_end').val()).toISOString() : null
+                        }));
+                    }else{
+                        $('.date-range li').notifie({type:'alert',severity:'info',message:'A start date is Required.'});
+                    }
+                });
+            }else if(options.state === "3"){
+                delete options.token;
+                $(options.table).removeData('nextPageTokens');
+                renderTable($.extend({},options,{
+                    start: "",
+                }));
+            }
+        });
+
+    }
+    
+    /* Split out the logic to build up a dropdown menu for selecting a date range for submissions to display in the dataTable.
+     * This would have been much cleaner with BootStrap 4.
+     */
+    function addDateRangeDropdown(){
+        
+        /* The Jquery plugin "Segmented Controls" adds the controls to the DOM dynamically so we need to add the dropdown class after they have been rendered.
+         * We also add the ul that will be the dropdown menu to the appropriate segment.
+         * To prevent the menu from closing when the DatePickers are selected we have to override the toggle behavior.
+         */
+        $('[data-segment]').addClass('dropdown');
+        $('[data-segment] .option[value="2"]').attr('id','custom-date-range')
+                                              .addClass('dropdown-toggle')
+                                              .after('<ul class="dropdown-menu date-range" aria-labelledby="custom-date-range"><li><p><input placeholder="Starting Date" id="date_timepicker_start" type="text" value=""><input placeholder="Ending Date" id="date_timepicker_end" type="text" value=""><input value="Go" id="get-date-range" type="button" class="btn btn-default"></p></li></ul>')
+                                              .on('click', function(){
+                                                $('#custom-date-range').parent().toggleClass('open')
+                                              });
+                                              
+        /* This listener is checking to see if there is a click event outside of the dropdown menu so that it can close the menu.
+         */                                      
+        $('body').on('click', function (e) {
+            if (!$('div.ui-segment.dropdown').is(e.target) 
+                && $('div.ui-segment.dropdown').has(e.target).length === 0 
+                && $('.open').has(e.target).length === 0
+            ) {
+                $('div.ui-segment.dropdown').removeClass('open');
+            }
+        });
+        
+        /* This builds the start and end calanders that open when the Start and End Date inputs are clicked. */
+        jQuery('#date_timepicker_start').datetimepicker({
+            format:'Y/m/d',
+            onShow:function( ct ){
+                this.setOptions({
+                    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+                })
+            },
+            timepicker:false
+        });
+        jQuery('#date_timepicker_end').datetimepicker({
+            format:'Y/m/d',
+            onShow:function( ct ){
+                this.setOptions({
+                    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+                })
+            },
+            timepicker:false
         });
     }
 

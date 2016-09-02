@@ -19,6 +19,7 @@
 
         <bundle:stylepack>
             <bundle:style src="${bundle.location}/libraries/bootstrap/bootstrap.min.css" />
+            <bundle:style src="${bundle.location}/libraries/jquery/plugins/segmented-controls/segment.css" />
             <bundle:style src="${bundle.location}/libraries/notifie/jquery.notifie.css" />
             <bundle:style src="${bundle.location}/libraries/jquery-datatables/media/css/jquery.dataTables.css" />
             <bundle:style src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/css/responsive.dataTables.css" />
@@ -27,6 +28,8 @@
         <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
             <bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" />
+            <bundle:script src="${bundle.location}/libraries/jquery/plugins/segmented-controls/segment.js" />
+            <bundle:script src="${bundle.location}/libraries/datetimepicker-master/build/jquery.datetimepicker.full.js"/>
             <bundle:script src="${bundle.location}/libraries/underscore/underscore-min.js" />
             <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
             <bundle:script src="${bundle.location}/libraries/moment/moment-with-locales.js" />

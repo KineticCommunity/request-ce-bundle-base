@@ -14,3 +14,6 @@
         </table>
     </div>
 </bundle:layout>
+<script>
+
+</script>

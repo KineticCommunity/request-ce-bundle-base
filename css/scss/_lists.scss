@@ -157,3 +157,11 @@
 .timeline-block__no-task{
     opacity: .5;
 }
+
+ul.date-range > li > p{
+    display: inline-flex;
+    margin: 0;
+    > input{
+        margin: 1em;
+    }
+}

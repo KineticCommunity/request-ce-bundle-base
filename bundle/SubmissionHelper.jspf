@@ -1,3 +1,6 @@
+<%@page import="org.springframework.util.StringUtils"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.kineticdata.core.models.Submission"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.List"%>
@@ -56,35 +59,39 @@
             return submissionComponent.searchByKapp(kapp, searchOptions);
         }
 
-        public PaginatedList<Submission> getPaginatedSubmissions(){
+        public PaginatedList<Submission> getPaginatedSubmissions(Map<String,String[]> requestParameters){
+            ParameterMap parameters = new ParameterMap(requestParameters);
+
             com.kineticdata.core.authentication.Identity identity =
                 (com.kineticdata.core.authentication.Identity) request.getAttribute("identity");
-
-            Long date;
-            if(request.getParameter("date") != null){
-                date = Long.parseLong(request.getParameter("date"));
-            } else {
-                date = Long.parseLong("120");
-            }
-            java.time.Instant end = Time.now();
-            java.time.Instant start = Time
-                .subtract(end, date, "days", java.time.ZoneId.systemDefault());
-
             java.util.Map<String,String[]> searchOptions = new java.util.HashMap<>();
 
-            searchOptions.put("end", new String[] {Time.format(end)} );
-            searchOptions.put("start", new String[] {Time.format(start)} );
+            java.time.Instant end = Time.now();
+            java.time.Instant start = Time.subtract(end, 365, "days", java.time.ZoneId.systemDefault());
+
+            if (parameters.getValue("start") != null && parameters.getValue("end") != null) {
+                searchOptions.put("start", new String[]{Time.format(parameters.getValue("start"))});
+                searchOptions.put("end", new String[]{Time.format(parameters.getValue("end"))});
+            }else if(!StringUtils.isEmpty(parameters.getValue("start"))){
+                searchOptions.put("end", new String[] {Time.format(end)} );
+                searchOptions.put("start", new String[]{Time.format(parameters.getValue("start"))});
+            }else{
+                searchOptions.put("end", new String[] {Time.format(end)} );
+                if(parameters.getValue("start") != ""){
+                    searchOptions.put("start", new String[] {Time.format(start)} );
+                }
+            }
             
             // User select the number of record to see in the table display.  By default they see 10.
-            if (request.getParameter("limit") != null) {
-                searchOptions.put("limit", new String[] {String.valueOf(request.getParameter("limit"))});
+            if (parameters.getValue("limit") != null) {
+                searchOptions.put("limit", new String[] {String.valueOf(parameters.getValue("limit"))});
             }else{
                 searchOptions.put("limit",new String[]{"10"});
             }
 
             // If a page token exist in the request 
-            if(request.getParameter("pageToken") != null){
-                searchOptions.put("pageToken", new String[]{request.getParameter("pageToken")});
+            if(parameters.getValue("pageToken") != null){
+                searchOptions.put("pageToken", new String[]{parameters.getValue("pageToken")});
             }
 
             if("Approval".equals(request.getParameter("type")) || "Work Order".equals(request.getParameter("type"))){
@@ -93,8 +100,9 @@
                 searchOptions.put("createdBy", new String[] {identity.getUsername()});
             }
 
-            if(request.getParameter("coreState") != null){
-                searchOptions.put("coreState", request.getParameterValues("coreState"));
+            if(parameters.getValue("coreState") != null){
+                int size = parameters.getValues("coreState").size();
+                searchOptions.put("coreState", parameters.getValues("coreState").toArray(new String[size]));
             }
 
             PaginatedList<Submission> page;
@@ -111,6 +119,19 @@
                 }
             }
             return results;
+        }
+
+        private static class ParameterMap {
+            private final Map<String,String[]> parameters;
+            public ParameterMap(Map<String,String[]> parameters) {
+                this.parameters = parameters;
+            }
+            public String getValue(String name) {
+                return parameters.containsKey(name) ? parameters.get(name)[0] : null;
+            }
+            public List<String> getValues(String name) {
+                return parameters.containsKey(name) ? Arrays.asList(parameters.get(name)) : Collections.EMPTY_LIST;
+            }
         }
     }
 %>
