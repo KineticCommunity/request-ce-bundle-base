@@ -543,6 +543,12 @@ footer {
   height: 0;
   width: 0; }
 
+div.title-header > div {
+  margin-top: 1.2em; }
+
+div.title-header > div > span > input {
+  width: 8em; }
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Navs
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

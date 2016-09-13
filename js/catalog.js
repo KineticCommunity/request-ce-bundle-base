@@ -4,12 +4,22 @@
 **/
 
 (function($, moment, _){
+    /*----------------------------------------------------------------------------------------------
+     * COMMON INIALIZATION 
+     *   This code is executed when the Javascript file is loaded
+     *--------------------------------------------------------------------------------------------*/
+
+    // Ensure the BUNDLE global object exists
+    bundle = typeof bundle !== "undefined" ? bundle : {};
+    // Create your namespace
+    bundle.base = bundle.base || {};
+    // Create a scoped alias to simplify references to your namespace
+    var base = bundle.base;
+    
     // UTILITY METHODS
 
     /**
      * Returns an Object with keys/values for each of the url parameters.
-     *
-     * @returns {Object}
      */
     bundle.getUrlParameters = function() {
        var searchString = window.location.search.substring(1), params = searchString.split("&"), hash = {};
@@ -105,13 +115,19 @@
             }
         }
     });
+    
     function renderTable(options){
+        base.options = options;
         $.ajax({
             method: 'get',
             url: buildAjaxUrl(options),
             dataType: "json",
             contentType: 'application/json',
+            beforeSend: function(jqXHR, obj){
+                $(options.table).append('<div><i id="spinner" class="fa fa-cog fa-spin fa-3x" style="text-align:center;width:100%"/></div>');
+            },
             success: function(data, textStatus, jqXHR){
+                $('#spinner').remove();
                 $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
                 records = $.extend(data, {
                     responsive: {breakpoints: [
@@ -145,7 +161,7 @@
                 /* After the table has been built we are adding an html element that has a dropdown list so that a user can select a number of days back
                  * to retrieve the list from.
                  */
-                addSegmentedControls(options)
+               
                 if(options.serverSide){
                     serverOptions(options,data);
                 }
@@ -156,11 +172,11 @@
             }
         });
     }
+    
     /* This fucntion builds a Url to be used by the ajax call.
      * The intention is to pass parameters to this function to make the url configurable.
      * This gives the ability to use the same piece of code to configure multiple queries.
     */
-
     function buildAjaxUrl(options){
         var url = bundle.kappLocation() + "?partial=" +options.jsonFileName;
         if(options.type === 'Approval'){
@@ -194,108 +210,6 @@
             url += '&end='+options.end;
         }
         return url;
-    }
-
-    function addSegmentedControls(options){
-        /* We use the DOM: property in dataTables to create the div.dataTables_dateRange element.
-         * Then we build up the html.  We are using a Jquery plugin to render a segmented control to the dom.
-         */
-        $('div.dataTables_dateRange').html('<select class="segment-select"><option value="1">1 year</option><option value="2">Custom</option><option value="3">View All</option></select>');
-       
-        /* This is required to initialize the Jquery Plugin "Segmented Control" */
-        $(".segment-select").Segment();
-        
-        addDateRangeDropdown();
-                               
-        /* The active state to be re-added to the correct segment of the segmented controls every time the table is rebuild.
-         * We remove the active state from the defult option.
-         */
-        if(options.state !== undefined){
-            $('[data-segment] .option').removeClass('active')
-            $('[data-segment] .option[value="'+options.state+'"]').addClass('active');
-        }
-        /* On click of a segmented control we set the value of the selected segement to a state variable on our options object.
-         */
-        $('[data-segment]').on('click',function(){
-            options.state = $('[data-segment] .active').attr('value');
-            /* When a new option is selected we rebuild the table.  We have to delete the old tokens from the object and remove the data-nextPageTokens attribute.
-             * We do this so that the token store is clear and the display of the Previous and Next button behaves correctly if we are displaying the table with server-side pagination
-             */
-            if(options.state === "1"){
-                delete options.token;
-                $(options.table).removeData('nextPageTokens');
-                renderTable($.extend({},options,{
-                    start: moment().subtract(1,"year").format(),
-                }));
-            }else if(options.state === "2"){
-                $('#get-date-range').off().on('click',function(){
-                    if($('#date_timepicker_start').val() !== ""){
-                        renderTable($.extend({},options,{
-                            start: $('#date_timepicker_start').val() ? new Date($('#date_timepicker_start').val()).toISOString() : null,
-                            end: $('#date_timepicker_end').val() ? new Date($('#date_timepicker_end').val()).toISOString() : null
-                        }));
-                    }else{
-                        $('.date-range li').notifie({type:'alert',severity:'info',message:'A start date is Required.'});
-                    }
-                });
-            }else if(options.state === "3"){
-                delete options.token;
-                $(options.table).removeData('nextPageTokens');
-                renderTable($.extend({},options,{
-                    start: "",
-                }));
-            }
-        });
-
-    }
-    
-    /* Split out the logic to build up a dropdown menu for selecting a date range for submissions to display in the dataTable.
-     * This would have been much cleaner with BootStrap 4.
-     */
-    function addDateRangeDropdown(){
-        
-        /* The Jquery plugin "Segmented Controls" adds the controls to the DOM dynamically so we need to add the dropdown class after they have been rendered.
-         * We also add the ul that will be the dropdown menu to the appropriate segment.
-         * To prevent the menu from closing when the DatePickers are selected we have to override the toggle behavior.
-         */
-        $('[data-segment]').addClass('dropdown');
-        $('[data-segment] .option[value="2"]').attr('id','custom-date-range')
-                                              .addClass('dropdown-toggle')
-                                              .after('<ul class="dropdown-menu date-range" aria-labelledby="custom-date-range"><li><p><input placeholder="Starting Date" id="date_timepicker_start" type="text" value=""><input placeholder="Ending Date" id="date_timepicker_end" type="text" value=""><input value="Go" id="get-date-range" type="button" class="btn btn-default"></p></li></ul>')
-                                              .on('click', function(){
-                                                $('#custom-date-range').parent().toggleClass('open')
-                                              });
-                                              
-        /* This listener is checking to see if there is a click event outside of the dropdown menu so that it can close the menu.
-         */                                      
-        $('body').on('click', function (e) {
-            if (!$('div.ui-segment.dropdown').is(e.target) 
-                && $('div.ui-segment.dropdown').has(e.target).length === 0 
-                && $('.open').has(e.target).length === 0
-            ) {
-                $('div.ui-segment.dropdown').removeClass('open');
-            }
-        });
-        
-        /* This builds the start and end calanders that open when the Start and End Date inputs are clicked. */
-        jQuery('#date_timepicker_start').datetimepicker({
-            format:'Y/m/d',
-            onShow:function( ct ){
-                this.setOptions({
-                    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
-                })
-            },
-            timepicker:false
-        });
-        jQuery('#date_timepicker_end').datetimepicker({
-            format:'Y/m/d',
-            onShow:function( ct ){
-                this.setOptions({
-                    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
-                })
-            },
-            timepicker:false
-        });
     }
 
     /*  This code is to override dataTables default behavior.
@@ -358,9 +272,81 @@
             }));
         });
     };
+    
+    function addDateRange(options){ 
+        $('#section-date-range').removeClass('hidden').hide();
+        
+        $('#1-year-date-range').on('click', function(){
+            renderTable($.extend({},options,{
+                start: moment().subtract(1,"year").format(),
+            }));
+            $('#section-date-range').hide(200);
+            $('#date_timepicker_start').val('');
+            $('#date_timepicker_end').val('');
+            $('#1-year-date-range').addClass('active');
+            $('#view-all-date-range').removeClass('active');
+            $('#custom-date-range').removeClass('active');
+        });
+        $('#view-all-date-range').on('click', function(){
+            renderTable($.extend({},options,{
+                start: "",
+            }));
+            $('#section-date-range').hide(200);
+            $('#date_timepicker_start').val('');
+            $('#date_timepicker_end').val('');
+            $('#view-all-date-range').addClass('active');
+            $('#1-year-date-range').removeClass('active');
+            $('#custom-date-range').removeClass('active');
+        });
+        $('#custom-date-range').on('click', function(event){
+            $('#section-date-range').toggle(200);
+            $('#custom-date-range').addClass('active');
+            $('#1-year-date-range').removeClass('active');
+            $('#view-all-date-range').removeClass('active');
+        });
 
+       /* This builds the start and end datepicker calanders that open when the Start and End Date inputs are clicked. */
+        jQuery('#date_timepicker_start').datetimepicker({
+            format:'Y/m/d',
+            onChangeDateTime:function(dp,$input){
+               if($('#date_timepicker_start').val() !== ""){
+                    renderTable($.extend({},options,{
+                        start: $('#date_timepicker_start').val() ? new Date($('#date_timepicker_start').val()).toISOString() : null,
+                        end: $('#date_timepicker_end').val() ? new Date($('#date_timepicker_end').val()).toISOString() : null
+                    }));
+                }
+            },
+            onShow:function( ct ){
+                this.setOptions({
+                    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():moment()
+                })
+            },
+            timepicker:false
+        });
+        jQuery('#date_timepicker_end').datetimepicker({
+            format:'Y/m/d',
+             onChangeDateTime:function(dp,$input){
+                if($('#date_timepicker_start').val() !== ""){
+                    renderTable($.extend({},options,{
+                        start: $('#date_timepicker_start').val() ? new Date($('#date_timepicker_start').val()).toISOString() : null,
+                        end: $('#date_timepicker_end').val() ? new Date($('#date_timepicker_end').val()).toISOString() : null
+                    }));
+                }else if ($('#date_timepicker_end').val() !== ""){
+                    $('div.title-header').notifie({type:'alert',severity:'info',message:'A start date is Required.',expire:'1000'});
+                }
+            },
+            onShow:function( ct ){
+                this.setOptions({
+                    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+                })
+            },
+            timepicker:false
+        });
+    }
+    
     // PAGE LOAD EVENTS
     $(function(){
+        addDateRange(bundle.base.options)
         // Display error message if authentication error is found in URL.  This happens if login credentials fail.
         if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
             $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});

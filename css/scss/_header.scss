@@ -190,3 +190,9 @@
     width: 0;
   }
 }
+
+div.title-header{
+    > div{
+        margin-top: 1.2em;
+    }
+}
