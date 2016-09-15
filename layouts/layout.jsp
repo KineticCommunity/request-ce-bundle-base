@@ -18,27 +18,23 @@
         Add ?debugjs to the end of your URL to view individual files --%>
 
         <bundle:stylepack>
-            <bundle:style src="${bundle.location}/libraries/bootstrap/bootstrap.min.css" />
-            <bundle:style src="${bundle.location}/libraries/jquery/plugins/segmented-controls/segment.css" />
+            <bundle:style src="${bundle.location}/libraries/bootstrap/css/bootstrap.css" />
+            <bundle:style src="${bundle.location}/libraries/datatables/datatables.css"/>
             <bundle:style src="${bundle.location}/libraries/notifie/jquery.notifie.css" />
-            <bundle:style src="${bundle.location}/libraries/jquery-datatables/media/css/jquery.dataTables.css" />
-            <bundle:style src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/css/responsive.dataTables.css" />
             <bundle:style src="${bundle.location}/css/master.css "/>
         </bundle:stylepack>
         <link href="${bundle.location}/libraries/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <bundle:scriptpack>
             <bundle:script src="${bundle.location}/libraries/jquery/jquery.min.js" />
-            <bundle:script src="${bundle.location}/libraries/jquery/plugins/segmented-controls/segment.js" />
-            <bundle:script src="${bundle.location}/libraries/datetimepicker-master/build/jquery.datetimepicker.full.js"/>
             <bundle:script src="${bundle.location}/libraries/underscore/underscore-min.js" />
-            <bundle:script src="${bundle.location}/libraries/bootstrap/bootstrap.min.js" />
+            <bundle:script src="${bundle.location}/libraries/datatables/datatables.js"/>
+            <bundle:script src="${bundle.location}/libraries/datetimepicker-master/build/jquery.datetimepicker.full.js"/>       
+            <bundle:script src="${bundle.location}/libraries/bootstrap/js/bootstrap.js" />
             <bundle:script src="${bundle.location}/libraries/moment/moment-with-locales.js" />
             <bundle:script src="${bundle.location}/libraries/moment/moment-timezone.js" />
-            <bundle:script src="${bundle.location}/libraries/jquery-datatables/media/js/jquery.dataTables.js" />
-            <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/Responsive/js/dataTables.responsive.js" />
             <bundle:script src="${bundle.location}/libraries/notifie/jquery.notifie.js" />
             <bundle:script src="${bundle.location}/libraries/typeahead/typeahead.min.js" />
-            <bundle:script src="${bundle.location}/libraries/jquery-datatables/extensions/moment.js" />
+            <bundle:script src="${bundle.location}/libraries/datatables/moment.js" />
             <bundle:script src="${bundle.location}/js/catalog.js" />
             <bundle:script src="${bundle.location}/js/review.js" />
         </bundle:scriptpack>

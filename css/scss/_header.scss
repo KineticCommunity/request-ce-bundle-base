@@ -191,8 +191,13 @@
   }
 }
 
-div.title-header{
-    > div{
-        margin-top: 1.2em;
+.header__date-range{
+    > span{
+        > div{
+            margin-left: 1em;
+            margin-top: 1em;
+            float: left;
+            width: 10em;
+        }
     }
 }

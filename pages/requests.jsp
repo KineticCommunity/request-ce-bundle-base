@@ -8,20 +8,29 @@
     <%--Tables are built on page load using dataTables library and an ajax call to the tableRecords.json.jsp page in the bundle.
         In catalog.js an object to render the table is configured on page load and the mathod renderTable is called.  --%>
     <div role="tabpanel" class="tab-pane">
-        <div class="row title-header">
-            <h3 class="col-md-4">My Requests</h3>
-            <div class="dropdown col-md-8">
-                <input id="1-year-date-range" class="btn btn-default" type="button" value="1 Year">
-                <input id="custom-date-range" class="btn btn-default " type="submit" value="Custom">
-                <span id="section-date-range" class="hidden">
-                    <input id="date_timepicker_start" class="btn btn-default" placeholder="Starting Date"  type="text" value="">
-                    <input id="date_timepicker_end" class="btn btn-default" placeholder="Ending Date"  type="text" value="">
-                </span>
-                <input id="view-all-date-range" class="btn btn-default" type="submit" value="View All">
-            </div>
+        <h3>My Requests</h3>
+        <div class="header__date-range">
+            <label> Date Range:
+                <select id="date-range">
+                    <option value="1 Year">1 Year</option>
+                    <option value="View All">View All</option>
+                    <option value="Custom">Custom</option>
+                </select>
+            </label>
+            <span id="section-date-range" class="hidden">
+                <div id="date_timepicker_start" class="input-group">
+                    <input id="date_timepicker_start_input" type="text" class="form-control" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                </div>
+                <div id="date_timepicker_end" class="input-group">
+                    <input id="date_timepicker_end_input" type="text" class="form-control" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                </div>
+            </span>
         </div>
+        <i id="spinner" class="fa fa-cog fa-spin fa-3x" style="text-align:center;width:100%;margin-top:15%"></i> 
         <table id="requestsTable" class="table table-striped table-hover">
-           
+            
         </table>
     </div>
 </bundle:layout>

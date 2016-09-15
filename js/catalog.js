@@ -123,9 +123,6 @@
             url: buildAjaxUrl(options),
             dataType: "json",
             contentType: 'application/json',
-            beforeSend: function(jqXHR, obj){
-                $(options.table).append('<div><i id="spinner" class="fa fa-cog fa-spin fa-3x" style="text-align:center;width:100%"/></div>');
-            },
             success: function(data, textStatus, jqXHR){
                 $('#spinner').remove();
                 $.fn.dataTable.moment('MMMM Do YYYY, h:mm:ss A');
@@ -140,7 +137,7 @@
                     "order": [[ 0, "desc" ]],
                     "bSort": options.serverSide ? false : true,
                     "pagingType": options.serverSide ? "simple" : "simple_numbers",
-                    "dom": options.serverSide ? '<"top"l><"dataTables_datRange">t<"bottom"p><"clear">' : 'l<"dataTables_dateRange">ftip',
+                    "dom": options.serverSide ? "<'row'<'col-sm-12'l>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-12'p>>" : "<'row'<'col-sm-6'l><'col-sm-6'f>>" + "<'row'<'col-sm-12'tr>>" + "<'row'<'col-sm-5'i><'col-sm-7'p>>",
                     "language": {"search":""},
                     "pageLength": options.serverSide ? options.length : 10,
                     "createdRow": function (row, data) {
@@ -167,8 +164,10 @@
                 }
             },
             complete: function(){
-                $('.dataTables_filter input').addClass('form-control');
-                $('.dataTables_filter input').attr('placeholder', 'Filter...');
+                /* After the dataTable has rendered we are adding a placeholder to the "search" field in order
+                 * to get a common fell to the search box that is also located on the page. 
+                 */
+                $('.dataTables_filter input').attr('placeholder', 'Filter Table...');
             }
         });
     }
@@ -273,19 +272,28 @@
         });
     };
     
-    function addDateRange(options){ 
+    function dateRange(options){ 
         $('#section-date-range').removeClass('hidden').hide();
         
-        $('#1-year-date-range').on('click', function(){
-            renderTable($.extend({},options,{
-                start: moment().subtract(1,"year").format(),
-            }));
-            $('#section-date-range').hide(200);
-            $('#date_timepicker_start').val('');
-            $('#date_timepicker_end').val('');
-            $('#1-year-date-range').addClass('active');
-            $('#view-all-date-range').removeClass('active');
-            $('#custom-date-range').removeClass('active');
+        $('#date-range').on('change', function(){
+            var selection = $('#date-range :selected').val()
+            if(selection === "View All"){
+                $('#section-date-range').hide(200);
+                $('#date_timepicker_start input').val('');
+                $('#date_timepicker_end input').val('');
+                renderTable($.extend({},options,{
+                    start: "",
+                }));
+            }else if(selection === "Custom"){
+                $('#section-date-range').toggle(200);
+            }else {
+                $('#section-date-range').hide(200);
+                $('#date_timepicker_start input').val('');
+                $('#date_timepicker_end input').val('');
+                renderTable($.extend({},options,{
+                    start: moment().subtract(1,"year").format(),
+                }));
+            } 
         });
         $('#view-all-date-range').on('click', function(){
             renderTable($.extend({},options,{
@@ -309,7 +317,8 @@
         jQuery('#date_timepicker_start').datetimepicker({
             format:'Y/m/d',
             onChangeDateTime:function(dp,$input){
-               if($('#date_timepicker_start').val() !== ""){
+                $('#date_timepicker_start input').val($('#date_timepicker_start').val());
+                if($('#date_timepicker_start_input').val() !== ""){
                     renderTable($.extend({},options,{
                         start: $('#date_timepicker_start').val() ? new Date($('#date_timepicker_start').val()).toISOString() : null,
                         end: $('#date_timepicker_end').val() ? new Date($('#date_timepicker_end').val()).toISOString() : null
@@ -318,7 +327,7 @@
             },
             onShow:function( ct ){
                 this.setOptions({
-                    maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():moment()
+                    maxDate:jQuery('#date_timepicker_end input').val()?jQuery('#date_timepicker_end input').val():moment()
                 })
             },
             timepicker:false
@@ -326,6 +335,7 @@
         jQuery('#date_timepicker_end').datetimepicker({
             format:'Y/m/d',
              onChangeDateTime:function(dp,$input){
+                $('#date_timepicker_end input').val($('#date_timepicker_end').val())
                 if($('#date_timepicker_start').val() !== ""){
                     renderTable($.extend({},options,{
                         start: $('#date_timepicker_start').val() ? new Date($('#date_timepicker_start').val()).toISOString() : null,
@@ -337,7 +347,7 @@
             },
             onShow:function( ct ){
                 this.setOptions({
-                    minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+                    minDate:jQuery('#date_timepicker_start input').val()?jQuery('#date_timepicker_start input').val():false
                 })
             },
             timepicker:false
@@ -346,7 +356,7 @@
     
     // PAGE LOAD EVENTS
     $(function(){
-        addDateRange(bundle.base.options)
+        dateRange(bundle.base.options)
         // Display error message if authentication error is found in URL.  This happens if login credentials fail.
         if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
             $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});

@@ -26,7 +26,7 @@
     </json:array>
     <json:array name="data" var="submission" items="${submissionList}">
         <json:object>
-            <json:property name="Updated At" value="${submission.updatedAt}"/>
+            <json:property name="Updated At" value="${time.format(submission.updatedAt)}"/>
             <json:property name="Form" value="${submission.form.name}"/>
             <json:property name="Submission" value="${submission.label}"/>
             <json:property name="State" value="${submission.coreState}"/>

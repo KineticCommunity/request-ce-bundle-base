@@ -9,6 +9,26 @@
         In catalog.js an object to render the table is configured on page load and the mathod renderTable is called.  --%>
     <div role="tabpanel" class="tab-pane">
         <h3>Closed Submissions</h3>
+        <div class="header__date-range">
+            <label> Date Range:
+                <select id="date-range">
+                    <option value="1 Year">1 Year</option>
+                    <option value="View All">View All</option>
+                    <option value="Custom">Custom</option>
+                </select>
+            </label>
+            <span id="section-date-range" class="hidden">
+                <div id="date_timepicker_start" class="input-group">
+                    <input id="date_timepicker_start_input" type="text" class="form-control" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                </div>
+                <div id="date_timepicker_end" class="input-group">
+                    <input id="date_timepicker_end_input" type="text" class="form-control" aria-describedby="basic-addon2">
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                </div>
+            </span>
+        </div>
+        <i id="spinner" class="fa fa-cog fa-spin fa-3x" style="text-align:center;width:100%;margin-top:15%"></i> 
         <table id="closedTable" class="table table-striped table-hover">
 
         </table>
