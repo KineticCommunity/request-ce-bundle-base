@@ -196,42 +196,51 @@
     > div {
       float : left;
       margin-left : 1em;
-      width : 10em;
-      > input{
-        padding: 4px 16px;
-        height: 30px;
+      width : 14em;
+      > .input-group .form-control {
+        padding : 4px 16px;
+        height : 28px;
       }
     }
   }
-  > label{
-    font-weight: normal;
-    text-align: left;
-    white-space: nowrap;
-    float:left;
-    margin-bottom: 10px;
+  > label {
+    font-weight : normal;
+    text-align : left;
+    white-space : nowrap;
+    float : left;
+    margin-bottom : 10px;
   }
-  select{
-    display: inline-block;
-    width: 10em;
+  select {
+    display : inline-block;
+    width : 10em;
   }
-  #section-date-range{
-    float: left;
+  #section-date-range {
+    float : left;
+    > select {
+      width : 10em;
+    }
   }
-  .control-label{
-    float: left;
-    line-height: 28px;
-    margin-right: 10px;
+  .control-label {
+    float : left;
+    line-height : 30px;
+    margin-right : 10px;
+    font-weight : normal;
   }
   @media screen and (max-width: 767px) {
-    text-align:center;
-    > span > div,
-    label,
-    .control-label,
-    #section-date-range{
-      float:none;
+    text-align : center;
+    label{
+      text-align:center;
+      display:block;
+      width:100%;
     }
-    #section-date-range{
-      margin-bottom: 10px;;
+    > span > div,
+    > label,
+    .control-label,
+    #section-date-range {
+      float : none;
+    }
+    #section-date-range {
+      margin-bottom : 10px;
     }
   }
 }

@@ -546,10 +546,10 @@ footer {
 .header__date-range > span > div {
   float: left;
   margin-left: 1em;
-  width: 10em; }
-  .header__date-range > span > div > input {
+  width: 14em; }
+  .header__date-range > span > div > .input-group .form-control {
     padding: 4px 16px;
-    height: 30px; }
+    height: 28px; }
 .header__date-range > label {
   font-weight: normal;
   text-align: left;
@@ -561,15 +561,22 @@ footer {
   width: 10em; }
 .header__date-range #section-date-range {
   float: left; }
+  .header__date-range #section-date-range > select {
+    width: 10em; }
 .header__date-range .control-label {
   float: left;
-  line-height: 28px;
-  margin-right: 10px; }
+  line-height: 30px;
+  margin-right: 10px;
+  font-weight: normal; }
 @media screen and (max-width: 767px) {
   .header__date-range {
     text-align: center; }
+    .header__date-range label {
+      text-align: center;
+      display: block;
+      width: 100%; }
     .header__date-range > span > div,
-    .header__date-range label,
+    .header__date-range > label,
     .header__date-range .control-label,
     .header__date-range #section-date-range {
       float: none; }

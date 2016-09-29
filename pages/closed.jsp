@@ -22,7 +22,7 @@
                     <label class="control-label">Start</label>
                     <div  class="input-group">
                       <input id="date_timepicker_start_input" type="text" class="form-control" aria-describedby="basic-addon2" >
-                      <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                      <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar fa-fw"></i></span>
                     </div>
 
                 </div>
@@ -30,7 +30,7 @@
                   <label class="control-label">End</label>
                   <div class="input-group">
                     <input id="date_timepicker_end_input" type="text" class="form-control" aria-describedby="basic-addon2" >
-                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar fa-fw"></i></span>
                   </div>
                 </div>
             </span>
