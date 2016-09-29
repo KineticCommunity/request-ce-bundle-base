@@ -121,7 +121,7 @@
         $.ajax({
             method: 'get',
             url: buildAjaxUrl(options),
-            dataType: "json",
+            dataType: 'json',
             contentType: 'application/json',
             success: function(data, textStatus, jqXHR){
                 $('#spinner').remove();
@@ -155,10 +155,6 @@
                 });
                 var table = $(options.table).DataTable(records);
 
-                /* After the table has been built we are adding an html element that has a dropdown list so that a user can select a number of days back
-                 * to retrieve the list from.
-                 */
-               
                 if(options.serverSide){
                     serverOptions(options,data);
                 }

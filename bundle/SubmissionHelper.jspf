@@ -69,6 +69,11 @@
             java.time.Instant end = Time.now();
             java.time.Instant start = Time.subtract(end, 365, "days", java.time.ZoneId.systemDefault());
 
+            /* This is used with the date range picker on the submissions pages.
+             * The first option is used if the custom date range is selcected with a start and end date.
+             * The second option is used if the start date is filled out in the custom range but not the end date.
+             * The third option is used as a default range set 365 days from now.
+             */
             if (parameters.getValue("start") != null && parameters.getValue("end") != null) {
                 searchOptions.put("start", new String[]{Time.format(parameters.getValue("start"))});
                 searchOptions.put("end", new String[]{Time.format(parameters.getValue("end"))});
@@ -82,7 +87,7 @@
                 }
             }
             
-            // User select the number of record to see in the table display.  By default they see 10.
+            // User select the number of record to see in the table display.  By default they see 10 records.
             if (parameters.getValue("limit") != null) {
                 searchOptions.put("limit", new String[] {String.valueOf(parameters.getValue("limit"))});
             }else{
