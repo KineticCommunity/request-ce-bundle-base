@@ -7,26 +7,33 @@
     <c:import url="${bundle.path}/partials/tabs.jsp" charEncoding="UTF-8"/>
     <div role="tabpanel" class="tab-pane">
         <h3>My Approvals</h3>
-        <div class="header__date-range">
+        <div class="header__date-range col-sm-12">
             <label> Date Range:
-                <select id="date-range">
+                <select id="date-range" class="form-control input-sm">
                     <option value="1 Year">1 Year</option>
                     <option value="View All">View All</option>
                     <option value="Custom">Custom</option>
                 </select>
             </label>
             <span id="section-date-range" class="hidden">
-                <div id="date_timepicker_start" class="input-group">
-                    <input id="date_timepicker_start_input" type="text" class="form-control" aria-describedby="basic-addon2">
-                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                <div id="date_timepicker_start">
+                    <label class="control-label">Start</label>
+                    <div  class="input-group">
+                      <input id="date_timepicker_start_input" type="text" class="form-control" aria-describedby="basic-addon2" >
+                      <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar fa-fw"></i></span>
+                    </div>
+
                 </div>
-                <div id="date_timepicker_end" class="input-group">
-                    <input id="date_timepicker_end_input" type="text" class="form-control" aria-describedby="basic-addon2">
-                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar"></i></span>
+                <div id="date_timepicker_end">
+                  <label class="control-label">End</label>
+                  <div class="input-group">
+                    <input id="date_timepicker_end_input" type="text" class="form-control" aria-describedby="basic-addon2" >
+                    <span class="input-group-addon" id="basic-addon2"><i class="fa fa-calendar fa-fw"></i></span>
+                  </div>
                 </div>
             </span>
         </div>
-        <i id="spinner" class="fa fa-cog fa-spin fa-3x" style="text-align:center;width:100%;margin-top:15%"></i> 
+        <i id="spinner" class="fa fa-cog fa-spin fa-3x" style="text-align:center;width:100%;margin-top:15%"></i>
         <table id="approvalTable" class="table table-striped table-hover">
         <%--Tables are built on page load using dataTables library and an ajax call to the tableRecords.json.jsp page in the bundle.
             In catalog.js an object to render the table is configured on page load and the method renderTable is called.  --%>
