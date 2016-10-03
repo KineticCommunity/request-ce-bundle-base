@@ -4,6 +4,31 @@
 **/
 
 (function($, moment, _){
+    
+    /*----------------------------------------------------------------------------------------------
+     * ON LOAD EVENTS 
+     *   This code is executed when the page loads
+     *--------------------------------------------------------------------------------------------*/
+    
+    $(function(){
+        dateRange(bundle.base.options)
+        // Display error message if authentication error is found in URL.  This happens if login credentials fail.
+        if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
+            $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});
+        };
+
+        //  Add the query parameter to the search field on the search page
+        if(bundle.getUrlParameters().page === 'search'){
+            $('.predictiveText').val(bundle.getUrlParameters().q)
+        }
+
+         // Moment-ify any elements with the data-moment attribute
+        $('[data-moment]').each(function(index, item) {
+            var element = $(item);
+            element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
+        });
+    });
+    
     /*----------------------------------------------------------------------------------------------
      * COMMON INIALIZATION 
      *   This code is executed when the Javascript file is loaded
@@ -349,26 +374,6 @@
             timepicker:false
         });
     }
-    
-    // PAGE LOAD EVENTS
-    $(function(){
-        dateRange(bundle.base.options)
-        // Display error message if authentication error is found in URL.  This happens if login credentials fail.
-        if(window.location.search.substring(1).indexOf('authentication_error') !== -1){
-            $('form').notifie({type:'alert',severity:'info',message:'Invalid username or password'});
-        };
-
-        //  Add the query parameter to the search field on the search page
-        if(bundle.getUrlParameters().page === 'search'){
-            $('.predictiveText').val(bundle.getUrlParameters().q)
-        }
-
-         // Moment-ify any elements with the data-moment attribute
-        $('[data-moment]').each(function(index, item) {
-            var element = $(item);
-            element.html(moment(element.text()).format('MMMM Do YYYY, h:mm:ss A'));
-        });
-    });
 
     /*----------------------------------------------------------------------------------------------
      * BUNDLE.CONFIG OVERWRITES
