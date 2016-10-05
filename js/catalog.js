@@ -121,7 +121,7 @@
             $('#closedTable').removeData('pageTokens');
             renderTable({
                 table: '#closedTable',
-                jsonFileName: 'paginatedRecords.json',
+                jsonFileName: 'tableRecords.json',
                 coreState: ['Closed'],
                 length: 10,
                 serverSide: true,
@@ -334,8 +334,8 @@
             $('#view-all-date-range').removeClass('active');
         });
 
-       /* This builds the start and end datepicker calanders that open when the Start and End Date inputs are clicked. */
-        jQuery('#date_timepicker_start').datetimepicker({
+        /* This builds the start and end datepicker calanders that open when the Start and End Date inputs are clicked. */
+        $('#date_timepicker_start').datetimepicker({
             format:'Y/m/d',
             onChangeDateTime:function(dp,$input){
                 $('#date_timepicker_start input').val($('#date_timepicker_start').val());
@@ -348,12 +348,12 @@
             },
             onShow:function( ct ){
                 this.setOptions({
-                    maxDate:jQuery('#date_timepicker_end input').val()?jQuery('#date_timepicker_end input').val():moment()
+                    maxDate:$('#date_timepicker_end input').val()?$('#date_timepicker_end input').val():moment()
                 })
             },
             timepicker:false
         });
-        jQuery('#date_timepicker_end').datetimepicker({
+        $('#date_timepicker_end').datetimepicker({
             format:'Y/m/d',
              onChangeDateTime:function(dp,$input){
                 $('#date_timepicker_end input').val($('#date_timepicker_end').val())
@@ -368,7 +368,7 @@
             },
             onShow:function( ct ){
                 this.setOptions({
-                    minDate:jQuery('#date_timepicker_start input').val()?jQuery('#date_timepicker_start input').val():false
+                    minDate:$('#date_timepicker_start input').val()?$('#date_timepicker_start input').val():false
                 })
             },
             timepicker:false

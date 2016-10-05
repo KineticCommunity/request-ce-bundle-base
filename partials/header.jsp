@@ -48,7 +48,7 @@
                                     <a href="${bundle.spaceLocation}/?page=profile"><i class="fa fa-user fa-fw"></i> Profile</a>
                                 </li>
                                 <li class="divider hidden-xs"></li>
-                                <li class="hidden-xs"><a href="${bundle.spaceLocation}/app/">
+                                <li class="hidden-xs"><a href="${bundle.spaceLocation}/app/" target="_blank">
                                     <i class="fa fa-dashboard fa-fw"></i> Management Console</a>
                                 </li>
                                 <li class="divider hidden-xs"></li>

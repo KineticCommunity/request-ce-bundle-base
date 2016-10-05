@@ -115,9 +115,9 @@
             return page;
         }
 
-        public List<Submission> filterList(List<Submission> submissionList){
+        public PaginatedList<Submission> filterList(List<Submission> submissionList){
             Set<String> excludedTypes = new HashSet<>(Arrays.asList(request.getParameterValues("excludeTypes")));
-            List<Submission> results = new ArrayList<>();
+            PaginatedList<Submission> results = new PaginatedList<Submission>();
             for (Submission submission : submissionList) {
                 if (!excludedTypes.contains(submission.getTypeName())) {
                     results.add(submission);

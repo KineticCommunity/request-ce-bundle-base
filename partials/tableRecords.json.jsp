@@ -7,6 +7,7 @@
 </c:if>
 
 <json:object>
+    <json:property name="nextPageToken" value="${submissionList.getNextPageToken()}"/>
     <json:array name="columns">
         <json:object>
             <json:property name="title" value="Updated At"/>
