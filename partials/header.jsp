@@ -45,7 +45,8 @@
                                     <i class="fa fa-pencil fa-fw"></i> Edit Profile</a>
                                 </li>
                                 <li class="priority hidden-lg hidden-md hidden-sm">
-                                    <a href="${bundle.spaceLocation}/?page=profile"><i class="fa fa-user fa-fw"></i> Profile</a>
+                                    <a href="${bundle.spaceLocation}/?page=profile">
+                                        <i class="fa fa-user fa-fw"></i> Profile</a>
                                 </li>
                                 <li class="divider hidden-xs"></li>
                                 <li class="hidden-xs"><a href="${bundle.spaceLocation}/app/" target="_blank">
