@@ -59,7 +59,7 @@
             return submissionComponent.searchByKapp(kapp, searchOptions);
         }
 
-        public PaginatedList<Submission> getPaginatedSubmissions(Map<String,String[]> requestParameters){
+        public PaginatedList<Submission> retrieveSubmissionsByRequest(Map<String,String[]> requestParameters){
             ParameterMap parameters = new ParameterMap(requestParameters);
 
             com.kineticdata.core.authentication.Identity identity =

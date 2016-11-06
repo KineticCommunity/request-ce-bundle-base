@@ -1,7 +1,7 @@
 <%@include file="../bundle/initialization.jspf" %>
 
 <%-- Pass a list of parameter values to the submisson bundle helper. --%>
-<c:set var="submissionList" value="${SubmissionHelper.getPaginatedSubmissions(paramValues)}"/>
+<c:set var="submissionList" value="${SubmissionHelper.retrieveSubmissionsByRequest(paramValues)}"/>
 <c:if test="${param['excludeTypes'] != null}">
     <c:set var="submissionList" value="${SubmissionHelper.filterList(submissionList)}"/>
 </c:if>
