@@ -192,6 +192,7 @@
 }
 
 .header__date-range {
+  margin-left: -15px;
   > span {
     > div {
       float : left;
@@ -229,10 +230,12 @@
   }
   @media screen and (max-width: 767px) {
     text-align : center;
+    margin-left: 0;
     label{
       text-align:center;
       display:block;
       width:100%;
+      font-weight: normal;
     }
     > span > div,
     > label,

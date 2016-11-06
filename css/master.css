@@ -543,46 +543,50 @@ footer {
   width: 0;
   height: 0; }
 
-.header__date-range > span > div {
-  float: left;
-  margin-left: 1em;
-  width: 14em; }
-  .header__date-range > span > div > .input-group .form-control {
-    padding: 4px 16px;
-    height: 28px; }
-.header__date-range > label {
-  font-weight: normal;
-  text-align: left;
-  white-space: nowrap;
-  float: left;
-  margin-bottom: 10px; }
-.header__date-range select {
-  display: inline-block;
-  width: 10em; }
-.header__date-range #section-date-range {
-  float: left; }
-  .header__date-range #section-date-range > select {
+.header__date-range {
+  margin-left: -15px; }
+  .header__date-range > span > div {
+    float: left;
+    margin-left: 1em;
+    width: 14em; }
+    .header__date-range > span > div > .input-group .form-control {
+      padding: 4px 16px;
+      height: 28px; }
+  .header__date-range > label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+    float: left;
+    margin-bottom: 10px; }
+  .header__date-range select {
+    display: inline-block;
     width: 10em; }
-.header__date-range .control-label {
-  float: left;
-  line-height: 30px;
-  margin-right: 15px;
-  margin-bottom: 0px;
-  font-weight: normal; }
-@media screen and (max-width: 767px) {
-  .header__date-range {
-    text-align: center; }
-    .header__date-range label {
+  .header__date-range #section-date-range {
+    float: left; }
+    .header__date-range #section-date-range > select {
+      width: 10em; }
+  .header__date-range .control-label {
+    float: left;
+    line-height: 30px;
+    margin-right: 15px;
+    margin-bottom: 0px;
+    font-weight: normal; }
+  @media screen and (max-width: 767px) {
+    .header__date-range {
       text-align: center;
-      display: block;
-      width: 100%; }
-    .header__date-range > span > div,
-    .header__date-range > label,
-    .header__date-range .control-label,
-    .header__date-range #section-date-range {
-      float: none; }
-    .header__date-range #section-date-range {
-      margin-bottom: 10px; } }
+      margin-left: 0; }
+      .header__date-range label {
+        text-align: center;
+        display: block;
+        width: 100%;
+        font-weight: normal; }
+      .header__date-range > span > div,
+      .header__date-range > label,
+      .header__date-range .control-label,
+      .header__date-range #section-date-range {
+        float: none; }
+      .header__date-range #section-date-range {
+        margin-bottom: 10px; } }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   Navs

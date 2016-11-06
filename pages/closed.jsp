@@ -9,7 +9,7 @@
         In catalog.js an object to render the table is configured on page load and the mathod renderTable is called.  --%>
     <div role="tabpanel" class="tab-pane">
         <h3>Closed Submissions</h3>
-        <div class="header__date-range">
+        <div class="header__date-range col-sm-12">
             <label> Date Range:
                 <select id="date-range" class="form-control input-sm">
                     <option value="1 Year">1 Year</option>
