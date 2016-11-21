@@ -1,16 +1,14 @@
 <%-- Load Java libraries, Kinetic models & Identity --%>
 <%@page pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@page import="com.kineticdata.bundles.*" %>
+<%@page import="com.kineticdata.core.authentication.Identity" %>
 <%@page import="com.kineticdata.core.models.*" %>
 <%@page import="com.kineticdata.core.web.bundles.Bundle" %>
 <%@page import="com.kineticdata.core.web.bundles.BundleSubmissionComponent" %>
-<%@page import="com.kineticdata.core.authentication.Identity" %>
+<%@page import="java.lang.reflect.Method"%>
 <%@page import="java.time.ZoneId"%>
 <%@page import="java.util.*" %>
 <%@page import="org.slf4j.Logger" %>
-<%@page import="java.lang.reflect.Method"%>
-
-<%-- Bundle Java libraries --%>
-<%@page import="com.kineticdata.bundles.*" %>
 
 <%-- Load tag libraries (JSTL) used in most bundles --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -22,12 +20,6 @@
 
 <%@include file="/WEB-INF/app/includes/task4/task4.jspf" %>
 
-<%-- Initialize the default zoneId and locale --%>
-<%
-    request.setAttribute("zoneId", ZoneId.systemDefault());
-    request.setAttribute("locale", Locale.US);
-%>
-
 <%-- Get bundle, space, and kapp objects --%>
 <%
     Bundle bundle = (Bundle)request.getAttribute("bundle"); 
@@ -36,64 +28,81 @@
     Identity identity = (Identity)request.getAttribute("identity");
 %>
 
-<%-- SetupHelper --%>
-<%@include file="SetupHelper.jspf"%>
+<%-- Initialize the default zoneId and locale --%>
 <%
-    SetupHelper setupHelper = new SetupHelper()
-        .addSetupAttribute("Task Server Url", 
-            "Your Kinetic Task Server Url", 
-            false)
-        .addSetupAttribute("Task Source Name", 
-            "The Kinetic Task Source Name", 
-            false)
-        .addSetupAttribute("Logo Url", 
-            "Replaces the logo in header", 
-            false)
-        .addSetupAttribute("Logo Height Px", 
-            "Set the height of the logo in the header. Default is 40px with 5px of padding", 
-            false)
-        .addSetupAttribute("Sidebar Html", 
-            "Replace the Kinetic Data Twitter feed with an HTML/widget by including the HTML/JS in this attribute", 
-            false);
-    request.setAttribute("SetupHelper", setupHelper);
-%>
-
-<%-- I18nHelper --%>
-<%@include file="I18nHelper.jspf"%>
-<%
-    I18nHelper i18nHelper = new I18nHelper(request);
-    request.setAttribute("i18n", i18nHelper);
-    request.setAttribute("locale", i18nHelper.getLocale());
-    request.setAttribute("zoneId", i18nHelper.getZoneId());
+    if (request.getAttribute("json") == null) {
+        request.setAttribute("zoneId", ZoneId.systemDefault());
+    }
+    if (request.getAttribute("json") == null) {
+        request.setAttribute("locale", Locale.US);
+    }
 %>
 
 <%-- Load helper(s) --%>
 <%
-    request.setAttribute("json", new com.kineticdata.bundles.JsonHelper());
-    request.setAttribute("text", new com.kineticdata.bundles.TextHelper());
-    request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
+    if (request.getAttribute("json") == null) {
+        request.setAttribute("json", new com.kineticdata.bundles.JsonHelper());
+    }
+    if (request.getAttribute("text") == null) {
+        request.setAttribute("text", new com.kineticdata.bundles.TextHelper());
+    }
+    if (request.getAttribute("time") == null) {
+        request.setAttribute("time", new com.kineticdata.bundles.TimeHelper());
+    }
+%>
+
+<%-- SetupHelper --%>
+<%@include file="SetupHelper.jspf"%>
+<%
+    if (request.getAttribute("SetupHelper") == null) {
+        SetupHelper setupHelper = new SetupHelper()
+            .addSetupAttribute("Task Server Url", 
+                "Your Kinetic Task Server Url", 
+                false)
+            .addSetupAttribute("Task Source Name", 
+                "The Kinetic Task Source Name", 
+                false)
+            .addSetupAttribute("Logo Url", 
+                "Replaces the logo in header", 
+                false)
+            .addSetupAttribute("Logo Height Px", 
+                "Set the height of the logo in the header. Default is 40px with 5px of padding", 
+                false)
+            .addSetupAttribute("Sidebar Html", 
+                "Replace the Kinetic Data Twitter feed with an HTML/widget by including the HTML/JS in this attribute", 
+                false);
+        request.setAttribute("SetupHelper", setupHelper);
+    }
 %>
 
 <%-- FormHelper --%>
 <%@include file="FormHelper.jspf"%>
 <%
-    request.setAttribute("FormHelper", new FormHelper());
+    if (request.getAttribute("json") == null) {
+        request.setAttribute("FormHelper", new FormHelper());
+    }
 %>
 
 <%-- SearchHelper --%>
 <%@include file="SearchHelper.jspf"%>
 <%
-    request.setAttribute("SearchHelper", new SearchHelper());
+    if (request.getAttribute("json") == null) {
+        request.setAttribute("SearchHelper", new SearchHelper());
+    }
 %>
 
 <%-- SubmissionHelper --%>
 <%@include file="SubmissionHelper.jspf"%>
 <%
-    request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
+    if (request.getAttribute("json") == null) {
+        request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
+    }
 %>
 
 <%-- ObjectsHelper --%>
 <%@include file="ObjectsHelper.jspf"%>
 <%
-    request.setAttribute("ObjectsHelper", new ObjectsHelper());
+    if (request.getAttribute("json") == null) {
+        request.setAttribute("ObjectsHelper", new ObjectsHelper());
+    }
 %>
