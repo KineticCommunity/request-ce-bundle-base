@@ -30,10 +30,10 @@
 
 <%-- Initialize the default zoneId and locale --%>
 <%
-    if (request.getAttribute("json") == null) {
+    if (request.getAttribute("zoneId") == null) {
         request.setAttribute("zoneId", ZoneId.systemDefault());
     }
-    if (request.getAttribute("json") == null) {
+    if (request.getAttribute("locale") == null) {
         request.setAttribute("locale", Locale.US);
     }
 %>
@@ -78,7 +78,7 @@
 <%-- FormHelper --%>
 <%@include file="FormHelper.jspf"%>
 <%
-    if (request.getAttribute("json") == null) {
+    if (request.getAttribute("FormHelper") == null) {
         request.setAttribute("FormHelper", new FormHelper());
     }
 %>
@@ -86,7 +86,7 @@
 <%-- SearchHelper --%>
 <%@include file="SearchHelper.jspf"%>
 <%
-    if (request.getAttribute("json") == null) {
+    if (request.getAttribute("SearchHelper") == null) {
         request.setAttribute("SearchHelper", new SearchHelper());
     }
 %>
@@ -94,7 +94,7 @@
 <%-- SubmissionHelper --%>
 <%@include file="SubmissionHelper.jspf"%>
 <%
-    if (request.getAttribute("json") == null) {
+    if (request.getAttribute("SubmissionHelper") == null) {
         request.setAttribute("SubmissionHelper", new SubmissionHelper(request));
     }
 %>
@@ -102,7 +102,7 @@
 <%-- ObjectsHelper --%>
 <%@include file="ObjectsHelper.jspf"%>
 <%
-    if (request.getAttribute("json") == null) {
+    if (request.getAttribute("ObjectsHelper") == null) {
         request.setAttribute("ObjectsHelper", new ObjectsHelper());
     }
 %>
