@@ -1,6 +1,7 @@
 <%@include file="../bundle/initialization.jspf" %>
 
-<c:set var="submissionList" value="${SubmissionHelper.getPaginatedSubmissions()}"/>
+<%-- Pass a list of parameter values to the submisson bundle helper. --%>
+<c:set var="submissionList" value="${SubmissionHelper.retrieveSubmissionsByRequest(paramValues)}"/>
 
 <json:object>
     <json:property name="nextPageToken" value="${submissionList.getNextPageToken()}"/>
