@@ -162,7 +162,7 @@
             $('#closedTable').removeData('pageTokens');
             renderTable({
                 table: '#closedTable',
-                jsonFileName: 'paginatedRecords.json',
+                jsonFileName: 'tableRecords.json',
                 coreState: ['Closed'],
                 length: 10,
                 serverSide: true,
