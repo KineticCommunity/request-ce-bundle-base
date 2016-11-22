@@ -1,3 +1,6 @@
+<%@page import="org.springframework.util.StringUtils"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.kineticdata.core.models.Submission"%>
 <%@page import="java.util.stream.Collectors"%>
 <%@page import="java.util.List"%>
@@ -102,6 +105,52 @@
             return page;
         }
 
+        public PaginatedList<Submission> retrieveSubmissionsByRequest(Map<String,String[]> requestParameters){
+            /* We create a map of parameter values from the request to be used in the method */
+            ParameterMap parameters = new ParameterMap(requestParameters);
+            java.util.Map<String,String[]> searchOptions = new java.util.HashMap<>();
+
+            com.kineticdata.core.authentication.Identity identity =
+                (com.kineticdata.core.authentication.Identity) request.getAttribute("identity");
+  
+            // Date and times must be set to ISO 8601 or an error wil result.
+            if (parameters.getValue("start") != null){
+                searchOptions.put("start", new String[]{parameters.getValue("start")});
+            }
+            if(parameters.getValue("end") != null){
+                searchOptions.put("end", new String[]{parameters.getValue("end")});
+            }
+            
+            // User select the number of record to see in the table display.  By default they see 10 records.
+            if (parameters.getValue("limit") != null) {
+                searchOptions.put("limit", new String[] {String.valueOf(parameters.getValue("limit"))});
+            }else{
+                searchOptions.put("limit",new String[]{"10"});
+            }
+
+            // If a page token exist in the request 
+            if(parameters.getValue("pageToken") != null){
+                searchOptions.put("pageToken", new String[]{parameters.getValue("pageToken")});
+            }
+
+            if("Approval".equals(request.getParameter("type")) || "Work Order".equals(request.getParameter("type"))){
+                searchOptions.put("values[Assigned Individual]", new String[] {identity.getUsername()});
+            } else {
+                searchOptions.put("createdBy", new String[] {identity.getUsername()});
+            }
+
+            searchOptions.put("type", new String[] {request.getParameter("type")});
+
+            if(parameters.getValue("coreState") != null){
+                int size = parameters.getValues("coreState").size();
+                searchOptions.put("coreState", parameters.getValues("coreState").toArray(new String[size]));
+            }
+
+            PaginatedList<Submission> page;
+            page = this.submissionComponent.searchByKapp(kapp, searchOptions);
+            return page;
+        }
+
         public List<Submission> filterList(List<Submission> submissionList){
             Set<String> excludedTypes = new HashSet<>(Arrays.asList(request.getParameterValues("excludeTypes")));
             List<Submission> results = new ArrayList<>();
@@ -111,6 +160,19 @@
                 }
             }
             return results;
+        }
+
+        private static class ParameterMap {
+            private final Map<String,String[]> parameters;
+            public ParameterMap(Map<String,String[]> parameters) {
+                this.parameters = parameters;
+            }
+            public String getValue(String name) {
+                return parameters.containsKey(name) ? parameters.get(name)[0] : null;
+            }
+            public List<String> getValues(String name) {
+                return parameters.containsKey(name) ? Arrays.asList(parameters.get(name)) : Collections.EMPTY_LIST;
+            }
         }
     }
 %>
