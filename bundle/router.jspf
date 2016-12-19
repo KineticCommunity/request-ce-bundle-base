@@ -1,13 +1,6 @@
-<%-- AUTHENTICATION REQUIRED AND USER IS ANONYMOUS --%>
-<%
-    if (kapp != null && identity.isAnonymous() && kapp.getForms().isEmpty()) {
-        response.sendRedirect(bundle.getSpaceLocation()+"/app/login?kapp="+kapp.getSlug());
-        return;
-    }
-%>
-
 <%-- INVALID SETUP ROUTING --%>
 <%
+    SetupHelper setupHelper = (SetupHelper)request.getAttribute("SetupHelper");
     // If the request is scoped to a specific Kapp (space display pages are not)
     if (kapp != null) {
         // If there are any required setup attributes missing 
@@ -87,4 +80,21 @@
         // Return so that no further JSP processing occurs
         return;
     }
+%>
+
+<%-- PASSWORD RESET (WELCOME EMAIL) ROUTING --%>
+<%
+    // If the call is to render the welcome page for an unauthenticated user
+    if (
+        request.getParameter("username") != null 
+        && request.getParameter("token") != null
+        && identity.isAnonymous()
+    ) {
+        // Redirect to the reset password page
+        response.sendRedirect(bundle.getSpaceLocation()+"/app/reset-password"+
+            "?username="+request.getParameter("username")+
+            "&token="+request.getParameter("token"));
+        // Return so that no further JSP processing occurs
+        return;
+    }  
 %>
