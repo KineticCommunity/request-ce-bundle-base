@@ -95,6 +95,9 @@ pre {
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Attachment files
  *-------------------------------------- */
+.empty > .file-table > .file-header {
+  display: none; }
+
 .file-table {
   display: table;
   margin: 0px;
@@ -103,15 +106,16 @@ pre {
 .file-row {
   display: table-row; }
   .file-row > span {
-    list-style: none;
     display: table-cell;
-    border: 1px solid #000;
-    padding: 2px 6px; }
+    padding: .5rem; }
+    .file-row > span > a {
+      padding: 0 .5rem; }
 
 .file-header {
-  display: table-header-group; }
+  display: table-header-group;
+  font-weight: 700; }
   .file-header span {
-    background-color: #ccc; }
+    border-bottom: 1px solid #B3C1C4; }
 
 .file-container {
   display: table-row-group; }
@@ -896,7 +900,9 @@ footer {
 
 /* Modal Body */
 .kd-modal-body {
-  padding: 8px 16px; }
+  padding: 1rem;
+  max-height: 75vh;
+  overflow: auto; }
   .kd-modal-body table {
     width: 100%; }
     .kd-modal-body table th, .kd-modal-body table td {
