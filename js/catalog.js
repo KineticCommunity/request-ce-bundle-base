@@ -176,7 +176,7 @@
         }else{
             $('#'+currentId).addClass('active');
             var currentIdPosition = $('#'+currentId).position();
-            if(currentIdPosition) {
+            if(currentIdPosition){
                 $('#tab-nav').scrollLeft($('#'+currentId).position().left);
             }
         }
