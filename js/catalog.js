@@ -240,9 +240,9 @@
     function buildAjaxUrl(options){
         var url = bundle.kappLocation() + "?partial=" +options.jsonFileName;
         if(options.type === 'Approval'){
-            url += '&values[Assigned Individual]='+identity;
+            url += '&values[Assigned Individual]='+bundle.identity();
         }else{
-            url += '&createdBy='+identity+'&requestedFor='+identity;
+            url += '&createdBy='+bundle.identity()+'&requestedFor='+bundle.identity();
         }
         if(options.coreState !== undefined){
             $.each(options.coreState, function(k,v){
@@ -391,7 +391,9 @@
     }
     bundle.config.renderers.submitErrors = function(response) {
         $('[data-form]').notifie({
-            message: 'There was a ' + response.status + ' : "' + response.statusText + '" error.' ,
+            message: response.status === 400 && response.responseJSON && response.responseJSON.error
+                ? response.responseJSON.error
+                : 'There was a ' + response.status + ' : "' + response.statusText + '" error.' ,
             exitEvents: "click"
         });
     }

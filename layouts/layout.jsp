@@ -61,7 +61,4 @@
             <c:import url="${bundle.path}/partials/footer.jsp" charEncoding="UTF-8"/>
         </div>
     </body>
-    <script>
-        window.identity = '${identity.username}';
-    </script>
 </html>

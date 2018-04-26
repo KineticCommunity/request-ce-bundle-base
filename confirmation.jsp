@@ -1,5 +1,14 @@
 <%@page pageEncoding="UTF-8" contentType="text/html" trimDirectiveWhitespaces="true"%>
 <%@include file="bundle/initialization.jspf" %>
+<%
+    request.setAttribute("isDatastoreRequest", (
+            request.getAttribute("form") != null
+            && request.getAttribute("form") instanceof com.kineticdata.core.models.Datastore
+        ) || (
+            request.getAttribute("submission") != null
+            && request.getAttribute("submission") instanceof com.kineticdata.core.models.DatastoreSubmission
+        ));
+%>
 <bundle:layout page="layouts/form.jsp">
     <bundle:variable name="head">
         <title>${text.escape(form.name)}</title>
@@ -16,7 +25,12 @@
                         An empty 'current page' means there is no page defined.
                     --%>
                     <c:choose>
-                        <c:when test='${empty submission.currentPage}'>
+                        <c:when test='${empty submission.currentPage.getElements() && isDatastoreRequest}'>
+                            <h4>Datastore record submitted</h4>
+                            <p><a href="${bundle.spaceLocation}/app/datastore/forms/${form.slug}">Submit again</a></p>
+                            <p><a href="${bundle.spaceLocation}">Return to ${space.name}</a></p>
+                        </c:when>
+                        <c:when test='${empty submission.currentPage.getElements() && !isDatastoreRequest}'>
                             <h4>Thank you for your submission</h4>
                             <p><a href="${bundle.kappLocation}/${form.slug}">Submit again</a></p>
                             <p><a href="${bundle.kappLocation}">Return to ${kapp.name}</a></p>

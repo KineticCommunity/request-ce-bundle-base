@@ -9,10 +9,7 @@
             Yield to the the form body content (the form head content is included in form body 
             content in this case).
         --%>
-        <bundle:yield/>
-        <script>
-            window.identity = '${identity.username}'
-        </script>
+        <app:bodyContent/>
     </c:when>
     <%-- 
         If the form is being rendered in "normal" mode, 
