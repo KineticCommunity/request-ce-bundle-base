@@ -68,7 +68,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="drop2">
                             <c:forEach items="${space.kapps}" var="kapp">
-                                <li><a href="/kinetic/${space.slug}/${kapp.slug}/">${kapp.name}</a></li>
+                                <li><a href="${bundle.spaceLocation}/${kapp.slug}/">${kapp.name}</a></li>
                             </c:forEach>
                         </ul>
                     </li>
